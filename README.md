@@ -2,7 +2,7 @@
 
 <img width="974" height="470" alt="image" src="https://github.com/user-attachments/assets/f138cfa2-5a97-490a-bf62-6a4f1e2869ca" />
 
-Haxefetch is fetch program inspired by fastfetch, neofetch, pfetch, nerdfetch, hyfetch, etc and it is written in Haxe. [Don't know what's Haxe? Read more](https://haxe.org/)
+Haxefetch is fetch program inspired by fastfetch, neofetch, pfetch, nerdfetch, hyfetch, etc and it is written in Haxe. [Don't know what's Haxe? Read more](https://haxe.org/) and [learn Haxe if you don't know!](https://haxe.org/documentation/introduction/)
 
 ## Dependencies
  - `vulkaninfo` and `vulkantools` - Required to show Vulkan version
