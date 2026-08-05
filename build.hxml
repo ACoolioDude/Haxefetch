@@ -1,7 +1,19 @@
+# Handle main source directory
 -p src
+
+# Find main class that will target
 -main Haxefetch
+
+# Optimize flags
+-D analyzer-optimize
+
+# Compile to specific binary
 -cpp bin/cpp
+
+# Use compiler for compilation
 -D HXCPP_M64
+
+# Move compiled binary and rename it to correct name
 --cmd command mv bin/cpp/Haxefetch bin/cpp/haxefetch
 
 # Add resources
