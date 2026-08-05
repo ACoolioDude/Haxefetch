@@ -1,5 +1,7 @@
 # Haxefetch
 
+<img width="969" height="464" alt="image" src="https://github.com/user-attachments/assets/8ed4e309-8505-4f43-a0c1-f4d78c14ebf5" />
+
 Haxefetch is fetch program inspired by fastfetch, neofetch, pfetch, nerdfetch, hyfetch, etc and it is written in Haxe [Don't know what's Haxe? Read more](https://haxe.org/)
 
 ## Dependencies
