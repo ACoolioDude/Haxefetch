@@ -1,12 +1,6 @@
 package;
 
-import haxe.display.Display.Package;
-import haxe.io.Output;
-import haxe.macro.Compiler;
-import haxe.display.Display.Define;
 import sys.io.Process;
-import sys.FileSystem;
-import sys.io.File;
 
 class Haxefetch {
     static function main() {
