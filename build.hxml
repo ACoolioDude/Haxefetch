@@ -1,3 +1,4 @@
+-p src
 -main Haxefetch
 -cpp bin/cpp
 -D HXCPP_M64
