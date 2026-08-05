@@ -17,11 +17,11 @@
 --cmd command mv bin/cpp/Haxefetch bin/cpp/haxefetch
 
 # Add resources
---resource resources/logos/arch.txt@arch
---resource resources/logos/artix.txt@artix
---resource resources/logos/cachyos.txt@cachy
---resource resources/logos/debian.txt@debian
---resource resources/logos/fedora.txt@fedora
---resource resources/logos/gentoo.txt@gentoo
---resource resources/logos/nixos.txt@nix
---resource resources/logos/void.txt@void
+--resource src/resources/logos/arch.txt@arch
+--resource src/resources/logos/artix.txt@artix
+--resource src/resources/logos/cachyos.txt@cachy
+--resource src/resources/logos/debian.txt@debian
+--resource src/resources/logos/fedora.txt@fedora
+--resource src/resources/logos/gentoo.txt@gentoo
+--resource src/resources/logos/nixos.txt@nix
+--resource src/resources/logos/void.txt@void

@@ -26,34 +26,38 @@ class Haxefetch {
         var separator:String = " ";
 
         var infoLine:Array<String> = [
-            host,
-            "OS:" + separator + distro + " (" + init + ")",
-            "Kernel:" + separator + kernel,
-            "WM:" + separator + session,
-            "RAM:" + separator + ram,
-            "SWAP:" + separator + swap,
-            "CPU:" + separator + cpu,
-            "Packages:" + separator + packages,
-            "Haxe:" + separator + haxe,
-            "OpenGL:" + separator + opengl,
-            "Vulkan:" + separator + vulkan,
-            "Uptime:" + separator + uptime,
-            "OS Birthday:" + separator + birthday,
-            "OS Birth:" + separator + birth
+            Colors.colorize(host, Colors.RED),
+            Colors.colorize("OS:", Colors.YELLOW) + separator + distro + " (" + Colors.colorize(init, Colors.GREEN) + ")",
+            Colors.colorize("Kernel:", Colors.YELLOW) + separator + kernel,
+            Colors.colorize("WM:", Colors.YELLOW) + separator + session,
+            Colors.colorize("RAM:", Colors.YELLOW) + separator + ram,
+            Colors.colorize("SWAP:", Colors.YELLOW) + separator + swap,
+            Colors.colorize("CPU:", Colors.YELLOW) + separator + cpu,
+            Colors.colorize("Packages:", Colors.YELLOW) + separator + packages,
+            Colors.colorize("OpenGL:", Colors.YELLOW) + separator + opengl,
+            Colors.colorize("Vulkan:", Colors.YELLOW) + separator + vulkan,
+            Colors.colorize("Uptime:", Colors.YELLOW) + separator + uptime,
+            Colors.colorize("OS Birthday:", Colors.YELLOW) + separator + birthday,
+            Colors.colorize("OS Birth:", Colors.YELLOW) + separator + birth
         ];
 
         var logoWidth = 0;
         for (line in logo) {
-            if (line.length > logoWidth) logoWidth = line.length;
+            var visibleLen = Colors.stripAnsi(line).length;
+            if (visibleLen > logoWidth) logoWidth = visibleLen;
         }
 
-        var maximumLine = Math.floor(Math.max(logo.length, infoLine.length));
+        var maximumLine = logo.length > infoLine.length ? logo.length : infoLine.length;
         for (i in 0...maximumLine) {
             var left = i < logo.length ? logo[i] : "";
             var right = i < infoLine.length ? infoLine[i] : "";
 
-            var leftPadding = StringTools.rpad(left, separator, logoWidth + 3);
-            Sys.println('$leftPadding$right');
+            var visibleLeftLen = Colors.stripAnsi(left).length;
+            var padding = (logoWidth + 3) - visibleLeftLen;
+            if (padding < 0) padding = 0;
+            
+            var space = StringTools.lpad("", " ", padding);
+            Sys.println('$left$space$right');
         }
     }
     
