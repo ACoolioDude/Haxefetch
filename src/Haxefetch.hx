@@ -3,7 +3,8 @@ package;
 import sys.io.Process;
 
 class Haxefetch {
-    static function main() {
+    static function main():Void {
+        Commands.parse(Sys.args());
         var memory = Memory.memoryStats();
 
         var user = getEnvironment("USER", getEnvironment("USERNAME", "user"));
@@ -34,6 +35,7 @@ class Haxefetch {
             Colors.colorize("SWAP:", Colors.YELLOW) + separator + swap,
             Colors.colorize("CPU:", Colors.YELLOW) + separator + cpu,
             Colors.colorize("Packages:", Colors.YELLOW) + separator + packages,
+            Colors.colorize("Haxe:", Colors.YELLOW) + separator + haxe,
             Colors.colorize("OpenGL:", Colors.YELLOW) + separator + opengl,
             Colors.colorize("Vulkan:", Colors.YELLOW) + separator + vulkan,
             Colors.colorize("Uptime:", Colors.YELLOW) + separator + uptime,
