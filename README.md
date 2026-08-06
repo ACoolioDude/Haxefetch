@@ -1,5 +1,3 @@
-# Haxefetch
-
 <p align="center">Haxefetch</p>
 
 <img width="966" height="455" alt="image" src="https://github.com/user-attachments/assets/6a1abf1e-5bc3-41af-9e9c-6fee66114865" />
