@@ -125,7 +125,7 @@ class SystemUtils {
                 if (upper.indexOf("XFWL") != -1) return "XFWL";
 
                 // X11/Xorg
-                if (upper.indexOf("XFWM") != -1) return "XFWM";
+                if (upper.indexOf("XFCE") != -1) return "Xfwm4";
                 if (upper.indexOf("MUFFIN") != -1) return "Muffin";
                 if (upper.indexOf("OPENBOX") != -1) return "OpenBox";
                 if (upper.indexOf("I3") != -1) return "i3";
@@ -160,7 +160,7 @@ class SystemUtils {
             "xfwl" => "XFWL",
 
             // X11/Xorg
-            "xfwm" => "XFWM",
+            "xfwm4" => "XFWM",
             "muffin" => "Muffin",
             "openbox" => "OpenBox",
             "i3" => "i3",
