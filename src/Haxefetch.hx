@@ -17,6 +17,7 @@ class Haxefetch {
         var ram = memory.ram;
         var swap = memory.swap;
         var cpu = SystemUtils.fetchCPU();
+        var gpu = SystemUtils.fetchGPU();
         var packages = SystemUtils.fetchPackage();
         var haxe = SystemUtils.fetchHaxe();
         var opengl = SystemUtils.fetchOpenGL();
@@ -34,6 +35,7 @@ class Haxefetch {
             Colors.colorize("RAM:", Colors.YELLOW) + separator + ram,
             Colors.colorize("SWAP:", Colors.YELLOW) + separator + swap,
             Colors.colorize("CPU:", Colors.YELLOW) + separator + cpu,
+            Colors.colorize("GPU:", Colors.YELLOW) + separator + gpu,
             Colors.colorize("Packages:", Colors.YELLOW) + separator + packages,
             Colors.colorize("Haxe:", Colors.YELLOW) + separator + haxe,
             Colors.colorize("OpenGL:", Colors.YELLOW) + separator + opengl,

@@ -1,6 +1,6 @@
 # Haxefetch
 
-<img width="966" height="455" alt="image" src="https://github.com/user-attachments/assets/6a1abf1e-5bc3-41af-9e9c-6fee66114865" />
+<img width="954" height="444" alt="image" src="https://github.com/user-attachments/assets/361ef739-fa35-4988-a699-f3149eb814a0" />
 <p align="center">(Haxefetch preview)</p>
 <img width="815" height="252" alt="image" src="https://github.com/user-attachments/assets/eeca9d46-6539-44b2-8354-be3e54a9f4ca" />
 <p align="center">(Haxefetch commads)</p>
