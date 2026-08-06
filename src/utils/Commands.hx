@@ -17,6 +17,10 @@ class Commands {
                 case "-c" | "--config":
                     Configuration.generateConfiguration();
 
+                case "-t" | "--tutorial":
+                    fetchInstructions();
+                    Sys.exit(0);
+
                 default:
                     Sys.println('Unknown command ${args}');
                     Sys.println("Try -h or --help for current commands");
@@ -25,12 +29,15 @@ class Commands {
         }
     }
 
-    public static function fetchHelp():Void {
+    private static function fetchHelp():Void {
+        Sys.println("   -h | --help " + " " + "        Show help");
+        Sys.println("   -v | --version " + " " + "     Show version of Haxefetch.");
+        Sys.println("   -c | --config " + " " + "      Generate new config of Haxefetch.");
+        Sys.println("   -t | --tutorial " + " " + "    Show to customise this in Haxefetch.");
+    } 
+
+    private static function fetchInstructions():Void {
         Sys.println('In order to customise this:\n');
-
-        var instructions:String = 'Generate configuration with "haxefetch --config" (it is located into /home/USER/.config/haxefetch directory)';
-        var examples:String = 'Here are examples:\n\nshow_hostname=true\nshow_distro=true\nshow_window_manager=true\nshow_ram=true\nshow_swap=true\nshow_cpu=true\nshow_gpu=true\nshow_package=true\nshow_haxe_version=true\nshow_opengl_version=true\nshow_vulkan_version=true\nshow_uptime=true\nshow_birthday=true\nshow_birth=true';
-
-        Sys.println('${instructions}\n${examples}');
+        Sys.println('Generate configuration with "haxefetch --config" (it is located into /home/USER/.config/haxefetch directory).\nYou can see there is some options to customise this fetch program, so enjoy :)');
     }
 }
