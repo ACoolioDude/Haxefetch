@@ -72,24 +72,131 @@ class SystemUtils {
         }
     }
 
+    public static function fetchDestkop():Null<String> {
+        var environmentKey = ["XDG_CURRENT_DESKTOP", "XDG_SESSION_DESKTOP", "DESKTOP_SESSION", "CURRENT_DESKTOP"];
+        var rawEnvironment:String = "";
+
+        for (key in environmentKey) {
+            var value = Sys.getEnv(key);
+            if (value != null && StringTools.trim(value) != "") {
+                rawEnvironment = value;
+                break;
+            }
+        }
+        if (rawEnvironment == "") return null;
+
+        var part = rawEnvironment.split(":");
+        for (parts in part) {
+            var token = StringTools.trim(parts).toUpperCase();
+            if (token == "") continue;
+
+            if (token.indexOf("GNOME") != -1) return "GNOME";
+            if (token.indexOf("KDE") != -1 || token.indexOf("PLASMA") != -1) return "KDE Plasma";
+            if (token.indexOf("CINNAMON") != -1) return "Cinnamon";
+            if (token.indexOf("XFCE") != -1) return "XFCE";
+            if (token.indexOf("MATE") != -1) return "MATE";
+            if (token.indexOf("BUDGIE") != -1) return "Budgie";
+            if (token.indexOf("COSMIC") != -1) return "Cosmic";
+            if (token.indexOf("LXDE") != -1) return "LXDE";
+            if (token.indexOf("LXQT") != -1) return "LXQt";
+            if (token.indexOf("DEEPIN") != -1 || token.indexOf("DDE") != -1) return "Deepin";
+        }
+        return null;
+    }
+
     public static function fetchSession():String {
-        #if sys
-        var sessionType:String = Sys.getEnv("XDG_SESSION_TYPE");
-        var desktop:String = Sys.getEnv("XDG_CURRENT_DESKTOP");
+        var environmentKey = ["XDG_CURRENT_DESKTOP", "XDG_SESSION_DESKTOP", "DESKTOP_SESSION"];
+        for (key in environmentKey) {
+            var value = Sys.getEnv(key);
+            if (value != null && value != "") {
+                var clean = StringTools.trim(value);
+                var upper = clean.toUpperCase();
 
-        if (sessionType == null || sessionType == "") sessionType = "Unknown";
-        if (desktop == null || desktop == "") {
-            desktop = Sys.getEnv("DESKTOP_SESSION");
-            if (desktop == null || desktop == "") desktop = "Unknown";
+                // Wayland
+                if (upper.indexOf("KWIN") != -1) return "KWin";
+                if (upper.indexOf("MUTTER") != -1) return "Mutter";
+                if (upper.indexOf("SWAY") != -1) return "Sway";
+                if (upper.indexOf("HYPRLAND") != -1) return "Hyprland";
+                if (upper.indexOf("NIRI") != -1) return "Niri";
+                if (upper.indexOf("MANGO") != -1) return "Mango";
+                if (upper.indexOf("DWL") != -1) return "DWL";
+                if (upper.indexOf("LABWC") != -1) return "LabWC";
+                if (upper.indexOf("WAYFIRE") != -1) return "Wayfire";
+                if (upper.indexOf("XFWL") != -1) return "XFWL";
+
+                // X11/Xorg
+                if (upper.indexOf("XFWM") != -1) return "XFWM";
+                if (upper.indexOf("MUFFIN") != -1) return "Muffin";
+                if (upper.indexOf("OPENBOX") != -1) return "OpenBox";
+                if (upper.indexOf("I3") != -1) return "i3";
+                if (upper.indexOf("AWESOME") != -1) return "Awesome";
+                if (upper.indexOf("BSPWM") != -1) return "Bspwm";
+                if (upper.indexOf("XMONAD") != -1) return "XMonad";
+                if (upper.indexOf("OXWM") != -1) return "Oxwm"; // Tony Banters my beloved guy
+
+                return clean;
+            }
+
+            var currentSession = checkSession();
+            if (currentSession != null) return currentSession;
         }
 
-        if (sessionType != "Unknown" && sessionType.length > 0) {
-            sessionType = sessionType.charAt(0).toUpperCase() + sessionType.substr(1).toLowerCase();
+        return null;
+    }
+
+    private static function checkSession():Null<String> {
+        var wm = [
+            //Wayland
+            "kwin" => "KWin",
+            "mutter" => "Mutter",
+            "sway" => "Sway",
+            "hyprland" => "Hyprland",
+            "niri" => "Niri",
+            "mangowc" => "Mango",
+            "dwl" => "DWL",
+            "river" => "River",
+            "labwc" => "LabWC",
+            "wayfire" => "Wayfire",
+            "xfwl" => "XFWL",
+
+            // X11/Xorg
+            "xfwm" => "XFWM",
+            "muffin" => "Muffin",
+            "openbox" => "OpenBox",
+            "i3" => "i3",
+            "awesome" => "Awesome",
+            "bspwm" => "Bspwm",
+            "xmonad" => "XMonad",
+            "oxwm" => "OXWM", // Tony Banters my beloved guy  
+            "dwm" => "DWM"
+        ];
+
+        for (process in wm.keys()) {
+            var output = StringTools.trim(Haxefetch.runCmd("pgrep", ["-x", process]));
+            if (output != "" && output != "N/A" && output != null) return wm.get(process);
+        }
+        return null;
+    }
+
+    public static function fetchProtocol():Null<String> {
+        var protocolType = Sys.getEnv("XDG_SESSION_TYPE");
+        if (protocolType != null && protocolType != "") {
+            switch (protocolType.toLowerCase()) {
+                case "wayland": return "Wayland";
+                case "x11": return "X11";
+                case "xlibre": return "XLibre";
+                case "tty": return null;
+                case _: checkProtocol();
+            }
         }
 
-        return desktop + " (" + sessionType + ")";
-        #end
-        return "N/A";
+        return checkProtocol();
+    }
+
+    private static function checkProtocol():Null<String> {
+        if (Sys.getEnv("WAYLAND_DISPLAY") != null && Sys.getEnv("WAYLAND_DISPLAY") != "") return "Wayland";
+        if (Sys.getEnv("DISPLAY") != null && Sys.getEnv("DISPLAY") != "") return "Wayland";
+        return null;
     }
 
     public static function fetchCPU():String {

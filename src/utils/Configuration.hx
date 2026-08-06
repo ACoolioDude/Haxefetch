@@ -13,6 +13,9 @@ class Configuration {
     public static var showKernel:Bool = true;
     // public static var kernelString:String = "OS";
 
+    public static var showDesktop:Bool = true;
+    // public static var desktopString:String = "WM:";
+
     public static var showSession:Bool = true;
     // public static var sessionString:String = "WM:";
 
@@ -95,6 +98,8 @@ class Configuration {
 
         var configDirectory = Path.join([home, ".config", "haxefetch"]);
         var configFile = Path.join([configDirectory, "config.conf"]);
+
+        createConfiguration(configDirectory, configFile, true);
     }
 
     public static function parseConfigOptions(key:String, value:String, lineNumber:Int):Void {
@@ -102,6 +107,7 @@ class Configuration {
             case "show_hostname": showHost = parseBool(value);
             case "show_distro": showDistro = parseBool(value);
             case "show_kernel": showKernel = parseBool(value);
+            case "show_desktop_environment": showDesktop = parseBool(value);
             case "show_window_manager": showSession = parseBool(value);
             case "show_ram": showSession = parseBool(value);
             case "show_swap": showSWAP = parseBool(value);
@@ -137,6 +143,7 @@ class Configuration {
                 "# CURRENTLY ON ALPHA!\n" +
                 "show_hostname=true\n" +
                 "show_distro=true\n" +
+                "show_desktop_environment=true\n" +
                 "show_window_manager=true\n" +
                 "show_ram=true\n" +
                 "show_swap=true\n" +

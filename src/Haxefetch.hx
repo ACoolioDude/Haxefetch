@@ -14,7 +14,9 @@ class Haxefetch {
         var init = SystemUtils.fetchInit();
         var logo = Logo.fetchLogo(distro);
         var kernel = SystemUtils.fetchKernel();
-        var session = SystemUtils.fetchSession();        
+        var desktop = SystemUtils.fetchDestkop();
+        var session = SystemUtils.fetchSession();
+        var protocol = SystemUtils.fetchProtocol();        
         var ram = memory.ram;
         var swap = memory.swap;
         var cpu = SystemUtils.fetchCPU();
@@ -32,7 +34,13 @@ class Haxefetch {
             Configuration.showHost ? Colors.colorize(host, Colors.RED) : null,
             Configuration.showDistro ? Colors.colorize("OS:", Colors.YELLOW) + separator + distro + " (" + Colors.colorize(init, Colors.GREEN) + ")" : null,
             Configuration.showKernel ? Colors.colorize("Kernel:", Colors.YELLOW) + separator + kernel : null,
-            Configuration.showSession ? Colors.colorize("WM:", Colors.YELLOW) + separator + session : null,
+            
+            (desktop != null && desktop != "N/A" && desktop != "" && Configuration.showDesktop) ? 
+                Colors.colorize("DE:", Colors.YELLOW) + separator + desktop : null,
+            
+            (Configuration.showSession && session != null && session != "") ?
+                Colors.colorize("WM:", Colors.YELLOW) + separator + session + " (" + protocol + ")" : null,
+
             Configuration.showRAM ? Colors.colorize("RAM:", Colors.YELLOW) + separator + ram : null,
             Configuration.showSWAP ? Colors.colorize("SWAP:", Colors.YELLOW) + separator + swap : null,
             Configuration.showCPU ? Colors.colorize("CPU:", Colors.YELLOW) + separator + cpu : null,
