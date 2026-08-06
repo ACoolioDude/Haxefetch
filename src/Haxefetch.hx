@@ -5,6 +5,7 @@ import sys.io.Process;
 class Haxefetch {
     static function main():Void {
         Commands.parse(Sys.args());
+        Configuration.loadConfig();
         var memory = Memory.memoryStats();
 
         var user = getEnvironment("USER", getEnvironment("USERNAME", "user"));
@@ -28,22 +29,22 @@ class Haxefetch {
         var separator:String = " ";
 
         var infoLine:Array<String> = [
-            Colors.colorize(host, Colors.RED),
-            Colors.colorize("OS:", Colors.YELLOW) + separator + distro + " (" + Colors.colorize(init, Colors.GREEN) + ")",
-            Colors.colorize("Kernel:", Colors.YELLOW) + separator + kernel,
-            Colors.colorize("WM:", Colors.YELLOW) + separator + session,
-            Colors.colorize("RAM:", Colors.YELLOW) + separator + ram,
-            Colors.colorize("SWAP:", Colors.YELLOW) + separator + swap,
-            Colors.colorize("CPU:", Colors.YELLOW) + separator + cpu,
-            Colors.colorize("GPU:", Colors.YELLOW) + separator + gpu,
-            Colors.colorize("Packages:", Colors.YELLOW) + separator + packages,
-            Colors.colorize("Haxe:", Colors.YELLOW) + separator + haxe,
-            Colors.colorize("OpenGL:", Colors.YELLOW) + separator + opengl,
-            Colors.colorize("Vulkan:", Colors.YELLOW) + separator + vulkan,
-            Colors.colorize("Uptime:", Colors.YELLOW) + separator + uptime,
-            Colors.colorize("OS Birthday:", Colors.YELLOW) + separator + birthday,
-            Colors.colorize("OS Birth:", Colors.YELLOW) + separator + birth
-        ];
+            Configuration.showHost ? Colors.colorize(host, Colors.RED) : null,
+            Configuration.showDistro ? Colors.colorize("OS:", Colors.YELLOW) + separator + distro + " (" + Colors.colorize(init, Colors.GREEN) + ")" : null,
+            Configuration.showKernel ? Colors.colorize("Kernel:", Colors.YELLOW) + separator + kernel : null,
+            Configuration.showSession ? Colors.colorize("WM:", Colors.YELLOW) + separator + session : null,
+            Configuration.showRAM ? Colors.colorize("RAM:", Colors.YELLOW) + separator + ram : null,
+            Configuration.showSWAP ? Colors.colorize("SWAP:", Colors.YELLOW) + separator + swap : null,
+            Configuration.showCPU ? Colors.colorize("CPU:", Colors.YELLOW) + separator + cpu : null,
+            Configuration.showGPU ? Colors.colorize("GPU:", Colors.YELLOW) + separator + gpu : null,
+            Configuration.showPackages ? Colors.colorize("Packages:", Colors.YELLOW) + separator + packages : null,
+            Configuration.showHaxe ? Colors.colorize("Haxe:", Colors.YELLOW) + separator + haxe : null,
+            Configuration.showOpenGL ? Colors.colorize("OpenGL:", Colors.YELLOW) + separator + opengl : null,
+            Configuration.showVulkan ? Colors.colorize("Vulkan:", Colors.YELLOW) + separator + vulkan : null,
+            Configuration.showUptime ? Colors.colorize("Uptime:", Colors.YELLOW) + separator + uptime : null,
+            Configuration.showBirthday ? Colors.colorize("OS Birthday:", Colors.YELLOW) + separator + birthday : null,
+            Configuration.showBirth ? Colors.colorize("OS Birth:", Colors.YELLOW) + separator + birth : null
+        ].filter(function(line) return line != null);
 
         var logoWidth = 0;
         for (line in logo) {

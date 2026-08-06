@@ -2,7 +2,7 @@
 
 <img width="954" height="444" alt="image" src="https://github.com/user-attachments/assets/361ef739-fa35-4988-a699-f3149eb814a0" />
 <p align="center">(Haxefetch preview)</p>
-<img width="815" height="252" alt="image" src="https://github.com/user-attachments/assets/eeca9d46-6539-44b2-8354-be3e54a9f4ca" />
+<img width="899" height="510" alt="image" src="https://github.com/user-attachments/assets/bdea271e-6e16-493a-a785-0cc3854ba3b6" />
 <p align="center">(Haxefetch commads)</p>
 
 Haxefetch is fetch program inspired by fastfetch, neofetch, pfetch, nerdfetch, hyfetch, etc and it is written in Haxe. [Don't know what's Haxe? Read more](https://haxe.org/) and [learn Haxe if you don't know!](https://haxe.org/documentation/introduction/)

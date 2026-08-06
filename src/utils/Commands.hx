@@ -13,7 +13,10 @@ class Commands {
                 case "-v" | "--version":
                     Sys.println("Haxefetch: " + HAXEFETCH_VERSION + " (Built on Haxe " + SystemUtils.fetchHaxe() + ")");
                     Sys.exit(0);
-                
+
+                case "-c" | "--config":
+                    Configuration.generateConfiguration();
+
                 default:
                     Sys.println('Unknown command ${args}');
                     Sys.println("Try -h or --help for current commands");
@@ -25,12 +28,9 @@ class Commands {
     public static function fetchHelp():Void {
         Sys.println('In order to customise this:\n');
 
-        var core:String = "Haxefetch.hx is core of this fetch program and you can see how you can customise options, etc.";
-        var color:String = "Colors.hx is class file where you can add your custom colors (needs to be on different format)";
-        var logo:String = "Logo.hx is class where you can add you custom distribution logo based of name from /etc/os-release";
-        var memory:String = "Memory.hx is class where it handles RAM and SWAP usage";
-        var utils:String = "SystemUtils.hx is class where it handles the core of fetch program inside of Haxefetch.hx";
+        var instructions:String = 'Generate configuration with "haxefetch --config" (it is located into /home/USER/.config/haxefetch directory)';
+        var examples:String = 'Here are examples:\n\nshow_hostname=true\nshow_distro=true\nshow_window_manager=true\nshow_ram=true\nshow_swap=true\nshow_cpu=true\nshow_gpu=true\nshow_package=true\nshow_haxe_version=true\nshow_opengl_version=true\nshow_vulkan_version=true\nshow_uptime=true\nshow_birthday=true\nshow_birth=true';
 
-        Sys.println('${core}\n${color}\n${logo}\n${memory}\n${utils}');
+        Sys.println('${instructions}\n${examples}');
     }
 }
