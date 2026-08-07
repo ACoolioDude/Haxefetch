@@ -113,7 +113,7 @@ class SystemUtils {
                 var upper = clean.toUpperCase();
 
                 // Wayland
-                if (upper.indexOf("KWIN") != -1) return "KWin";
+                if (upper.indexOf("KWIN") != -1 || upper.indexOf("KDE") != -1 || upper.indexOf("PLASMA") != -1) return "KWin";
                 if (upper.indexOf("MUTTER") != -1) return "Mutter";
                 if (upper.indexOf("SWAY") != -1) return "Sway";
                 if (upper.indexOf("HYPRLAND") != -1) return "Hyprland";
