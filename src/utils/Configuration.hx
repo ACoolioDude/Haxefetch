@@ -11,10 +11,10 @@ class Configuration {
     // public static var distroString:String = "OS";
 
     public static var showKernel:Bool = true;
-    // public static var kernelString:String = "OS";
+    // public static var kernelString:String = "Kernel:";
 
     public static var showDesktop:Bool = true;
-    // public static var desktopString:String = "WM:";
+    // public static var desktopString:String = "DE:";
 
     public static var showSession:Bool = true;
     // public static var sessionString:String = "WM:";
@@ -63,7 +63,7 @@ class Configuration {
 
                 if (trims == "" || StringTools.startsWith(trims, "#") || StringTools.startsWith(trims, ";") || StringTools.startsWith(trims, "[") && StringTools.endsWith(trims, "]")) continue;
                 if (trims.indexOf("=") == -1) {
-                    Sys.println('Error in configuration of Haxefetch [Line ${lineNumber}]: Invalid config syntax (missing "="): "${trims}"');
+                    Sys.println('Error in configuration of Haxefetch [Line ${lineNumber}]: Invalid config syntax. Missing "=" for -> "${trims}" <-');
                     Sys.exit(1);
                 }
                 
@@ -102,7 +102,7 @@ class Configuration {
         createConfiguration(configDirectory, configFile, true);
     }
 
-    public static function parseConfigOptions(key:String, value:String, lineNumber:Int):Void {
+    private static function parseConfigOptions(key:String, value:String, lineNumber:Int):Void {
         switch (key) {
             case "show_hostname": showHost = parseBool(value);
             case "show_distro": showDistro = parseBool(value);

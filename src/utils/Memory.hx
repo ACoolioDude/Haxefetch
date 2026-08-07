@@ -75,7 +75,7 @@ class Memory {
         return {ram: ramString, swap: swapString};
     }
 
-    public static function extractDigits(raw:String):Float {
+    private static function extractDigits(raw:String):Float {
         var sb = new StringBuf();
         for (i in 0...raw.length) {
             var code = raw.charCodeAt(i);
@@ -92,8 +92,19 @@ class Memory {
         return Math.isNaN(parsed) ? 0.0 : parsed;
     }
 
-    public static function roundDecimal(val:Float, precision:Int):Float {
+    private static function roundDecimal(val:Float, precision:Int):Float {
         var factor = Math.pow(10, precision);
         return Math.round(val * factor) / factor;
+    }
+
+    public static function fetchRAMType():String {
+        try {
+            var process = Haxefetch.runCmd("sh", ["-c", "inxi --m --c 0 2>/dev/null | grep -i 'type:' | awk -F 'type:' '{print $2}' | awk '{print $1}' | head -n 1"]);
+            var type = StringTools.replace(process, ",", "");
+            if (type != "" && type != "None" && type != "Unknown" && type != "N/A") {
+                return type;
+            }
+        } catch (e:Dynamic) {}
+        return "";
     }
 }

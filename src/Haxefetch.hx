@@ -18,6 +18,8 @@ class Haxefetch {
         var session = SystemUtils.fetchSession();
         var protocol = SystemUtils.fetchProtocol();        
         var ram = memory.ram;
+        var ramType = Memory.fetchRAMType();
+        var typeSuffix = (ramType != "") ? '${ramType}' : '';
         var swap = memory.swap;
         var cpu = SystemUtils.fetchCPU();
         var gpu = SystemUtils.fetchGPU();
@@ -41,7 +43,7 @@ class Haxefetch {
             (Configuration.showSession && session != null && session != "") ?
                 Colors.colorize("WM:", Colors.YELLOW) + separator + session + " (" + protocol + ")" : null,
 
-            Configuration.showRAM ? Colors.colorize("RAM:", Colors.YELLOW) + separator + ram : null,
+            Configuration.showRAM ? Colors.colorize("RAM:", Colors.YELLOW) + separator + ram + " (" + Colors.colorize(typeSuffix, Colors.GREEN) + ")" : null,
             Configuration.showSWAP ? Colors.colorize("SWAP:", Colors.YELLOW) + separator + swap : null,
             Configuration.showCPU ? Colors.colorize("CPU:", Colors.YELLOW) + separator + cpu : null,
             Configuration.showGPU ? Colors.colorize("GPU:", Colors.YELLOW) + separator + gpu : null,
