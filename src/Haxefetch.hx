@@ -33,7 +33,7 @@ class Haxefetch {
         var separator:String = " ";
 
         var infoLine:Array<String> = [
-            Configuration.showHost ? Colors.colorize(host, Colors.RED) : null,
+            Configuration.showHost ? Colors.colorize(Sys.getEnv("USER"), Colors.RED) + "@" + Colors.colorize(host, Colors.RED) : null,
             Configuration.showDistro ? Colors.colorize("OS:", Colors.YELLOW) + separator + distro + " (" + Colors.colorize(init, Colors.GREEN) + ")" : null,
             Configuration.showKernel ? Colors.colorize("Kernel:", Colors.YELLOW) + separator + kernel : null,
             
