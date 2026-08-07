@@ -8,9 +8,9 @@ Haxefetch is fetch program inspired by fastfetch, neofetch, pfetch, nerdfetch, h
 <p align="center">(Haxefetch commads)</p>
 
 ## Dependencies
- - `inxi` - Required to show RAM type (optional)
- - `vulkaninfo` and `vulkantools` - Required to show Vulkan version (not optional)
- - `glxinfo` and `mesa-utils` - Required to show OpenGL version (not optional)
+ - `inxi` - Required to show RAM type (optional / not optional)
+ - `vulkaninfo` and `vulkantools` - Required to show Vulkan version (optional / not optional)
+ - `glxinfo` and `mesa-utils` - Required to show OpenGL version (optional / not optional)
 
 
 ## How to use this?
