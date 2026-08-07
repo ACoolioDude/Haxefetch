@@ -25,3 +25,12 @@
 --resource src/resources/logos/gentoo.txt@gentoo
 --resource src/resources/logos/nixos.txt@nix
 --resource src/resources/logos/void.txt@void
+
+--resource src/resources/mini_logos/arch.txt@arch_small
+--resource src/resources/mini_logos/artix.txt@artix_small
+--resource src/resources/mini_logos/cachyos.txt@cachy_small
+--resource src/resources/mini_logos/debian.txt@debian_small
+--resource src/resources/mini_logos/fedora.txt@fedora_small
+--resource src/resources/mini_logos/gentoo.txt@gentoo_small
+--resource src/resources/mini_logos/nixos.txt@nix_small
+--resource src/resources/mini_logos/void.txt@void_small

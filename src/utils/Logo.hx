@@ -7,53 +7,35 @@ import sys.FileSystem;
 import sys.io.File;
 
 class Logo {
-    public static function fetchLogo(distroName:String):Array<String> {
+    public static function fetchLogo(distroName:String, size:String = "normal"):Array<String> {
         var low = distroName.toLowerCase();
+        var key = fetchDistro(low);
 
-        if (low.indexOf("arch") != -1) {
-            var arch = Resource.getString("arch");
-            return arch.split("\n");
-        }
+        if (key != null) {
+            var small = (size.toLowerCase() == "small");
+            var resource = small ? '${key}_small' : key;
 
-        if (low.indexOf("artix") != -1) {
-            var arch = Resource.getString("artix");
-            return arch.split("\n");
-        }
-
-        if (low.indexOf("cachyos") != -1) {
-            var cachyos = Resource.getString("cachy");
-            return cachyos.split("\n");
-        }
-
-        if (low.indexOf("gentoo") != -1) {
-            var gentoo = Resource.getString("gentoo");
-            return gentoo.split("\n");
-        }
-
-        if (low.indexOf("debian") != -1) {
-            var debian = Resource.getString("debian");
-            return debian.split("\n");
-        }
-
-        if (low.indexOf("fedora") != -1) {
-            var fedora = Resource.getString("fedora");
-            return fedora.split("\n");
-        }
-
-        if (low.indexOf("nixos") != -1) {
-            var nixos = Resource.getString("nix");
-            return nixos.split("\n");
-        }
-
-        if (low.indexOf("void") != -1) {
-            var void = Resource.getString("void");
-            return void.split("\n");
+            var raw = Resource.getString(resource);
+            if (raw == null && small) raw = Resource.getString(resource);
+            if (raw != null) return StringTools.replace(raw, "\r\n", "\n").split("\n");
         }
 
         return fetchTux();
     }
 
-    static function fetchTux():Array<String> {
+    private static function fetchDistro(low:String):Null<String> {
+        if (low.indexOf("arch") != -1) return "arch";
+        if (low.indexOf("artix") != -1) return "artix";
+        if (low.indexOf("cachyos") != -1) return "cachy";
+        if (low.indexOf("gentoo") != -1) return "gentoo";
+        if (low.indexOf("debian") != -1) return "debian";
+        if (low.indexOf("fedora") != -1) return "fedora";
+        if (low.indexOf("nixos") != -1) return "nix";
+        if (low.indexOf("void") != -1) return "void";
+        return null;
+    }
+
+    private static function fetchTux():Array<String> {
         return [
             "   .--.",
             "  |o_o |",
@@ -66,9 +48,8 @@ class Logo {
     }
 
     static macro function embedLogo(filePath:String):Expr {
-        if (!FileSystem.exists(filePath)) {
-            return Context.parse("[]", Context.currentPos());
-        }
+        if (!FileSystem.exists(filePath)) return Context.parse("[]", Context.currentPos());
+        
         var content = File.getContent(filePath);
         var lines = content.split("\n");
 

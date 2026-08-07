@@ -12,7 +12,7 @@ class Haxefetch {
         var host = SystemUtils.fetchHost();
         var distro = SystemUtils.fetchDistro();
         var init = SystemUtils.fetchInit();
-        var logo = Logo.fetchLogo(distro);
+        var logo = Logo.fetchLogo(distro, Configuration.logoSize);
         var kernel = SystemUtils.fetchKernel();
         var desktop = SystemUtils.fetchDestkop();
         var session = SystemUtils.fetchSession();
@@ -53,7 +53,8 @@ class Haxefetch {
             Configuration.showVulkan ? Colors.colorize("Vulkan:", Colors.YELLOW) + separator + vulkan : null,
             Configuration.showUptime ? Colors.colorize("Uptime:", Colors.YELLOW) + separator + uptime : null,
             Configuration.showBirthday ? Colors.colorize("OS Birthday:", Colors.YELLOW) + separator + birthday : null,
-            Configuration.showBirth ? Colors.colorize("OS Birth:", Colors.YELLOW) + separator + birth : null
+            Configuration.showBirth ? Colors.colorize("OS Birth:", Colors.YELLOW) + separator + birth : null,
+            Configuration.showBlock ? Colors.getColorBlocks() : null
         ].filter(function(line) return line != null);
 
         var logoWidth = 0;

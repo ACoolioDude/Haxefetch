@@ -5,6 +5,8 @@ import sys.FileSystem;
 import haxe.io.Path;
 
 class Configuration {
+    public static var logoSize:String = "normal";
+
     public static var showHost:Bool = true;
 
     public static var showDistro:Bool = true;
@@ -31,14 +33,21 @@ class Configuration {
     public static var showGPU:Bool = true;
     // public static var gpuString:String = "GPU:";
 
-    // Custom options
     public static var showPackages:Bool = true;
+
     public static var showHaxe:Bool = true;
+
     public static var showOpenGL:Bool = true;
+
     public static var showVulkan:Bool = true;
+
     public static var showUptime:Bool = true;
+
     public static var showBirthday:Bool = true;
+
     public static var showBirth:Bool = true;
+
+    public static var showBlock:Bool = true;
 
     public static function loadConfig():Void {
         var main = Sys.getEnv("HOME");
@@ -104,12 +113,13 @@ class Configuration {
 
     private static function parseConfigOptions(key:String, value:String, lineNumber:Int):Void {
         switch (key) {
+            case "logo_type": logoSize = value;
             case "show_hostname": showHost = parseBool(value);
             case "show_distro": showDistro = parseBool(value);
             case "show_kernel": showKernel = parseBool(value);
             case "show_desktop_environment": showDesktop = parseBool(value);
             case "show_window_manager": showSession = parseBool(value);
-            case "show_ram": showSession = parseBool(value);
+            case "show_ram": showRAM = parseBool(value);
             case "show_swap": showSWAP = parseBool(value);
             case "show_cpu": showCPU = parseBool(value);
             case "show_gpu": showGPU = parseBool(value);
@@ -120,8 +130,9 @@ class Configuration {
             case "show_uptime": showUptime = parseBool(value);
             case "show_birthday": showBirthday = parseBool(value);
             case "show_birth": showBirth = parseBool(value);
+            case "show_color_block": showBlock = parseBool(value);
             default:
-                Sys.println('Error in configuration of Haxefetch [Line ${lineNumber}]: Unknown option key "${key}"');
+                Sys.println('Error in configuration of Haxefetch [Line ${lineNumber}]: Unknown option key -> "${key}" <- ');
                 Sys.exit(1);
         }
     }
@@ -141,6 +152,7 @@ class Configuration {
             var defaults =
                 "# Haxefetch configuration\n" +
                 "# CURRENTLY ON ALPHA!\n" +
+                "logo_type=normal\n" +
                 "show_hostname=true\n" +
                 "show_distro=true\n" +
                 "show_desktop_environment=true\n" +
@@ -155,7 +167,8 @@ class Configuration {
                 "show_vulkan_version=true\n" +
                 "show_uptime=true\n" +
                 "show_birthday=true\n" +
-                "show_birth=true\n";
+                "show_birth=true\n" +
+                "show_color_block=true\n";
 
             File.saveContent(path, defaults);
 
