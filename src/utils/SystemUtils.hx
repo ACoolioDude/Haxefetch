@@ -195,7 +195,7 @@ class SystemUtils {
 
     private static function checkProtocol():Null<String> {
         if (Sys.getEnv("WAYLAND_DISPLAY") != null && Sys.getEnv("WAYLAND_DISPLAY") != "") return "Wayland";
-        if (Sys.getEnv("DISPLAY") != null && Sys.getEnv("DISPLAY") != "") return "Wayland";
+        if (Sys.getEnv("DISPLAY") != null && Sys.getEnv("DISPLAY") != "") return "X11";
         return null;
     }
 
