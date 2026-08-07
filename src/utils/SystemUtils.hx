@@ -160,7 +160,7 @@ class SystemUtils {
             "xfwl" => "XFWL",
 
             // X11/Xorg
-            "xfwm4" => "XFWM",
+            "xfwm4" => "Xfwm4",
             "muffin" => "Muffin",
             "openbox" => "OpenBox",
             "i3" => "i3",
