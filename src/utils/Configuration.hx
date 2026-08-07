@@ -33,6 +33,9 @@ class Configuration {
     public static var showGPU:Bool = true;
     // public static var gpuString:String = "GPU:";
 
+    public static var showDisk:Bool = true;
+    // public static var diskString:String = "Disk:";
+
     public static var showPackages:Bool = true;
 
     public static var showHaxe:Bool = true;
@@ -123,6 +126,7 @@ class Configuration {
             case "show_swap": showSWAP = parseBool(value);
             case "show_cpu": showCPU = parseBool(value);
             case "show_gpu": showGPU = parseBool(value);
+            case "show_disk_usage": showDisk = parseBool(value);
             case "show_package": showPackages = parseBool(value);
             case "show_haxe_version": showHaxe = parseBool(value);
             case "show_opengl_version": showOpenGL = parseBool(value);
@@ -161,6 +165,7 @@ class Configuration {
                 "show_swap=true\n" +
                 "show_cpu=true\n" +
                 "show_gpu=true\n" +
+                "show_disk_usage=true\n" +
                 "show_package=true\n" +
                 "show_haxe_version=true\n" +
                 "show_opengl_version=true\n" +

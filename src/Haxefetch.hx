@@ -1,5 +1,6 @@
 package;
 
+import sys.thread.Condition;
 import sys.io.Process;
 
 class Haxefetch {
@@ -23,6 +24,7 @@ class Haxefetch {
         var swap = memory.swap;
         var cpu = SystemUtils.fetchCPU();
         var gpu = SystemUtils.fetchGPU();
+        var disk = DiskUtility.fetchDisk();
         var packages = SystemUtils.fetchPackage();
         var haxe = SystemUtils.fetchHaxe();
         var opengl = SystemUtils.fetchOpenGL();
@@ -47,6 +49,7 @@ class Haxefetch {
             Configuration.showSWAP ? Colors.colorize("SWAP:", Colors.YELLOW) + separator + swap : null,
             Configuration.showCPU ? Colors.colorize("CPU:", Colors.YELLOW) + separator + cpu : null,
             Configuration.showGPU ? Colors.colorize("GPU:", Colors.YELLOW) + separator + gpu : null,
+            Configuration.showDisk ? Colors.colorize("Disk:", Colors.YELLOW) + separator + disk : null,
             Configuration.showPackages ? Colors.colorize("Packages:", Colors.YELLOW) + separator + packages : null,
             Configuration.showHaxe ? Colors.colorize("Haxe:", Colors.YELLOW) + separator + haxe : null,
             Configuration.showOpenGL ? Colors.colorize("OpenGL:", Colors.YELLOW) + separator + opengl : null,
