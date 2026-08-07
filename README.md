@@ -26,19 +26,12 @@ If you prefer binary,  -> [go here](https://github.com/ACoolioDude/Haxefetch/blo
     <summary>Getting Haxe and it's dependencies</summary>
 
 1. Install dependencies.
-   - Debian/Ubuntu: `apt-get install haxe mesa-utils vulkaninfo vulkan-tools`
-   - Fedora/RHEL/RPM: `dnf install haxe mesa-dri-drivers vulkan-headers vulkan-loader vulkan-tools`
-   - openSUSE Leap/Tumbleweed: `zypper install haxe Mesa`
-   - Arch: `pacman -S haxe mesa mesa-utils vulkan-headers vulkan-tools`
-   - Gentoo: `emerge --ask --verbose dev-lang/haxe media-libs/mesa x11-apps/mesa-progs media-libs/vulkan-loader dev-util/vulkan-headers dev-util/vulkan-tools` (if you have packages that are masked, [unmask them](https://wiki.gentoo.org/wiki/Knowledge_Base:Unmasking_a_package)) 
-3. Install `g++`, if not present already.
-4. Install git.
-</details>
-
-<details>
-    <summary>Building Haxefetch</summary>
-
-1. Clone my repo.
+   - Debian/Ubuntu: `apt-get install haxe mesa-utils vulkaninfo vulkan-tools git g++`
+   - Fedora/RHEL/RPM: `dnf install haxe mesa-dri-drivers vulkan-headers vulkan-loader vulkan-tools git g++`
+   - openSUSE Leap/Tumbleweed: `zypper install haxe Mesa git g++`
+   - Arch: `pacman -S haxe mesa mesa-utils vulkan-headers vulkan-tools git g++`
+   - Gentoo: `emerge --ask --verbose dev-lang/haxe media-libs/mesa x11-apps/mesa-progs media-libs/vulkan-loader dev-util/vulkan-headers dev-util/vulkan-tools dev-vcs/git sys-devel/gcc` (if you have packages that are masked, [unmask them](https://wiki.gentoo.org/wiki/Knowledge_Base:Unmasking_a_package))
+2. Clone my repo.
    - `git clone https://github.com/ACoolioDude/Haxefetch.git`
 2. Setup development.
    - `cd Haxefetch` > `haxelib setup` (requires Haxe!) > Set haxelib environent to Haxefetch folder > install HXCPP `haxelib install hxcpp`
