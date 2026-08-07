@@ -40,6 +40,7 @@ class Logo {
             case _ if (low.indexOf("nixos") != -1): return "nix";
             case _ if (low.indexOf("opensuse") != -1 || low.indexOf("opensuse-microos") != -1 || low.indexOf("opensuse-leap") != -1 || low.indexOf("opensuse-tumbleweed") != -1 || low.indexOf("opensuse-slowroll") != -1): return "suse";
             case _ if (low.indexOf("slackware") != -1): return "slack";
+            case _ if (low.indexOf("solus") != -1): return "solus"; 
             case _ if (low.indexOf("steamos") != -1): return "steam";
             case _ if (low.indexOf("ubuntu") != -1 || low.indexOf("ubuntu-cinnamon") != -1 || low.indexOf("ubuntu-mate") != -1 || low.indexOf("ubuntu-sway") != -1 || low.indexOf("uwuntu") != -1): return "ubuntu";
             case _ if (low.indexOf("void") != -1): return "void";

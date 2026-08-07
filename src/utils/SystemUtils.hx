@@ -114,7 +114,7 @@ class SystemUtils {
 
                 // Wayland
                 if (upper.indexOf("KWIN") != -1 || upper.indexOf("KDE") != -1 || upper.indexOf("PLASMA") != -1) return "KWin";
-                if (upper.indexOf("MUTTER") != -1) return "Mutter";
+                if (upper.indexOf("MUTTER") != -1 || upper.indexOf("GNOME") != -1 || upper.indexOf("BUDGIE") != -1) return "Mutter";
                 if (upper.indexOf("SWAY") != -1) return "Sway";
                 if (upper.indexOf("HYPRLAND") != -1) return "Hyprland";
                 if (upper.indexOf("NIRI") != -1) return "Niri";
@@ -127,6 +127,7 @@ class SystemUtils {
                 // X11/Xorg
                 if (upper.indexOf("XFCE") != -1) return "Xfwm4";
                 if (upper.indexOf("MUFFIN") != -1 || upper.indexOf("CINNAMON") != -1 || upper.indexOf("X-CINNAMON") != -1) return "Muffin";
+                if (upper.indexOf("MACRO") != -1 || upper.indexOf("MATE") != -1) return "Macro";
                 if (upper.indexOf("OPENBOX") != -1) return "OpenBox";
                 if (upper.indexOf("I3") != -1) return "i3";
                 if (upper.indexOf("AWESOME") != -1) return "Awesome";
@@ -162,6 +163,7 @@ class SystemUtils {
             // X11/Xorg
             "xfwm4" => "Xfwm4",
             "muffin" => "Muffin",
+            "macro" => "Macro",
             "openbox" => "OpenBox",
             "i3" => "i3",
             "awesome" => "Awesome",
@@ -273,15 +275,6 @@ class SystemUtils {
         #if sys
         var counts:Array<String> = [];
 
-        // Arch Linux based system (pacman)
-        if (FileSystem.exists("/var/lib/pacman/local")) {
-            try {
-                var entries = FileSystem.readDirectory("/var/lib/pacman/local");
-                var count = entries.filter(e -> !StringTools.startsWith(e, "ALPM")).length;
-                counts.push('$count (pacman)');
-            } catch (e:Dynamic) {}
-        }
-
         // Debian/GNU Linux based system (dpkg)
         if (FileSystem.exists("/var/lib/dpkg/status")) {
             try {
@@ -300,6 +293,15 @@ class SystemUtils {
         if (FileSystem.exists("/var/lib/rpm")) {
             var rpmCount = Haxefetch.executeCount("rpm", ["-qa"]);
             if (rpmCount > 0) counts.push('$rpmCount (rpm)');
+        }
+
+        // Arch Linux based system (pacman)
+        if (FileSystem.exists("/var/lib/pacman/local")) {
+            try {
+                var entries = FileSystem.readDirectory("/var/lib/pacman/local");
+                var count = entries.filter(e -> !StringTools.startsWith(e, "ALPM")).length;
+                counts.push('$count (pacman)');
+            } catch (e:Dynamic) {}
         }
 
         // Void Linux based system (xbps)
@@ -357,6 +359,14 @@ class SystemUtils {
                     }
                 }
                 if (total > 0) counts.push('$total (emerge)');
+            } catch (e:Dynamic) {}
+        }
+
+        // Solus based system (eopkg)
+        if (FileSystem.exists("/var/lib/eopkg/package")) {
+            try {
+                var count = FileSystem.readDirectory("/var/lib/eopkg/package").length;
+                return '$count (eopkg)';
             } catch (e:Dynamic) {}
         }
 
