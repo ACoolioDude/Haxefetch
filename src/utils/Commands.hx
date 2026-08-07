@@ -30,6 +30,8 @@ class Commands {
     }
 
     private static function fetchHelp():Void {
+        Sys.println("   Haxefetch: a fetch program inspired by other fetches written in Haxe.\n");
+        Sys.println("   Usage: haxefetch [OPTIONS]");
         Sys.println("   -h | --help " + " " + "        Show help");
         Sys.println("   -v | --version " + " " + "     Show version of Haxefetch.");
         Sys.println("   -c | --config " + " " + "      Generate new config of Haxefetch.");
