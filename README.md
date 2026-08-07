@@ -8,8 +8,9 @@ Haxefetch is fetch program inspired by fastfetch, neofetch, pfetch, nerdfetch, h
 <p align="center">(Haxefetch commads)</p>
 
 ## Dependencies
- - `vulkaninfo` and `vulkantools` - Required to show Vulkan version
- - `glxinfo` and `mesa-utils` - Required to show OpenGL version
+ - `inxi` - Required to show RAM type (optional)
+ - `vulkaninfo` and `vulkantools` - Required to show Vulkan version (not optional)
+ - `glxinfo` and `mesa-utils` - Required to show OpenGL version (not optional)
 
 
 ## How to use this?
@@ -18,7 +19,7 @@ If you want to use, follow this:
 <details>
     <summary>Getting a binary</summary>
 
-If you prefer binary, -> [go here](https://github.com/ACoolioDude/Haxefetch/blob/main/binary/haxefetch) <-
+If you prefer binary,  -> [go here](https://github.com/ACoolioDude/Haxefetch/blob/main/binary/haxefetch) <-
 </details>
 
 <details>
@@ -38,7 +39,7 @@ If you prefer binary, -> [go here](https://github.com/ACoolioDude/Haxefetch/blob
     <summary>Building Haxefetch</summary>
 
 1. Clone my repo.
-   - `https://github.com/ACoolioDude/Haxefetch`
+   - `git clone https://github.com/ACoolioDude/Haxefetch.git`
 2. Setup development.
    - `cd Haxefetch` > `haxelib setup` (requires Haxe!) > Set haxelib environent to Haxefetch folder > install HXCPP `haxelib install hxcpp`
 3. Compile Haxefetch.
