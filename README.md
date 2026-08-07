@@ -25,12 +25,12 @@ If you prefer binary,  -> [go here](https://github.com/ACoolioDude/Haxefetch/blo
 <details>
     <summary>Getting Haxe and it's dependencies</summary>
 
-1. Install Haxe (it can be any).
-   - Debian/Ubuntu: `apt-get install haxe`
-   - Fedora/RHEL/RPM: `dnf install haxe`
-   - openSUSE Leap/Tumbleweed: `zypper install haxe`
-   - Arch: `pacman -S --noconfirm haxe`
-   - Gentoo: `emerge --ask --verbose dev-lang/haxe` (if you have packages that are masked, [unmask them](https://wiki.gentoo.org/wiki/Knowledge_Base:Unmasking_a_package)) 
+1. Install dependencies.
+   - Debian/Ubuntu: `apt-get install haxe mesa-utils vulkaninfo vulkan-tools`
+   - Fedora/RHEL/RPM: `dnf install haxe mesa-dri-drivers vulkan-headers vulkan-loader vulkan-tools`
+   - openSUSE Leap/Tumbleweed: `zypper install haxe Mesa`
+   - Arch: `pacman -S haxe mesa mesa-utils vulkan-headers vulkan-tools`
+   - Gentoo: `emerge --ask --verbose dev-lang/haxe media-libs/mesa x11-apps/mesa-progs media-libs/vulkan-loader dev-util/vulkan-headers dev-util/vulkan-loader` (if you have packages that are masked, [unmask them](https://wiki.gentoo.org/wiki/Knowledge_Base:Unmasking_a_package)) 
 3. Install `g++`, if not present already.
 4. Install git.
 </details>
