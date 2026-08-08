@@ -35,7 +35,7 @@ class Haxefetch {
 
         var infoLine:Array<String> = [
             Configuration.showHost ? Colors.colorize(user, Colors.RED) + "@" + Colors.colorize(host, Colors.RED) : null,
-            Configuration.showDistro ? Colors.colorize("OS:", Colors.YELLOW) + separator + distro : null,
+            Configuration.showDistro ? Colors.colorize("OS:", Colors.YELLOW) + separator + distro + " (" + Colors.colorize(init, Colors.GREEN) + ")" : null,
             Configuration.showKernel ? Colors.colorize("Kernel:", Colors.YELLOW) + separator + kernel : null,
             
             (desktop != null && desktop != "N/A" && desktop != "" && Configuration.showDesktop) ? 

@@ -2,10 +2,12 @@
 
 Haxefetch is fetch program inspired by fastfetch, neofetch, pfetch, nerdfetch, hyfetch, etc and it is written in Haxe. [Don't know what's Haxe? Read more](https://haxe.org/) and [learn Haxe if you don't know!](https://haxe.org/documentation/introduction/)
 
-<img width="943" height="475" alt="image" src="https://github.com/user-attachments/assets/e99e8ff1-815f-433a-806d-0bf7a38a7cf1" />
+<alt="Screenshot_2026-08-08_23:23:23" src="https://github.com/ACoolioDude/Haxefetch/src/screenshots/haxefetch.png" />
 <p align="center">(Haxefetch preview)</p>
-<img width="736" height="206" alt="image" src="https://github.com/user-attachments/assets/b238c8c7-70b9-441c-9318-c10c657c65fb" />
+<alt="image" src="https://github.com/ACoolioDude/Haxefetch/src/screenshots/commands.png" />
 <p align="center">(Haxefetch commads)</p>
+<alt="image" src="https://github.com/ACoolioDude/Haxefetch/src/screenshots/configuring.png" />
+<p align="center">(Configuring Haxefetch with .conf support)</p>
 
 ## Dependencies
  - `inxi` - Required to show RAM type (optional / not optional)
