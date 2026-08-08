@@ -29,7 +29,7 @@ If you prefer binary,  -> [go here](https://github.com/ACoolioDude/Haxefetch/blo
    - Debian/Ubuntu: `apt-get install haxe inxi mesa-utils vulkaninfo vulkan-tools git g++`
    - Fedora/RHEL/RPM: `dnf install haxe inxi mesa-dri-drivers vulkan-headers vulkan-loader vulkan-tools git g++`
    - openSUSE Leap/Tumbleweed: `zypper install inxi haxe Mesa git g++`
-   - Arch: `pacman -S haxe inximesa mesa-utils vulkan-headers vulkan-tools git g++`
+   - Arch: `pacman -S haxe inxi mesa mesa-utils vulkan-headers vulkan-tools git` (note for Arch users. If you get `cannot create Vulkan instance` error or it prints N/A, you need to install GPU Vulkan driver for your iGPU/dGPU specifically)
    - Gentoo: `emerge --ask --verbose dev-lang/haxe sys-apps/inxi media-libs/mesa x11-apps/mesa-progs media-libs/vulkan-loader dev-util/vulkan-headers dev-util/vulkan-tools dev-vcs/git sys-devel/gcc` (if you have packages that are masked, [unmask them](https://wiki.gentoo.org/wiki/Knowledge_Base:Unmasking_a_package))
 2. Clone my repo.
    - `git clone https://github.com/ACoolioDude/Haxefetch.git`
