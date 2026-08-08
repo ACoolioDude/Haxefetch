@@ -128,7 +128,7 @@ class SystemUtils {
                 if (upper.indexOf("XFCE") != -1) return "Xfwm4";
                 if (upper.indexOf("MUFFIN") != -1 || upper.indexOf("CINNAMON") != -1 || upper.indexOf("X-CINNAMON") != -1) return "Muffin";
                 if (upper.indexOf("MACRO") != -1 || upper.indexOf("MATE") != -1) return "Macro";
-                if (upper.indexOf("OPENBOX") != -1) return "OpenBox";
+                if (upper.indexOf("OPENBOX") != -1 || upper.indexOf("LXQT") != -1) return "OpenBox";
                 if (upper.indexOf("I3") != -1) return "i3";
                 if (upper.indexOf("AWESOME") != -1) return "Awesome";
                 if (upper.indexOf("BSPWM") != -1) return "Bspwm";
@@ -222,7 +222,6 @@ class SystemUtils {
 
             if (modelName != "") {
                 return  '${modelName} (${Colors.colorize(cores, Colors.GREEN)} cores / ${Colors.colorize(threads, Colors.GREEN)} threads)';
-                // return '$modelName ($threads)';
             }
         } catch (e:Dynamic) {}
         return Haxefetch.runCmd("uname", ["-m"]);
