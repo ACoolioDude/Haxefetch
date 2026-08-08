@@ -34,7 +34,7 @@ If you prefer binary,  -> [go here](https://github.com/ACoolioDude/Haxefetch/blo
 2. Clone my repo.
    - `git clone https://github.com/ACoolioDude/Haxefetch.git`
 2. Setup development.
-   - `cd Haxefetch` > `haxelib setup` (requires Haxe!) > Set haxelib environent to Haxefetch folder > install HXCPP `haxelib install hxcpp`
+   - `cd Haxefetch` > `haxelib setup` (requires Haxe!) > Set haxelib environent to Haxefetch folder `home/$USER/Haxefetch/.haxelib` > install HXCPP `haxelib install hxcpp`
 3. Compile Haxefetch.
    - `haxe build.hxml`
 </details>
