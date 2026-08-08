@@ -1,6 +1,5 @@
 package;
 
-import sys.thread.Condition;
 import sys.io.Process;
 
 class Haxefetch {
