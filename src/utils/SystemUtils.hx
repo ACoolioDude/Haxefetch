@@ -206,6 +206,7 @@ class SystemUtils {
             var output = Haxefetch.runCmd("lscpu", []);
             var modelName = "";
             var threads = "";
+            var cores = "";
 
             for (line in output.split("\n")) {
                 if (line.indexOf("Model name:") != -1) {
@@ -214,10 +215,13 @@ class SystemUtils {
                 if (line.indexOf("CPU(s):") != -1 && threads == "") {
                     threads = StringTools.trim(line.split(":")[1]);
                 }
+                if (line.indexOf("Core(s) per socket:") != -1 && cores == "") {
+                    cores = StringTools.trim(line.split(":")[1]);
+                }
             }
 
             if (modelName != "") {
-                return '$modelName';
+                return  '${modelName} (${Colors.colorize(cores, Colors.GREEN)} cores / ${Colors.colorize(threads, Colors.GREEN)} threads)';
                 // return '$modelName ($threads)';
             }
         } catch (e:Dynamic) {}
