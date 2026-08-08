@@ -1,19 +1,21 @@
-# Haxefetch
+<p align="center">
+  <img src="src/resources/Haxefetch.png.png" width="90%" alt="Haxefetch">
+</p>
 
 Haxefetch is fetch program inspired by fastfetch, neofetch, pfetch, nerdfetch, hyfetch, etc and it is written in Haxe. [Don't know what's Haxe? Read more](https://haxe.org/) and [learn Haxe if you don't know!](https://haxe.org/documentation/introduction/)
 
 <p align="center">
-  <img src="src/screenshots/haxefetch.png" width="90%" alt="Haxefetch">
+  <img src="src/resources/screenshots/haxefetch.png" width="90%" alt="Haxefetch">
 </p>
 <p align="center">(Haxefetch preview)</p>
 
 <p align="center">
-  <img src="src/screenshots/commands.png" width="90%" alt="Haxefetch commads">
+  <img src="src/resources/screenshots/commands.png" width="90%" alt="Haxefetch commads">
 </p>
 <p align="center">(Haxefetch commands)</p>
 
 <p align="center">
-  <img src="src/screenshots/configuration.png" width="90%" alt="Haxefetch configuration">
+  <img src="src/resources/screenshots/configuration.png" width="90%" alt="Haxefetch configuration">
 </p>
 <p align="center">(Configuring Haxefetch with .conf support)</p>
 
