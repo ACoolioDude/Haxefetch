@@ -2,11 +2,11 @@
 
 Haxefetch is fetch program inspired by fastfetch, neofetch, pfetch, nerdfetch, hyfetch, etc and it is written in Haxe. [Don't know what's Haxe? Read more](https://haxe.org/) and [learn Haxe if you don't know!](https://haxe.org/documentation/introduction/)
 
-<alt="Screenshot_2026-08-08_23:23:23" src="https://github.com/ACoolioDude/Haxefetch/src/screenshots/haxefetch.png" />
+<alt="Screenshot_2026-08-08_23:23:23" src="https://raw.githubusercontent.com/ACoolioDude/Haxefetch/refs/heads/main/src/screenshots/haxefetch.png" />
 <p align="center">(Haxefetch preview)</p>
-<alt="image" src="https://github.com/ACoolioDude/Haxefetch/src/screenshots/commands.png" />
+<alt="image" src="https://raw.githubusercontent.com/ACoolioDude/Haxefetch/refs/heads/main/src/screenshots/commands.png" />
 <p align="center">(Haxefetch commads)</p>
-<alt="image" src="https://github.com/ACoolioDude/Haxefetch/src/screenshots/configuring.png" />
+<alt="image" src="https://raw.githubusercontent.com/ACoolioDude/Haxefetch/refs/heads/main/src/screenshots/configuration.png" />
 <p align="center">(Configuring Haxefetch with .conf support)</p>
 
 ## Dependencies
