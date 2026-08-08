@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="src/resources/Haxefetch.png.png" width="90%" alt="Haxefetch">
+  <img src="src/resources/Haxefetch.png" width="90%" alt="Haxefetch">
 </p>
 
 Haxefetch is fetch program inspired by fastfetch, neofetch, pfetch, nerdfetch, hyfetch, etc and it is written in Haxe. [Don't know what's Haxe? Read more](https://haxe.org/) and [learn Haxe if you don't know!](https://haxe.org/documentation/introduction/)
