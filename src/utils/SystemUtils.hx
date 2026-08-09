@@ -261,7 +261,7 @@ class SystemUtils {
                 string = "Intel " + insideBracket;
             } else if (string.indexOf("NVIDIA") != -1 && insideBracket.indexOf("NVIDIA") == 1) {
                 string = "NVIDIA " + insideBracket;
-            } else if ((string.indexOf("AND") != -1 || string.indexOf("ATI") != -1) && insideBracket.indexOf("AMD") == -1) {
+            } else if ((string.indexOf("AMD") != -1 || string.indexOf("ATI") != -1) && insideBracket.indexOf("AMD") == -1) {
                 string = "AMD " + insideBracket;
             } else {
                 string = insideBracket;

@@ -13,11 +13,29 @@ class Logo {
 
         if (key != null) {
             var small = (size.toLowerCase() == "small");
-            var resource = small ? '${key}_small' : key;
+            var resourceKey = small ? '${key}_small' : key;
 
-            var raw = Resource.getString(resource);
-            if (raw == null && small) raw = Resource.getString(resource);
-            if (raw != null) return StringTools.replace(raw, "\r\n", "\n").split("\n");
+            var raw = Resource.getString(resourceKey);
+            if (raw == null && small) raw = Resource.getString(key);
+
+            if (raw != null) {
+                var color = fetchColor(key); 
+                var txt = StringTools.replace(raw, "\r\n", "\n");
+
+                if (txt.indexOf("$1") != -1) {
+                    txt = StringTools.replace(txt, "$1", color.primary);
+                    txt = StringTools.replace(txt, "$2", color.secondary);
+                    txt = StringTools.replace(txt, "$reset", Colors.RESET);
+                    return txt.split("\n");
+                }
+
+                var lines = txt.split("\n");
+                var colored = new Array<String>();
+                for (line in lines) {
+                    colored.push(color.primary + line + Colors.RESET);
+                }
+                return colored;
+            }
         }
 
         return fetchTux();
@@ -46,6 +64,17 @@ class Logo {
             case _ if (low.indexOf("void") != -1): return "void";
             default: return null;
         }
+    }
+
+    private static function fetchColor(low:String):{primary:String, secondary:String} {
+        switch (low) {
+            case "alpine" : return { primary: Colors.BLUE, secondary: Colors.BLUE };
+            case "arch" | "artix": return { primary: Colors.CYAN, secondary: Colors.BLUE };
+            case "cachyos" : return { primary: Colors.CYAN, secondary: Colors.BLUE };
+            case "manjaro": return { primary: Colors.GREEN, secondary: Colors.GREEN };
+            case "gentoo" : return { primary: Colors.MAGENTA, secondary: Colors.BLUE };
+            default: return { primary: Colors.WHITE, secondary: Colors.WHITE };
+        };
     }
 
     private static function fetchTux():Array<String> {
