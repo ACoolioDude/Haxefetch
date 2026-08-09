@@ -112,29 +112,34 @@ class SystemUtils {
                 var clean = StringTools.trim(value);
                 var upper = clean.toUpperCase();
 
-                // Wayland
-                if (upper.indexOf("KWIN") != -1 || upper.indexOf("KDE") != -1 || upper.indexOf("PLASMA") != -1) return "KWin";
-                if (upper.indexOf("MUTTER") != -1 || upper.indexOf("GNOME") != -1 || upper.indexOf("BUDGIE") != -1) return "Mutter";
-                if (upper.indexOf("SWAY") != -1) return "Sway";
-                if (upper.indexOf("HYPRLAND") != -1) return "Hyprland";
-                if (upper.indexOf("NIRI") != -1) return "Niri";
-                if (upper.indexOf("MANGO") != -1) return "Mango";
-                if (upper.indexOf("DWL") != -1) return "DWL";
-                if (upper.indexOf("LABWC") != -1) return "LabWC";
-                if (upper.indexOf("WAYFIRE") != -1) return "Wayfire";
-                if (upper.indexOf("XFWL") != -1) return "XFWL";
+                switch (upper) {
+                    // Wayland
+                    case _ if (upper.indexOf("KWIN") != -1 || upper.indexOf("KDE") != -1 || upper.indexOf("PLASMA") != -1): return "KWin";
+                    case _ if (upper.indexOf("MUTTER") != -1 || upper.indexOf("GNOME") != -1 || upper.indexOf("BUDGIE") != -1): return "Mutter";
+                    case _ if (upper.indexOf("SWAY") != -1): return "Sway";
+                    case _ if (upper.indexOf("HYPRLAND") != -1): return "Hyprland";
+                    case _ if (upper.indexOf("NIRI") != -1): return "Niri";
+                    case _ if (upper.indexOf("MANGO") != -1): return "Mango";
+                    case _ if (upper.indexOf("DWL") != -1): return "DWL";
+                    case _ if (upper.indexOf("RIVER") != -1): return "River";
+                    case _ if (upper.indexOf("LABWC") != -1): return "LabWC";
+                    case _ if (upper.indexOf("WAYFIRE") != -1): return "Wayfire";
+                    case _ if (upper.indexOf("XFWL") != -1): return "XFWL";
 
-                // X11/Xorg
-                if (upper.indexOf("XFCE") != -1) return "Xfwm4";
-                if (upper.indexOf("MUFFIN") != -1 || upper.indexOf("CINNAMON") != -1 || upper.indexOf("X-CINNAMON") != -1) return "Muffin";
-                if (upper.indexOf("MACRO") != -1 || upper.indexOf("MATE") != -1) return "Macro";
-                if (upper.indexOf("OPENBOX") != -1 || upper.indexOf("LXQT") != -1) return "OpenBox";
-                if (upper.indexOf("I3") != -1) return "i3";
-                if (upper.indexOf("AWESOME") != -1) return "Awesome";
-                if (upper.indexOf("BSPWM") != -1) return "Bspwm";
-                if (upper.indexOf("XMONAD") != -1) return "XMonad";
-                if (upper.indexOf("OXWM") != -1) return "Oxwm"; // Tony Banters my beloved guy
+                    // X11/Xorg
+                    case _ if (upper.indexOf("XFCE") != -1): return "Xfwm4";
+                    case _ if (upper.indexOf("MUFFIN") != -1 || upper.indexOf("CINNAMON") != -1 || upper.indexOf("X-CINNAMON") != -1): return "Muffin";
+                    case _ if (upper.indexOf("MACRO") != -1 || upper.indexOf("MATE") != -1): return "Macro";
+                    case _ if (upper.indexOf("OPENBOX") != -1 || upper.indexOf("LXQT") != -1): return "OpenBox";
+                    case _ if (upper.indexOf("I3") != -1): return "i3";
+                    case _ if (upper.indexOf("AWESOME") != -1): return "Awesome";
+                    case _ if (upper.indexOf("BSPWM") != -1): return "Bspwm";
+                    case _ if (upper.indexOf("XMONAD") != -1): return "XMonad";
+                    case _ if (upper.indexOf("OXWM") != -1): return "OXWM"; // Tony Banters my beloved guy
 
+                    default: return null;
+                }
+                
                 return clean;
             }
 
