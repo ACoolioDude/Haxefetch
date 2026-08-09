@@ -31,7 +31,7 @@ If you want to use, follow this:
 <details>
     <summary>Getting a binary</summary>
 
-If you prefer binary,  -> [go here](https://github.com/ACoolioDude/Haxefetch/blob/main/binary/haxefetch) <-
+If you prefer binary,  -> [go here](https://github.com/ACoolioDude/Haxefetch/blob/main/binary/haxefetch) <- or -> [open GH releases](https://github.com/ACoolioDude/Haxefetch/releases) <-
 </details>
 
 <details>
