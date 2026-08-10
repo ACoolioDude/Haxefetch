@@ -7,6 +7,9 @@ Haxefetch is fetch program inspired by fastfetch, neofetch, pfetch, nerdfetch, h
 <p align="center">
   <img src="src/resources/screenshots/haxefetch.png" width="90%" alt="Haxefetch">
 </p>
+<p align="center">
+  <img src="src/resources/screenshots/haxefetch_small.png" width="90%" alt="Haxefetch-small">
+</p>
 <p align="center">(Haxefetch preview)</p>
 
 <p align="center">
