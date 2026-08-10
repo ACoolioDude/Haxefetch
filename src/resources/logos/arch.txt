@@ -7,9 +7,9 @@
             `/:-:++oooo+:
            `/++++/+++++++:
           `/++++++++++++++:
-         `/+++o$2oooooooo$1oooo/`
-        ./$2ooosssso++osssssso$1+`
-$2       .oossssso-````/ossssss+`
+         `/+++o$2oooooooo$1o
+        ./$2ooosssso++ossssss
+$2     .oossssso-````/ossssss+`
       -osssssso.      :ssssssso.
      :osssssss/        osssso+++.
     /ossssssss/        +ssssooo/-

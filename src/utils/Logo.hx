@@ -57,6 +57,7 @@ class Logo {
             case _ if (low.indexOf("linuxmint") != -1): return "mint";
             case _ if (low.indexOf("nixos") != -1): return "nix";
             case _ if (low.indexOf("opensuse") != -1 || low.indexOf("opensuse-microos") != -1 || low.indexOf("opensuse-leap") != -1 || low.indexOf("opensuse-tumbleweed") != -1 || low.indexOf("opensuse-slowroll") != -1): return "suse";
+            case _ if (low.indexOf("parch") != -1): return "parch";
             case _ if (low.indexOf("slackware") != -1): return "slack";
             case _ if (low.indexOf("solus") != -1): return "solus"; 
             case _ if (low.indexOf("steamos") != -1): return "steam";
@@ -69,10 +70,17 @@ class Logo {
     private static function fetchColor(low:String):{primary:String, secondary:String} {
         switch (low) {
             case "alpine" : return { primary: Colors.BLUE, secondary: Colors.BLUE };
-            case "arch" | "artix": return { primary: Colors.CYAN, secondary: Colors.BLUE };
-            case "cachyos" : return { primary: Colors.CYAN, secondary: Colors.BLUE };
-            case "manjaro": return { primary: Colors.GREEN, secondary: Colors.GREEN };
-            case "gentoo" : return { primary: Colors.MAGENTA, secondary: Colors.BLUE };
+            case "arch": return { primary: Colors.COLOR_33, secondary: Colors.COLOR_33 };
+            case "artix": return { primary: Colors.CYAN, secondary: Colors.CYAN };
+            case "cachyos" : return { primary: Colors.CYAN, secondary: Colors.CYAN };
+            case "debian" : return { primary: Colors.COLOR_88, secondary: Colors.COLOR_88 };
+            case "endeavour" : return { primary: Colors.COLOR_54, secondary: Colors.COLOR_54 };
+            case "fedora" : return { primary: Colors.COLOR_17, secondary: Colors.COLOR_17 };
+            case "gentoo" : return { primary: Colors.COLOR_92, secondary: Colors.COLOR_92 };
+            case "manjaro" | "manjaro-arm": return { primary: Colors.GREEN, secondary: Colors.GREEN };
+            case "nix" : return { primary: Colors.COLOR_63, secondary: Colors.COLOR_63 };
+            case "parch": return { primary: Colors.COLOR_55, secondary: Colors.COLOR_55 };
+            case "void": return { primary: Colors.COLOR_22, secondary: Colors.COLOR_22 };
             default: return { primary: Colors.WHITE, secondary: Colors.WHITE };
         };
     }

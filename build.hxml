@@ -33,6 +33,7 @@
 --resource src/resources/logos/solus.txt@solus
 --resource src/resources/logos/steamos.txt@steam
 --resource src/resources/logos/opensuse.txt@suse
+--resource src/resources/logos/parch.txt@parch
 --resource src/resources/logos/ubuntu.txt@ubuntu
 --resource src/resources/logos/void.txt@void
 
