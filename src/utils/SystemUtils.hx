@@ -90,18 +90,28 @@ class SystemUtils {
             var token = StringTools.trim(parts).toUpperCase();
             if (token == "") continue;
 
-            if (token.indexOf("GNOME") != -1) return "GNOME";
-            if (token.indexOf("KDE") != -1 || token.indexOf("PLASMA") != -1) return "KDE Plasma";
-            if (token.indexOf("CINNAMON") != -1) return "Cinnamon";
-            if (token.indexOf("XFCE") != -1) return "XFCE";
-            if (token.indexOf("MATE") != -1) return "MATE";
-            if (token.indexOf("BUDGIE") != -1) return "Budgie";
-            if (token.indexOf("COSMIC") != -1) return "Cosmic";
-            if (token.indexOf("LXDE") != -1) return "LXDE";
-            if (token.indexOf("LXQT") != -1) return "LXQt";
-            if (token.indexOf("DEEPIN") != -1 || token.indexOf("DDE") != -1) return "Deepin";
+            if (token.indexOf("GNOME") != -1) return formatDesktop("GNOME", "gnome-shell", ["--version"]);
+            if (token.indexOf("KDE") != -1 || token.indexOf("PLASMA") != -1) return formatDesktop("KDE Plasma", "plasmashell", ["--version"]);
+            if (token.indexOf("CINNAMON") != -1) return formatDesktop("Cinnamon", "cinnamon", ["--version"]);
+            if (token.indexOf("XFCE") != -1) return formatDesktop("XFCE", "xfce4-about", ["-V"]);
+            if (token.indexOf("MATE") != -1) return formatDesktop("MATE", "mate-about", ["-v"]);
+            if (token.indexOf("BUDGIE") != -1) return formatDesktop("Budgie", "budgie-desktop", ["--version"]);
+            if (token.indexOf("COSMIC") != -1) return formatDesktop("COSMIC", "cosmic-session", ["--version"]);
+            if (token.indexOf("LXDE") != -1) return formatDesktop("LXDE", "lxsession", ["--version"]);
+            if (token.indexOf("LXQT") != -1) return formatDesktop("LXQt", "lxqt-session", ["-v"]);
+            if (token.indexOf("DEEPIN") != -1 || token.indexOf("DDE") != -1) return formatDesktop("Deepin", "dde-dock", ["--version"]);
         }
         return null;
+    }
+
+    private static function formatDesktop(name:String, execution:String, arguments:Array<String>):String {
+        var process = Haxefetch.runCmd(execution, arguments);
+        if (process != null && process != "") {
+            var register = ~/\b\d+\.\d+(\.\d+)?\b/;
+            if (register.match(process)) return '${name} ${register.matched(0)}';
+        }
+
+        return name;
     }
 
     public static function fetchSession():String {
@@ -130,7 +140,7 @@ class SystemUtils {
                     case _ if (upper.indexOf("XFCE") != -1): return "Xfwm4";
                     case _ if (upper.indexOf("MUFFIN") != -1 || upper.indexOf("CINNAMON") != -1 || upper.indexOf("X-CINNAMON") != -1): return "Muffin";
                     case _ if (upper.indexOf("MACRO") != -1 || upper.indexOf("MATE") != -1): return "Macro";
-                    case _ if (upper.indexOf("OPENBOX") != -1 || upper.indexOf("LXQT") != -1): return "OpenBox";
+                    case _ if (upper.indexOf("OPENBOX") != -1 || upper.indexOf("LXQT") != -1 || upper.indexOf("LXDE") != -1): return "OpenBox";
                     case _ if (upper.indexOf("I3") != -1): return "i3";
                     case _ if (upper.indexOf("AWESOME") != -1): return "Awesome";
                     case _ if (upper.indexOf("BSPWM") != -1): return "Bspwm";
@@ -382,13 +392,14 @@ class SystemUtils {
         if (FileSystem.exists("/var/lib/flatpak/exports/app")) {
             try {
                 var apps = FileSystem.readDirectory("/var/lib/flatpak/exports/app");
-                if (apps.length > 0) counts.push('${apps.length} (Flatpak)');
+                if (apps.length > 0) counts.push('${apps.length} (flatpak)');
             } catch (e:Dynamic) {}
         }
 
         if (counts.length > 0) {
             return counts.join(", ");
         }
+
         #end
         return "Unknown";
     }
