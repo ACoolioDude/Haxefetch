@@ -6,13 +6,61 @@ import sys.io.File;
 import sys.io.Process;
 
 class SystemUtils {
-    public static function fetchHost():String {
+    public static function fetchHostname():String {
         #if sys
         if (FileSystem.exists("/etc/hostname")) {
             return StringTools.trim(File.getContent("/etc/hostname"));
         }
         #end
         return "Haxefetch";
+    }
+
+    public static function fetchHost():String {
+        var bios:String = readFile("/sys/class/dmi/id/bios_vendor");
+        var board:String = readFile("/sys/clas/dmi/id/board_vendor");
+        var family:String = readFile("/sys/class/dmi/id/product_family");
+        var version:String = readFile("/sys/class/dmi/id/product_version");
+        var name:String = readFile("/sys/class/dmi/id/product_name");
+
+        var vendor:String = "";
+        var model:String = "";
+
+        if (bios != "" && bios != "None")
+            vendor = bios
+        else if (board != "" && board != "None")
+            vendor = board;
+
+        if (version != "" && version != "None" && version != "System Version")
+            model = version;
+        else if (family != "" && family != "None")
+            model = family;
+        else if (name != "" && name != "None" && name != "System Product Name")
+            model = name;
+        if (model == "") return "";
+
+        if (name != "" && name != model && name != "None" && name != "System Product Name") model += " (" + name + ")";
+        if (vendor != "") {
+            var lowerM = model.toLowerCase();
+            var lowerV = vendor.toLowerCase();
+            if (lowerM.indexOf(lowerV) == -1) model = '${vendor} ${model}';
+        }
+        
+        return model;
+    }
+
+    private static function readFile(path:String):String {
+        if (sys.FileSystem.exists(path)) {
+            try {
+                var content = sys.io.File.getContent(path);
+                if (content != null) return StringTools.trim(content);
+            } catch (e:Dynamic) {}
+        }
+
+        var output = Haxefetch.runCmd("cat", [path]);
+            if (output != null && output != "") {
+            return StringTools.trim(output);
+        }
+        return "";
     }
 
     public static function fetchDistro():String {

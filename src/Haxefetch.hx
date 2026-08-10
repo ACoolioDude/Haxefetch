@@ -9,6 +9,7 @@ class Haxefetch {
         var memory = Memory.memoryStats();
 
         var user = getEnvironment("USER", getEnvironment("USERNAME", "user"));
+        var hostname = SystemUtils.fetchHostname();
         var host = SystemUtils.fetchHost();
         var distro = SystemUtils.fetchDistro();
         var init = SystemUtils.fetchInit();
@@ -34,7 +35,11 @@ class Haxefetch {
         var separator:String = " ";
 
         var infoLine:Array<String> = [
-            Configuration.showHost ? Colors.colorize(user, Colors.RED) + "@" + Colors.colorize(host, Colors.RED) : null,
+            Configuration.showHostname ? Colors.colorize(user, Colors.RED) + "@" + Colors.colorize(hostname, Colors.RED) : null,
+
+            (Configuration.showHost && host != null) ?
+                (Configuration.showHost ? Colors.colorize("Host:", Colors.YELLOW) + separator + host : null) : null,
+
             Configuration.showDistro ? Colors.colorize("OS:", Colors.YELLOW) + separator + distro + " (" + Colors.colorize(init, Colors.GREEN) + ")" : null,
             Configuration.showKernel ? Colors.colorize("Kernel:", Colors.YELLOW) + separator + kernel : null,
             

@@ -7,6 +7,8 @@ import haxe.io.Path;
 class Configuration {
     public static var logoSize:String = "normal";
 
+    public static var showHostname:Bool = true;
+
     public static var showHost:Bool = true;
 
     public static var showDistro:Bool = true;
@@ -117,7 +119,8 @@ class Configuration {
     private static function parseConfigOptions(key:String, value:String, lineNumber:Int):Void {
         switch (key) {
             case "logo_type": logoSize = value;
-            case "show_hostname": showHost = parseBool(value);
+            case "show_hostname": showHostname = parseBool(value);
+            case "show_host": showHost = parseBool(value);
             case "show_distro": showDistro = parseBool(value);
             case "show_kernel": showKernel = parseBool(value);
             case "show_desktop_environment": showDesktop = parseBool(value);
@@ -158,6 +161,7 @@ class Configuration {
                 "# CURRENTLY ON ALPHA!\n" +
                 "logo_type=normal\n" +
                 "show_hostname=true\n" +
+                "show_host=true\n" +
                 "show_distro=true\n" +
                 "show_desktop_environment=true\n" +
                 "show_window_manager=true\n" +
