@@ -1,5 +1,5 @@
 pkgname=haxefetch
-pkgver=1.0.0
+pkgver=1.0.0_b
 pkgrel=1
 pkgdesc="Fetch program written in Haxe"
 arch=('x86_64')

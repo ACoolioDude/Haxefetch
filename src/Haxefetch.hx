@@ -38,29 +38,29 @@ class Haxefetch {
             Configuration.showHostname ? Colors.colorize(user, Colors.RED) + "@" + Colors.colorize(hostname, Colors.RED) : null,
 
             (Configuration.showHost && host != null) ?
-                (Configuration.showHost ? Colors.colorize("Host:", Colors.YELLOW) + separator + host : null) : null,
+                (Configuration.showHost ? Colors.colorize(Configuration.hostString, Colors.YELLOW) + separator + host : null) : null,
 
-            Configuration.showDistro ? Colors.colorize("OS:", Colors.YELLOW) + separator + distro + " (" + Colors.colorize(init, Colors.GREEN) + ")" : null,
-            Configuration.showKernel ? Colors.colorize("Kernel:", Colors.YELLOW) + separator + kernel : null,
+            Configuration.showDistro ? Colors.colorize(Configuration.distroString, Colors.YELLOW) + separator + distro + " (" + Colors.colorize(init, Colors.GREEN) + ")" : null,
+            Configuration.showKernel ? Colors.colorize(Configuration.kernelString, Colors.YELLOW) + separator + kernel : null,
             
             (desktop != null && desktop != "N/A" && desktop != "" && Configuration.showDesktop) ? 
-                Colors.colorize("DE:", Colors.YELLOW) + separator + desktop : null,
+                Colors.colorize(Configuration.desktopString, Colors.YELLOW) + separator + desktop : null,
             
             (Configuration.showSession && session != null && session != "") ?
-                Colors.colorize("WM:", Colors.YELLOW) + separator + session + " (" + protocol + ")" : null,
+                Colors.colorize(Configuration.sessionString, Colors.YELLOW) + separator + session + " (" + protocol + ")" : null,
 
-            Configuration.showRAM ? Colors.colorize("RAM:", Colors.YELLOW) + separator + ram + typeSuffix : null,
-            Configuration.showSWAP ? Colors.colorize("SWAP:", Colors.YELLOW) + separator + swap : null,
-            Configuration.showCPU ? Colors.colorize("CPU:", Colors.YELLOW) + separator + cpu : null,
-            Configuration.showGPU ? Colors.colorize("GPU:", Colors.YELLOW) + separator + gpu : null,
-            Configuration.showDisk ? Colors.colorize("Disk:", Colors.YELLOW) + separator + disk : null,
-            Configuration.showPackages ? Colors.colorize("Packages:", Colors.YELLOW) + separator + packages : null,
-            Configuration.showHaxe ? Colors.colorize("Haxe:", Colors.YELLOW) + separator + haxe : null,
-            Configuration.showOpenGL ? Colors.colorize("OpenGL:", Colors.YELLOW) + separator + opengl : null,
-            Configuration.showVulkan ? Colors.colorize("Vulkan:", Colors.YELLOW) + separator + vulkan : null,
-            Configuration.showUptime ? Colors.colorize("Uptime:", Colors.YELLOW) + separator + uptime : null,
-            Configuration.showBirthday ? Colors.colorize("OS Birthday:", Colors.YELLOW) + separator + birthday : null,
-            Configuration.showBirth ? Colors.colorize("OS Birth:", Colors.YELLOW) + separator + birth : null,
+            Configuration.showRAM ? Colors.colorize(Configuration.ramString, Colors.YELLOW) + separator + ram + typeSuffix : null,
+            Configuration.showSWAP ? Colors.colorize(Configuration.swapString, Colors.YELLOW) + separator + swap : null,
+            Configuration.showCPU ? Colors.colorize(Configuration.cpuString, Colors.YELLOW) + separator + cpu : null,
+            Configuration.showGPU ? Colors.colorize(Configuration.gpuString, Colors.YELLOW) + separator + gpu : null,
+            Configuration.showDisk ? Colors.colorize(Configuration.diskString, Colors.YELLOW) + separator + disk : null,
+            Configuration.showPackages ? Colors.colorize(Configuration.packageString, Colors.YELLOW) + separator + packages : null,
+            Configuration.showHaxe ? Colors.colorize(Configuration.haxeString, Colors.YELLOW) + separator + haxe : null,
+            Configuration.showOpenGL ? Colors.colorize(Configuration.openglString, Colors.YELLOW) + separator + opengl : null,
+            Configuration.showVulkan ? Colors.colorize(Configuration.vulkanString, Colors.YELLOW) + separator + vulkan : null,
+            Configuration.showUptime ? Colors.colorize(Configuration.uptimeString, Colors.YELLOW) + separator + uptime : null,
+            Configuration.showBirthday ? Colors.colorize(Configuration.birthdayString, Colors.YELLOW) + separator + birthday : null,
+            Configuration.showBirth ? Colors.colorize(Configuration.birthString, Colors.YELLOW) + separator + birth : null,
             Configuration.showBlock ? Colors.getColorBlocks() : null
         ].filter(function(line) return line != null);
 

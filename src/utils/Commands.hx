@@ -1,7 +1,7 @@
 package utils;
 
 class Commands {
-    public static final HAXEFETCH_VERSION:String = "1.0.0-a";
+    public static final HAXEFETCH_VERSION:String = "1.0.0-b";
 
     public static function parse(argument:Array<String>):Void {
         for (args in argument) {

@@ -10,47 +10,55 @@ class Configuration {
     public static var showHostname:Bool = true;
 
     public static var showHost:Bool = true;
+    public static var hostString:String = "Host:";
 
     public static var showDistro:Bool = true;
-    // public static var distroString:String = "OS";
+    public static var distroString:String = "OS:";
 
     public static var showKernel:Bool = true;
-    // public static var kernelString:String = "Kernel:";
+    public static var kernelString:String = "Kernel:";
 
     public static var showDesktop:Bool = true;
-    // public static var desktopString:String = "DE:";
+    public static var desktopString:String = "DE:";
 
     public static var showSession:Bool = true;
-    // public static var sessionString:String = "WM:";
+    public static var sessionString:String = "WM:";
 
     public static var showRAM:Bool = true;
-    // public static var ramString:String = "RAM:";
+    public static var ramString:String = "RAM:";
 
     public static var showSWAP:Bool = true;
-    // public static var swapString:String = "SWAP:";
+    public static var swapString:String = "SWAP:";
 
     public static var showCPU:Bool = true;
-    // public static var cpuString:String = "CPU:";
+    public static var cpuString:String = "CPU:";
 
     public static var showGPU:Bool = true;
-    // public static var gpuString:String = "GPU:";
+    public static var gpuString:String = "GPU:";
 
     public static var showDisk:Bool = true;
-    // public static var diskString:String = "Disk:";
+    public static var diskString:String = "Disk:";
 
     public static var showPackages:Bool = true;
+    public static var packageString:String = "Packages:";
 
     public static var showHaxe:Bool = true;
+    public static var haxeString:String = "Haxe:";
 
     public static var showOpenGL:Bool = true;
+    public static var openglString:String = "OpenGL:";
 
     public static var showVulkan:Bool = true;
+    public static var vulkanString:String = "Vulkan:";
 
     public static var showUptime:Bool = true;
+    public static var uptimeString:String = "Uptime:";
 
     public static var showBirthday:Bool = true;
+    public static var birthdayString:String = "OS Birthday:";
 
     public static var showBirth:Bool = true;
+    public static var birthString:String = "OS Birth:";
 
     public static var showBlock:Bool = true;
 
@@ -119,24 +127,60 @@ class Configuration {
     private static function parseConfigOptions(key:String, value:String, lineNumber:Int):Void {
         switch (key) {
             case "logo_type": logoSize = value;
+
             case "show_hostname": showHostname = parseBool(value);
+
             case "show_host": showHost = parseBool(value);
+            case "host": hostString = parseString(value);
+
             case "show_distro": showDistro = parseBool(value);
+            case "distro": distroString = parseString(value);
+
             case "show_kernel": showKernel = parseBool(value);
+            case "kernel": kernelString = parseString(value);
+
             case "show_desktop_environment": showDesktop = parseBool(value);
+            case "desktop": desktopString = parseString(value);
+
             case "show_window_manager": showSession = parseBool(value);
+            case "session": sessionString = parseString(value);
+
             case "show_ram": showRAM = parseBool(value);
+            case "ram": ramString = parseString(value);
+
             case "show_swap": showSWAP = parseBool(value);
+            case "swap": swapString = parseString(value);
+
             case "show_cpu": showCPU = parseBool(value);
+            case "cpu": cpuString = parseString(value);
+
             case "show_gpu": showGPU = parseBool(value);
+            case "gpu": gpuString = parseString(value);
+ 
             case "show_disk_usage": showDisk = parseBool(value);
+            case "disk": diskString = parseString(value);
+
             case "show_package": showPackages = parseBool(value);
+            case "package": packageString = parseString(value);
+
             case "show_haxe_version": showHaxe = parseBool(value);
+            case "haxe": haxeString = parseString(value);
+
             case "show_opengl_version": showOpenGL = parseBool(value);
+            case "opengl": openglString = parseString(value);
+
             case "show_vulkan_version": showVulkan = parseBool(value);
+            case "vulkan": vulkanString = parseString(value);
+
             case "show_uptime": showUptime = parseBool(value);
+            case "uptime": uptimeString = parseString(value);
+
             case "show_birthday": showBirthday = parseBool(value);
+            case "birthday": birthdayString = parseString(value);
+
             case "show_birth": showBirth = parseBool(value);
+            case "birth": birthString = parseString(value);
+
             case "show_color_block": showBlock = parseBool(value);
             default:
                 Sys.println('Error in configuration of Haxefetch [Line ${lineNumber}]: Unknown option key -> "${key}" <- ');
@@ -152,31 +196,73 @@ class Configuration {
         throw 'Invalid bool options "${value}" (expected only true or false)';
     }
 
+    private static function parseString(value:String):String {
+        if ((StringTools.startsWith(value, "\"") && StringTools.endsWith(value, "\"")) || (StringTools.startsWith(value, "'") && StringTools.endsWith(value, "'"))) {
+            return value.substring(1, value.length - 1);
+        }
+        return value;
+    }
+
     private static function createConfiguration(directory:String, path:String, creation:Bool):Void {
         try {
             if (!FileSystem.exists(directory)) FileSystem.createDirectory(directory);
 
             var defaults =
                 "# Haxefetch configuration\n" +
-                "# CURRENTLY ON ALPHA!\n" +
+                "# BETA CONFIGURATION!\n\n" +
                 "logo_type=normal\n" +
                 "show_hostname=true\n" +
                 "show_host=true\n" +
+                "host=Host:\n" +
+
                 "show_distro=true\n" +
+                "distro=Distro:\n" +
+
+                "show_kernel=true\n" +
+                "kernel=Kernel:\n" +
+
                 "show_desktop_environment=true\n" +
+                "desktop=DE:\n" +
+
                 "show_window_manager=true\n" +
+                "session=WM:\n" +
+
                 "show_ram=true\n" +
+                "ram=RAM:\n" +
+
                 "show_swap=true\n" +
+                "swap=SWAP:\n"+
+
                 "show_cpu=true\n" +
+                "cpu=CPU:\n" +
+
                 "show_gpu=true\n" +
+                "gpu=GPU:\n" +
+
                 "show_disk_usage=true\n" +
+                "disk=Disk:\n" +
+
                 "show_package=true\n" +
+                "package=Packages:\n" +
+
                 "show_haxe_version=true\n" +
+                "haxe=Haxe:\n" +
+
                 "show_opengl_version=true\n" +
+                "opengl=OpenGL:\n" +
+
                 "show_vulkan_version=true\n" +
+                "vulkan=Vulkan:\n" +
+
                 "show_uptime=true\n" +
+                "uptime=Uptime:\n" +
+
                 "show_birthday=true\n" +
+                "birthday=OS Birthday:\n" +
+
                 "show_birth=true\n" +
+                "birth=OS Birth:\n" +
+
                 "show_color_block=true\n";
 
             File.saveContent(path, defaults);
