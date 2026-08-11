@@ -248,7 +248,7 @@ class SystemUtils {
         if (protocolType != null && protocolType != "") {
             switch (protocolType.toLowerCase()) {
                 case "wayland": return "Wayland";
-                case "x11": return "X11";
+                case "x11": return checkProtocol();
                 case "xlibre": return "XLibre";
                 case "tty": return null;
                 case _: checkProtocol();
@@ -260,7 +260,13 @@ class SystemUtils {
 
     private static function checkProtocol():Null<String> {
         if (Sys.getEnv("WAYLAND_DISPLAY") != null && Sys.getEnv("WAYLAND_DISPLAY") != "") return "Wayland";
-        if (Sys.getEnv("DISPLAY") != null && Sys.getEnv("DISPLAY") != "") return "X11";
+        if (Sys.getEnv("DISPLAY") != null && Sys.getEnv("DISPLAY") != "") {
+            var xorg = Xorg.fetchXorg().toLowerCase();
+            if (xorg.indexOf("xlibre") != -1) {
+                return "XLibre";
+            }
+            return "X11";
+        } 
         return null;
     }
 
