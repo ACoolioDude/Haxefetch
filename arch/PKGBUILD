@@ -14,6 +14,7 @@ package() {
 }
 
 optdepends=(
+	'inxi: for RAM type'
 	'vulkan-tools: for Vulkan version (vulkaninfo)'
 	'vulkan-headers: for Vulkan instance'
 	'vulkan-intel: for Vulkan GPU driver [Intel]'
