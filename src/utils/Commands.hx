@@ -35,7 +35,7 @@ class Commands {
         Sys.println("   -h | --help " + " " + "        Show help");
         Sys.println("   -v | --version " + " " + "     Show version of Haxefetch.");
         Sys.println("   -c | --config " + " " + "      Generate new config of Haxefetch.");
-        Sys.println("   -t | --tutorial " + " " + "    Show to customise this in Haxefetch.");
+        Sys.println("   -t | --tutorial " + " " + "    Show how to customize Haxefetch.");
     } 
 
     private static function fetchInstructions():Void {
