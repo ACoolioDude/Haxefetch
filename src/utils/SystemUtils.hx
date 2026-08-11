@@ -194,6 +194,7 @@ class SystemUtils {
                     case _ if (upper.indexOf("BSPWM") != -1): return "Bspwm";
                     case _ if (upper.indexOf("XMONAD") != -1): return "XMonad";
                     case _ if (upper.indexOf("OXWM") != -1): return "OXWM"; // Tony Banters my beloved guy
+                    case _ if (upper.indexOf("QTILE") != -1): return "QTile";
 
                     default: return null;
                 }
@@ -233,7 +234,8 @@ class SystemUtils {
             "bspwm" => "Bspwm",
             "xmonad" => "XMonad",
             "oxwm" => "OXWM", // Tony Banters my beloved guy  
-            "dwm" => "DWM"
+            "dwm" => "DWM",
+            "qtile" => "QTile"
         ];
 
         for (process in wm.keys()) {

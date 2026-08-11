@@ -7,7 +7,7 @@ url="https://github.com/ACoolioDude/Haxefetch"
 license=('MIT')
 
 source=("haxefetch::https://github.com/ACoolioDude/Haxefetch/raw/refs/heads/main/binary/haxefetch")
-sha256sums=('3a927a289c045f528a87153edfa24e5a5026a46848d789c722f72c7925affc14')
+sha256sums=('05f3c688a6195522b743553fdc37d19a2a76c333f9a902e1d6941809d7db7e87')
 
 package() {
 	install -Dm755 haxefetch "$pkgdir/usr/bin/haxefetch"
