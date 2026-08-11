@@ -1,0 +1,22 @@
+pkgname=haxefetch
+pkgver=1.0.0
+pkgrel=1
+pkgdesc="Fetch program written in Haxe"
+arch=('x86_64')
+url="https://github.com/ACoolioDude/Haxefetch"
+license=('MIT')
+
+source=("haxefetch::https://github.com/ACoolioDude/Haxefetch/raw/refs/heads/main/binary/haxefetch")
+sha256sums=('3a927a289c045f528a87153edfa24e5a5026a46848d789c722f72c7925affc14')
+
+package() {
+	install -Dm755 haxefetch "$pkgdir/usr/bin/haxefetch"
+}
+
+optdepends=(
+	'vulkan-tools: for Vulkan version (vulkaninfo)'
+	'vulkan-headers: for Vulkan instance'
+	'vulkan-intel: for Vulkan GPU driver [Intel]'
+	'mesa: for Mesa instance'
+	'mesa-utils: for OpenGL version (glxinfo)'
+)

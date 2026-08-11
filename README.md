@@ -52,6 +52,13 @@ If you prefer binary,  -> [go here](https://github.com/ACoolioDude/Haxefetch/blo
    - `cd Haxefetch` > `haxelib setup` (requires Haxe!) > Set haxelib environent to Haxefetch folder `home/$USER/Haxefetch/.haxelib` > install HXCPP `haxelib install hxcpp`
 3. Compile Haxefetch.
    - `haxe build.hxml`
+
+## Note for Arch Linux users
+I gave PKGBUILD of this because i am planning to upload this on AUR, but registering is not currently available, so you can build this for yourself
+1. Install `base-devel` package
+2. Switch to arch directory inside of Haxefetch
+3. Run `makepkg -si` (it will install package inside of `/usr/bin` folder)
+4. Now you have local haxefetch binary on your Arch system
 </details>
 
 
