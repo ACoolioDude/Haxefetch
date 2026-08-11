@@ -17,7 +17,9 @@ optdepends=(
 	'inxi: for RAM type'
 	'vulkan-tools: for Vulkan version (vulkaninfo)'
 	'vulkan-headers: for Vulkan instance'
-	'vulkan-intel: for Vulkan GPU driver [Intel]'
+	'vulkan-intel: for Vulkan GPU driver (Intel)'
+	'vulkan-radeon: for Vulkan GPU driver (AMD)'
+	'vulkan-nouveau: for Vulkan GPU driver (NVIDIA)'
 	'mesa: for Mesa instance'
 	'mesa-utils: for OpenGL version (glxinfo)'
 )
