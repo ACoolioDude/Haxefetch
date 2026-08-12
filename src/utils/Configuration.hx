@@ -85,7 +85,7 @@ class Configuration {
 
                 if (trims == "" || StringTools.startsWith(trims, "#") || StringTools.startsWith(trims, ";") || StringTools.startsWith(trims, "[") && StringTools.endsWith(trims, "]")) continue;
                 if (trims.indexOf("=") == -1) {
-                    Sys.println('Error in configuration of Haxefetch [Line ${lineNumber}]: Invalid config syntax. Missing "=" for -> "${trims}" <-');
+                    Sys.println('${Colors.colorize("Error in configuration of Haxefetch!", Colors.RED)} ${Colors.colorize('[Line ${lineNumber}]:', Colors.YELLOW)} ${Colors.colorize('Invalid config syntax. Missing "=" for', Colors.RED)} -> ${Colors.colorize('"${trims}"', Colors.YELLOW)} <-');
                     Sys.exit(1);
                 }
                 
@@ -94,19 +94,19 @@ class Configuration {
                 var value = StringTools.trim(part.slice(1).join("="));
 
                 if (keyValue == "") {
-                    Sys.println('Error in configuration of Haxefetch [Line ${lineNumber}]: Missing key option before "="');
+                    Sys.println('${Colors.colorize("Error in configuration of Haxefetch!", Colors.RED)} ${Colors.colorize('[Line ${lineNumber}]:', Colors.YELLOW)} ${Colors.colorize('Missing module key option before "="', Colors.RED)}');
                     Sys.exit(1);
                 }
 
                 try {
                     parseConfigOptions(keyValue, value, lineNumber);
                 } catch (e:Dynamic) {
-                    Sys.println('Error in configuration of Haxefetch [Line ${lineNumber}]: Failed to parse "${keyValue}" -> ${e}');
+                    Sys.println('${Colors.colorize("Error in configuration of Haxefetch!", Colors.RED)} ${Colors.colorize('[Line ${lineNumber}]:', Colors.YELLOW)} ${Colors.colorize('Failed to parse option module', Colors.RED)} ${Colors.colorize('"${keyValue}"', Colors.YELLOW)} -> ${Colors.colorize('${e}', Colors.RED)}');
                     Sys.exit(1);
                 }
             }
         } catch (e:Dynamic) {
-            Sys.println('Fatal error appeared: Cannot read config file: ${e}. Is directory and configuration correct?');
+            Sys.println('${Colors.colorize("Fatal error appeared:", Colors.RED)} ${Colors.colorize('Cannot read config file: ${e}. Is directory and configuration correct?', Colors.RED)}');
             Sys.exit(1);
         }
     }
@@ -183,7 +183,7 @@ class Configuration {
 
             case "show_color_block": showBlock = parseBool(value);
             default:
-                Sys.println('Error in configuration of Haxefetch [Line ${lineNumber}]: Unknown option key -> "${key}" <- ');
+                Sys.println('${Colors.colorize("Error in configuration of Haxefetch!", Colors.RED)} ${Colors.colorize('[Line ${lineNumber}]:', Colors.YELLOW)} ${Colors.colorize('Unknown option key', Colors.RED)} -> ${Colors.colorize('"${key}"', Colors.YELLOW)} <-');
                 Sys.exit(1);
         }
     }
@@ -193,7 +193,7 @@ class Configuration {
         if (low == "true") return true;
         if (low == "false") return false;
 
-        throw 'Invalid bool options "${value}" (expected only true or false)';
+        throw '${Colors.colorize('Invalid bool options', Colors.RED)} ${Colors.colorize('"${value}"', Colors.YELLOW)} ${Colors.colorize('(expected only true or false)', Colors.RED)}';
     }
 
     private static function parseString(value:String):String {
