@@ -18,7 +18,7 @@ Haxefetch is fetch program inspired by fastfetch, neofetch, pfetch, nerdfetch, h
 <p align="center">(Haxefetch commands)</p>
 
 <p align="center">
-  <img src="src/resources/screenshots/configuration.png" width="90%" alt="Haxefetch configuration">
+  <img src="src/resources/screenshots/configuration.png" width="50%" alt="Haxefetch configuration">
 </p>
 <p align="center">(Configuring Haxefetch with .conf support)</p>
 
