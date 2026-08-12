@@ -101,7 +101,7 @@ class CPU {
             result += " @ " + formattedFreq + " GHz";
         }
 
-        result += ' (${Colors.colorize(Std.string(coreCount), Colors.GREEN)} cores / ${Colors.colorize(Std.string(threadCount), Colors.GREEN)} threads';
+        result += ' (${Colors.colorize(Std.string(coreCount), Colors.GREEN)} cores / ${Colors.colorize(Std.string(threadCount), Colors.GREEN)} threads)';
 
         return result;
     }
