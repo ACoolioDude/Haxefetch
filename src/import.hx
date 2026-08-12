@@ -3,6 +3,7 @@ import utils.Commands;
 import utils.Configuration;
 import utils.CPU;
 import utils.DiskUtility;
+import utils.GPU;
 import utils.Logo;
 import utils.Memory;
 import utils.SystemUtils;

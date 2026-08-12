@@ -24,7 +24,7 @@ class Haxefetch {
         var typeSuffix = (ramType != "") ? ' (${Colors.colorize(ramType, Colors.GREEN)})' : '';
         var swap = memory.swap;
         var cpu = CPU.fetchCPU();
-        var gpu = SystemUtils.fetchGPU();
+        var gpu = GPU.fetchGPU();
         var disk = DiskUtility.fetchDisk();
         var packages = SystemUtils.fetchPackage();
         var haxe = SystemUtils.fetchHaxe();

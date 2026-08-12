@@ -272,53 +272,6 @@ class SystemUtils {
         return null;
     }
 
-    public static function fetchGPU():String {
-        try {
-            var process = Haxefetch.runCmd("lspci", []);
-            if (process != "N/A" && process != "") {
-                var line = process.split("\n");
-                for (lines in line) {
-                    var low = lines.toLowerCase();
-                    if (low.indexOf("vga compatible controller:") != -1 || low.indexOf("3d controller:") != -1)  {
-                        var part = lines.split(":");
-                        if (part.length >= 3) return fetchActualGPU(part[2]);
-                    }
-                }
-            }
-        } catch (e:Dynamic) {}
-        return "N/A";
-    }
-
-    public static function fetchActualGPU(raw:String):String {
-        var string = raw;
-        var bracketStart = string.indexOf("[");
-        var bracketEnd = string.indexOf("]");
-
-        if (bracketStart != -1 && bracketEnd > bracketStart) {
-            var insideBracket = string.substring(bracketStart + 1, bracketEnd);
-
-            if (string.indexOf("Intel") != -1 && insideBracket.indexOf("Intel") == 1) {
-                string = "Intel " + insideBracket;
-            } else if (string.indexOf("NVIDIA") != -1 && insideBracket.indexOf("NVIDIA") == 1) {
-                string = "NVIDIA " + insideBracket;
-            } else if ((string.indexOf("AMD") != -1 || string.indexOf("ATI") != -1) && insideBracket.indexOf("AMD") == -1) {
-                string = "AMD " + insideBracket;
-            } else {
-                string = insideBracket;
-            }
-        }
-
-        string = StringTools.replace(string, "Intel Corporation ", "Intel ");
-        string = StringTools.replace(string, "NVIDIA Corporation ", "NVIDIA");
-        string = StringTools.replace(string, "Advanced Micro Devices, Inc. [AMD/ATI] ", "AMD ");
-        string = StringTools.replace(string, "AMD/ATI", "AMD ");
-
-        var revIdX = string.indexOf("(rev");
-        if (revIdX != -1) string = string.substring(0, revIdX);
-
-        return StringTools.trim(string);
-    }
-
     public static function fetchPackage():String {
         #if sys
         var counts:Array<String> = [];
