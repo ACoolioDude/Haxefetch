@@ -272,32 +272,6 @@ class SystemUtils {
         return null;
     }
 
-    public static function fetchCPU():String {
-        try {
-            var output = Haxefetch.runCmd("lscpu", []);
-            var modelName = "";
-            var threads = "";
-            var cores = "";
-
-            for (line in output.split("\n")) {
-                if (line.indexOf("Model name:") != -1) {
-                    modelName = StringTools.trim(line.split(":")[1]);
-                }
-                if (line.indexOf("CPU(s):") != -1 && threads == "") {
-                    threads = StringTools.trim(line.split(":")[1]);
-                }
-                if (line.indexOf("Core(s) per socket:") != -1 && cores == "") {
-                    cores = StringTools.trim(line.split(":")[1]);
-                }
-            }
-
-            if (modelName != "") {
-                return  '${modelName} (${Colors.colorize(cores, Colors.GREEN)} cores / ${Colors.colorize(threads, Colors.GREEN)} threads)';
-            }
-        } catch (e:Dynamic) {}
-        return Haxefetch.runCmd("uname", ["-m"]);
-    }
-
     public static function fetchGPU():String {
         try {
             var process = Haxefetch.runCmd("lspci", []);
