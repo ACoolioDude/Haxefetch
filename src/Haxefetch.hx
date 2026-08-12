@@ -13,6 +13,7 @@ class Haxefetch {
         var host = SystemUtils.fetchHost();
         var distro = SystemUtils.fetchDistro();
         var init = SystemUtils.fetchInit();
+        var initSuffix = (init != "") ? ' (${Colors.colorize(init, Colors.GREEN)})' : '';
         var logo = Logo.fetchLogo(distro, Configuration.logoSize);
         var kernel = SystemUtils.fetchKernel();
         var desktop = SystemUtils.fetchDestkop();
@@ -40,7 +41,7 @@ class Haxefetch {
             (Configuration.showHost && host != null) ?
                 (Configuration.showHost ? Colors.colorize(Configuration.hostString, Colors.YELLOW) + separator + host : null) : null,
 
-            Configuration.showDistro ? Colors.colorize(Configuration.distroString, Colors.YELLOW) + separator + distro + " (" + Colors.colorize(init, Colors.GREEN) + ")" : null,
+            Configuration.showDistro ? Colors.colorize(Configuration.distroString, Colors.YELLOW) + separator + distro + initSuffix : null,
             Configuration.showKernel ? Colors.colorize(Configuration.kernelString, Colors.YELLOW) + separator + kernel : null,
             
             (desktop != null && desktop != "N/A" && desktop != "" && Configuration.showDesktop) ? 
