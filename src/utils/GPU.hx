@@ -76,6 +76,9 @@ class GPU {
         gpu = StringTools.replace(gpu, "[", "");
         gpu = StringTools.replace(gpu, "]", "");
 
+        var gtString = ~/\bGT[0-9](\.[0-9])?\*s/g;
+        gpu = gtString.replace(gpu, "");
+
         var codenames = ~/Intel\s+(Alder|Raptor|Tiger|Ice|Comet|Coffer|Kaby|Skylake|Haswell|Ivy)\s*Lake[A-Za-z0-9-]*\s+/i;
         gpu = codenames.replace(gpu, "Intel ");
 
