@@ -76,6 +76,9 @@ class Haxefetch {
             var left = i < logo.length ? logo[i] : "";
             var right = i < infoLine.length ? infoLine[i] : "";
 
+            var logoColor = Colors.getColors(Configuration.logoColor);
+            if (logoColor != "") left = logoColor + Colors.stripAnsi(left) + Colors.RESET;
+
             var visibleLeftLen = Colors.stripAnsi(left).length;
             var padding = (logoWidth + 3) - visibleLeftLen;
             if (padding < 0) padding = 0;

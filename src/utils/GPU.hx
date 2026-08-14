@@ -79,7 +79,7 @@ class GPU {
         var gtString = ~/\bGT[0-9](\.[0-9])?\*s/g;
         gpu = gtString.replace(gpu, "");
 
-        var codenames = ~/Intel\s+(Alder|Raptor|Tiger|Ice|Comet|Coffer|Kaby|Skylake|Haswell|Ivy)\s*Lake[A-Za-z0-9-]*\s+/i;
+        var codenames = ~/Intel\s+(Alder|Raptor|Tiger|Ice|Comet|Coffe|Kaby|Skylake|Haswell|Ivy)\s*Lake[A-Za-z0-9-]*\s+/i;
         gpu = codenames.replace(gpu, "Intel ");
 
         gpu = StringTools.replace(gpu, "Corporation", "");
@@ -105,7 +105,7 @@ class GPU {
         var name = gpu.toLowerCase();
         switch (name) {
             case _ if (name.indexOf("geforce") != -1 || name.indexOf("gtx") != -1 || name.indexOf("rtx") != -1 || name.indexOf("radeon rx") != -1 || name.indexOf("arc") != -1): return "Dedicated";
-            case _ if (name.indexOf("hd graphics") != -1 || name.indexOf("uhd") != -1 || name.indexOf("iris") != -1 || name.indexOf("vega") != -1 || name.indexOf("radeo graphics") != -1): return "Integrated";
+            case _ if (name.indexOf("hd graphics") != -1 || name.indexOf("uhd") != -1 || name.indexOf("iris") != -1 || name.indexOf("vega") != -1 || name.indexOf("radeon graphics") != -1): return "Integrated";
             default: return "";
             
             if (vendor == "0x10de") return "Dedicated" else if (vendor == "0x8086") return "Integrated";

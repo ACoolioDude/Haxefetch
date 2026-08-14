@@ -170,6 +170,38 @@ class Colors {
     public static var COLOR_145:String = "\x1b[38;5;145m";
     public static var COLOR_146:String = "\x1b[38;5;146m";
 
+    public static function getColors(name:String):String {
+        if (name == null) return "";
+        var colors = StringTools.trim(name.toLowerCase());
+
+        return switch (colors) {
+            case "black": BLACK;
+            case "red": RED;
+            case "green": GREEN;
+            case "yellow": YELLOW;
+            case "blue": BLUE;
+            case "magenta" | "purple": MAGENTA;
+            case "cyan": CYAN;
+            
+            case "brigth_black": BRIGHT_BLACK;
+            case "bright_red": BRIGHT_RED;
+            case "bright_yellow": BRIGHT_YELLOW;
+            case "bright_green": BRIGHT_GREEN;
+            case "bright_blue": BRIGHT_BLUE;
+            case "bright_magenta": BRIGHT_MAGENTA;
+            case "bright_cyan": BRIGHT_CYAN;
+            case "bright_white": BRIGHT_WHITE;
+
+            default:
+                var color = Std.parseInt(colors);
+                if (color != null && color >= 0 && color <= 255) {
+                    "\x1b[38;5;" + color + "m";
+                } else {
+                    "";
+                }
+        }
+    }
+
     public static function colorize(name:String, color:String):String {
         return '${color}${BOLD}${name}${RESET}';
     }

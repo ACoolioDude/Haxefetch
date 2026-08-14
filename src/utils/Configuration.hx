@@ -6,6 +6,7 @@ import haxe.io.Path;
 
 class Configuration {
     public static var logoSize:String = "normal";
+    public static var logoColor = "";
 
     public static var showHostname:Bool = true;
 
@@ -61,6 +62,8 @@ class Configuration {
     public static var birthString:String = "OS Birth:";
 
     public static var showBlock:Bool = true;
+
+    private static var setting:Map<String, String> = new Map<String, String>();
 
     public static function loadConfig():Void {
         var main = Sys.getEnv("HOME");
@@ -127,6 +130,7 @@ class Configuration {
     private static function parseConfigOptions(key:String, value:String, lineNumber:Int):Void {
         switch (key) {
             case "logo_type": logoSize = value;
+            case "logo_color": logoColor = parseString(value);
 
             case "show_hostname": showHostname = parseBool(value);
 
@@ -211,6 +215,7 @@ class Configuration {
                 "# Haxefetch configuration\n" +
                 "# BETA CONFIGURATION!\n\n" +
                 "logo_type=normal\n" +
+                "logo_color=\n" +
                 "show_hostname=true\n" +
                 "show_host=true\n" +
                 "host=Host:\n" +
@@ -275,5 +280,14 @@ class Configuration {
             Sys.println('Genereting config failed: ${e}');
             if (creation) Sys.exit(1);
         }
+    }
+
+    public static function get(key:String, value:String = ""):String {
+        if (setting.exists(key)) return setting.get(key);
+        return value;
+    }
+
+    public static function set(key:String, value:String):Void {
+        setting.set(key, value);        
     }
 }
