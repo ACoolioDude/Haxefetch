@@ -34,7 +34,24 @@ If you want to use, follow this:
 <details>
     <summary>Getting a binary</summary>
 
-If you prefer binary,  -> [go here](https://github.com/ACoolioDude/Haxefetch/blob/main/binary/haxefetch) <- or -> [open GH releases](https://github.com/ACoolioDude/Haxefetch/releases) <-
+[GH releases](https://github.com/ACoolioDude/Haxefetch/releases)
+
+For Arch Linux users
+I gave PKGBUILD of this because i am planning to upload this on AUR, but registering is not currently available, so you can build this for yourself
+1. Install `base-devel` package
+2. Switch to `src/arch` directory inside of Haxefetch
+3. Run `makepkg -si` (it will install package inside of `/usr/bin` folder)
+4. Now you have local haxefetch binary on your Arch system
+
+For Gentoo Linux users
+I made [official overlay](https://github.com/ACoolioDude/haxefetch-overlay) with included ebuilds (current ebuilds available are `1.0.0` (from source), `1.0.0-beta` and `1.0.0-alpha`)
+1. Install repository module (`emerge --ask --verbose eselect-repository`)
+2. Enable repo (`eselect repository add haxefetch-overlay git https://github.com/ACoolioDude/haxefetch-overlay.git`)
+3. Sync repo (`emerge --sync haxefetch-overlay` || `emaint sync --repo haxefetch-overlay`)
+4. Emerge Haxefetch (`emerge --ask --verbose app-misc/haxefetch`)
+
+Getting binary
+`wget https://raw.githubusercontent.com/ACoolioDude/Haxefetch/main/binary/haxefetch && sudo mv haxefetch /usr/local/bin/haxefetch`
 </details>
 
 <details>
@@ -52,20 +69,6 @@ If you prefer binary,  -> [go here](https://github.com/ACoolioDude/Haxefetch/blo
    - `cd Haxefetch` > `haxelib setup` (requires Haxe!) > Set haxelib environent to Haxefetch folder `home/$USER/Haxefetch/.haxelib` > install HXCPP `haxelib install hxcpp`
 3. Compile Haxefetch.
    - `haxe build.hxml`
-
-## Note for Arch Linux users
-I gave PKGBUILD of this because i am planning to upload this on AUR, but registering is not currently available, so you can build this for yourself
-1. Install `base-devel` package
-2. Switch to `src/arch` directory inside of Haxefetch
-3. Run `makepkg -si` (it will install package inside of `/usr/bin` folder)
-4. Now you have local haxefetch binary on your Arch system
-
-## Note for Gentoo Linux users
-I made [official overlay](https://github.com/ACoolioDude/haxefetch-overlay) with included ebuilds, so you can either get beta (it will merge that) or alpha from GH releases
-1. Install repository module (`emerge --ask --verbose eselect-repository`)
-2. Enable repo (`eselect repository add haxefetch-overlay git https://github.com/ACoolioDude/haxefetch-overlay.git`)
-3. Sync repo (`emerge --sync haxefetch-overlay` || `emaint sync --repo haxefetch-overlay`)
-4. Emerge Haxefetch (`emerge --ask --verbose app-misc/haxefetch`)
 </details>
 
 
