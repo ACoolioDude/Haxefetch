@@ -71,15 +71,15 @@ class Logo {
     private static function fetchColor(low:String):{primary:String, secondary:String} {
         switch (low) {
             case "alpine" : return { primary: Colors.BLUE, secondary: Colors.BLUE };
-            case "arch": return { primary: Colors.COLOR_33, secondary: Colors.COLOR_33 };
+            case "arch": return { primary: Colors.BLUE, secondary: Colors.BLUE };
             case "artix": return { primary: Colors.CYAN, secondary: Colors.CYAN };
             case "cachyos" : return { primary: Colors.CYAN, secondary: Colors.CYAN };
             case "debian" : return { primary: Colors.COLOR_88, secondary: Colors.COLOR_88 };
             case "endeavour" : return { primary: Colors.COLOR_54, secondary: Colors.COLOR_54 };
-            case "fedora" : return { primary: Colors.COLOR_17, secondary: Colors.COLOR_17 };
-            case "gentoo" : return { primary: Colors.COLOR_92, secondary: Colors.COLOR_92 };
+            case "fedora" : return { primary: Colors.WHITE, secondary: Colors.COLOR_17 };
+            case "gentoo" : return { primary: Colors.WHITE, secondary: Colors.MAGENTA };
             case "manjaro" | "manjaro-arm": return { primary: Colors.GREEN, secondary: Colors.GREEN };
-            case "nix" : return { primary: Colors.COLOR_63, secondary: Colors.COLOR_63 };
+            case "nix" : return { primary: Colors.WHITE, secondary: Colors.COLOR_63 };
             case "pop" : return { primary: Colors.BRIGHT_CYAN, secondary: Colors.CYAN };
             case "parch": return { primary: Colors.COLOR_55, secondary: Colors.COLOR_55 };
             case "void": return { primary: Colors.COLOR_22, secondary: Colors.COLOR_22 };
