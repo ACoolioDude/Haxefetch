@@ -10,6 +10,7 @@ class Colors {
     public static var YELLOW:String  = "\x1b[33m";
     public static var BLUE:String    = "\x1b[34m";
     public static var MAGENTA:String = "\x1b[35m";
+    public static var PURPLE:String  = "\x1b[93m";
     public static var CYAN:String    = "\x1b[36m";
     public static var WHITE:String   = "\x1b[37m";
 
@@ -19,6 +20,7 @@ class Colors {
     public static var BRIGHT_YELLOW:String  = "\x1b[93m";
     public static var BRIGHT_BLUE:String    = "\x1b[94m";
     public static var BRIGHT_MAGENTA:String = "\x1b[95m";
+    public static var BRIGTH_PURPLE:String  = "\x1b[141m";
     public static var BRIGHT_CYAN:String    = "\x1b[96m";
     public static var BRIGHT_WHITE:String   = "\x1b[97m";
 
@@ -180,7 +182,8 @@ class Colors {
             case "green": GREEN;
             case "yellow": YELLOW;
             case "blue": BLUE;
-            case "magenta" | "purple": MAGENTA;
+            case "magenta": MAGENTA;
+            case "purple": COLOR_93;
             case "cyan": CYAN;
             
             case "brigth_black": BRIGHT_BLACK;
@@ -189,6 +192,7 @@ class Colors {
             case "bright_green": BRIGHT_GREEN;
             case "bright_blue": BRIGHT_BLUE;
             case "bright_magenta": BRIGHT_MAGENTA;
+            case "bright_purple": COLOR_99;
             case "bright_cyan": BRIGHT_CYAN;
             case "bright_white": BRIGHT_WHITE;
 

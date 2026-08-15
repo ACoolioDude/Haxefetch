@@ -1,7 +1,7 @@
 package utils;
 
 class Commands {
-    public static final HAXEFETCH_VERSION:String = "1.0.0-b";
+    public static final HAXEFETCH_VERSION:String = "1.0.0";
 
     public static function parse(argument:Array<String>):Void {
         for (args in argument) {
@@ -11,7 +11,7 @@ class Commands {
                     Sys.exit(0);
                 
                 case "-v" | "--version":
-                    Sys.println("Haxefetch: " + HAXEFETCH_VERSION + " (Built on Haxe " + SystemUtils.fetchHaxe() + ")");
+                    Sys.println("Haxefetch " + HAXEFETCH_VERSION + " (Built on Haxe " + SystemUtils.fetchHaxe() + ")");
                     Sys.exit(0);
 
                 case "-c" | "--config":

@@ -63,8 +63,6 @@ class Configuration {
 
     public static var showBlock:Bool = true;
 
-    private static var setting:Map<String, String> = new Map<String, String>();
-
     public static function loadConfig():Void {
         var main = Sys.getEnv("HOME");
         if (main == null || main == "") return;
@@ -212,16 +210,16 @@ class Configuration {
             if (!FileSystem.exists(directory)) FileSystem.createDirectory(directory);
 
             var defaults =
-                "# Haxefetch configuration\n" +
-                "# BETA CONFIGURATION!\n\n" +
+                "# Haxefetch configuration\n\n" +
                 "logo_type=normal\n" +
                 "logo_color=\n" +
+
                 "show_hostname=true\n" +
                 "show_host=true\n" +
                 "host=Host:\n" +
 
                 "show_distro=true\n" +
-                "distro=Distro:\n" +
+                "distro=OS:\n" +
 
                 "show_kernel=true\n" +
                 "kernel=Kernel:\n" +
@@ -273,21 +271,12 @@ class Configuration {
             File.saveContent(path, defaults);
 
             if (creation) {
-                Sys.println('Generated config in: ${directory}"');
+                Sys.println('${Colors.colorize('Configuration is now generated in', Colors.YELLOW)} ${Colors.colorize(':', Colors.WHITE)} ${Colors.colorize('"${directory}"', Colors.GREEN)}');
                 Sys.exit(1);
             }
         } catch (e:Dynamic) {
             Sys.println('Genereting config failed: ${e}');
             if (creation) Sys.exit(1);
         }
-    }
-
-    public static function get(key:String, value:String = ""):String {
-        if (setting.exists(key)) return setting.get(key);
-        return value;
-    }
-
-    public static function set(key:String, value:String):Void {
-        setting.set(key, value);        
     }
 }
