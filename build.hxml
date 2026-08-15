@@ -34,6 +34,7 @@
 --resource src/resources/logos/steamos.txt@steam
 --resource src/resources/logos/opensuse.txt@suse
 --resource src/resources/logos/parch.txt@parch
+--resource src/resources/logos/pop.txt@pop
 --resource src/resources/logos/ubuntu.txt@ubuntu
 --resource src/resources/logos/void.txt@void
 
@@ -48,6 +49,7 @@
 --resource src/resources/mini_logos/manjaro.txt@manjaro_small
 --resource src/resources/mini_logos/mint.txt@mint_small
 --resource src/resources/mini_logos/nixos.txt@nix_small
+--resource src/resources/mini_logos/pop.txt@pop_small
 --resource src/resources/mini_logos/slackware.txt@slack_small
 --resource src/resources/mini_logos/ubuntu.txt@ubuntu_small
 --resource src/resources/mini_logos/void.txt@void_small

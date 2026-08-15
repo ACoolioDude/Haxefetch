@@ -58,6 +58,7 @@ class Logo {
             case _ if (low.indexOf("nixos") != -1): return "nix";
             case _ if (low.indexOf("opensuse") != -1 || low.indexOf("opensuse-microos") != -1 || low.indexOf("opensuse-leap") != -1 || low.indexOf("opensuse-tumbleweed") != -1 || low.indexOf("opensuse-slowroll") != -1): return "suse";
             case _ if (low.indexOf("parch") != -1): return "parch";
+            case _ if (low.indexOf("pop") != -1): return "pop";
             case _ if (low.indexOf("slackware") != -1): return "slack";
             case _ if (low.indexOf("solus") != -1): return "solus"; 
             case _ if (low.indexOf("steamos") != -1): return "steam";
@@ -79,6 +80,7 @@ class Logo {
             case "gentoo" : return { primary: Colors.COLOR_92, secondary: Colors.COLOR_92 };
             case "manjaro" | "manjaro-arm": return { primary: Colors.GREEN, secondary: Colors.GREEN };
             case "nix" : return { primary: Colors.COLOR_63, secondary: Colors.COLOR_63 };
+            case "pop" : return { primary: Colors.BRIGHT_CYAN, secondary: Colors.CYAN };
             case "parch": return { primary: Colors.COLOR_55, secondary: Colors.COLOR_55 };
             case "void": return { primary: Colors.COLOR_22, secondary: Colors.COLOR_22 };
             default: return { primary: Colors.WHITE, secondary: Colors.WHITE };

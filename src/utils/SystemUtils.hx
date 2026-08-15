@@ -144,7 +144,7 @@ class SystemUtils {
             if (token.indexOf("XFCE") != -1) return formatDesktop("XFCE", "xfce4-about", ["-V"]);
             if (token.indexOf("MATE") != -1) return formatDesktop("MATE", "mate-about", ["-v"]);
             if (token.indexOf("BUDGIE") != -1) return formatDesktop("Budgie", "budgie-desktop", ["--version"]);
-            if (token.indexOf("COSMIC") != -1) return formatDesktop("COSMIC", "cosmic-session", ["--version"]);
+            if (token.indexOf("COSMIC") != -1) return formatDesktop("COSMIC", "cosmic-comp", ["--version"]);
             if (token.indexOf("LXDE") != -1) return formatDesktop("LXDE", "lxsession", ["--version"]);
             if (token.indexOf("LXQT") != -1) return formatDesktop("LXQt", "lxqt-session", ["-v"]);
             if (token.indexOf("DEEPIN") != -1 || token.indexOf("DDE") != -1) return formatDesktop("Deepin", "dde-dock", ["--version"]);
@@ -174,6 +174,7 @@ class SystemUtils {
                     // Wayland
                     case _ if (upper.indexOf("KWIN") != -1 || upper.indexOf("KDE") != -1 || upper.indexOf("PLASMA") != -1): return "KWin";
                     case _ if (upper.indexOf("MUTTER") != -1 || upper.indexOf("GNOME") != -1 || upper.indexOf("BUDGIE") != -1): return "Mutter";
+                    case _ if (upper.indexOf("COSMIC-COMP") != -1 || upper.indexOf("COSMIC") != -1): return "Cosmic Comp";
                     case _ if (upper.indexOf("SWAY") != -1): return "Sway";
                     case _ if (upper.indexOf("HYPRLAND") != -1): return "Hyprland";
                     case _ if (upper.indexOf("NIRI") != -1): return "Niri";
@@ -214,6 +215,7 @@ class SystemUtils {
             //Wayland
             "kwin" => "KWin",
             "mutter" => "Mutter",
+            "cosmic-comp" => "Cosmic Comp",
             "sway" => "Sway",
             "hyprland" => "Hyprland",
             "niri" => "Niri",
