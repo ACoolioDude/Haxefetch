@@ -13,7 +13,7 @@ class Haxefetch {
         var host = SystemUtils.fetchHost();
         var distro = SystemUtils.fetchDistro();
         var init = SystemUtils.fetchInit();
-        var initSuffix = (init != "") ? ' (${Colors.colorize(init, Colors.GREEN)})' : '';
+        var initSuffix = (init != "") ? ' [${Colors.colorize(init, Colors.GREEN)}]' : '';
         var logo = Logo.fetchLogo(distro, Configuration.logoSize);
         var kernel = SystemUtils.fetchKernel();
         var desktop = XdgSession.fetchDestkop();
@@ -21,7 +21,7 @@ class Haxefetch {
         var protocol = XdgSession.fetchProtocol();        
         var ram = memory.ram;
         var ramType = Memory.fetchRAMType();
-        var typeSuffix = (ramType != "") ? ' (${Colors.colorize(ramType, Colors.GREEN)})' : '';
+        var typeSuffix = (ramType != "") ? ' [${Colors.colorize(ramType, Colors.GREEN)}]' : '';
         var swap = memory.swap;
         var cpu = CPU.fetchCPU();
         var gpu = GPU.fetchGPU();
@@ -49,7 +49,7 @@ class Haxefetch {
                 Colors.colorize(Configuration.desktopString, Colors.YELLOW) + separator + desktop : null,
             
             (Configuration.showSession && session != null && session != "") ?
-                Colors.colorize(Configuration.sessionString, Colors.YELLOW) + separator + session + " (" + protocol + ")" : null,
+                Colors.colorize(Configuration.sessionString, Colors.YELLOW) + separator + session + (Configuration.protocol ? '(${protocol})' : '') : null,
 
             Configuration.showRAM ? Colors.colorize(Configuration.ramString, Colors.YELLOW) + separator + ram + (Configuration.ramType ? typeSuffix : "") : null,
             Configuration.showSWAP ? Colors.colorize(Configuration.swapString, Colors.YELLOW) + separator + swap : null,

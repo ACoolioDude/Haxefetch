@@ -25,6 +25,7 @@ class Configuration {
 
     public static var showSession:Bool = true;
     public static var sessionString:String = "WM:";
+    public static var protocol:Bool = true;
 
     public static var showRAM:Bool = true;
     public static var ramString:String = "RAM:";
@@ -155,6 +156,7 @@ class Configuration {
 
             case "show_window_manager": showSession = parseBool(value);
             case "session": sessionString = parseString(value);
+            case "display_protocol": protocol = parseBool(value);
 
             case "show_ram": showRAM = parseBool(value);
             case "ram": ramString = parseString(value);
@@ -245,7 +247,8 @@ class Configuration {
                 "desktop=DE:\n\n" +
 
                 "show_window_manager=true\n" +
-                "session=WM:\n\n" +
+                "session=WM:\n" +
+                "display_protocol=true\n\n" +
 
                 "show_ram=true\n" +
                 "ram=RAM:\n" +
@@ -299,7 +302,7 @@ class Configuration {
                 Sys.exit(1);
             }
         } catch (e:Dynamic) {
-            Sys.println('Genereting config failed: ${e}');
+            Sys.println('${Colors.colorize('Genereting config failed:', Colors.RED)}) ${Colors.colorize('${e}', Colors.WHITE)}');
             if (creation) Sys.exit(1);
         }
     }
