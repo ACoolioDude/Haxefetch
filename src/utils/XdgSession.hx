@@ -71,17 +71,24 @@ class XdgSession {
                     case _ if (upper.indexOf("XFCE") != -1): return "Xfwm4";
                     case _ if (upper.indexOf("TWIN") != -1 || upper.indexOf("TDE") != -1 || upper.indexOf("TRINITY") != -1): return "TWin";
                     case _ if (upper.indexOf("MUFFIN") != -1 || upper.indexOf("CINNAMON") != -1 || upper.indexOf("X-CINNAMON") != -1): return "Muffin";
-                    case _ if (upper.indexOf("MACRO") != -1 || upper.indexOf("MATE") != -1): return "Macro";
+                    case _ if (upper.indexOf("MARCO") != -1 || upper.indexOf("MATE") != -1): return "Marco";
+                    case _ if (upper.indexOf("METACITY") != -1): return "Metacity";
                     case _ if (upper.indexOf("OPENBOX") != -1 || upper.indexOf("LXQT") != -1 || upper.indexOf("LXDE") != -1): return "OpenBox";
+                    case _ if (upper.indexOf("BLACKBOX") != -1): return "BlackBox";
+                    case _ if (upper.indexOf("FLUXBOX") != -1): return "FluxBox";
                     case _ if (upper.indexOf("AWESOME") != -1): return "Awesome";
                     case _ if (upper.indexOf("BSPWM") != -1): return "Bspwm";
                     case _ if (upper.indexOf("CWM") != -1): return "CWM";
+                    case _ if (upper.indexOf("E13") != -1): return "E13";
+                    case _ if (upper.indexOf("ENLIGHTENMENT") != -1): return "Enligthtenment";
                     case _ if (upper.indexOf("I3") != -1): return "i3";
                     case _ if (upper.indexOf("ICEWM") != -1): return "IceWM"; // R.I.P Marko
                     case _ if (upper.indexOf("HERBSTLUFTWM") != -1): return "HerbstluftWM"; 
                     case _ if (upper.indexOf("OXWM") != -1): return "OXWM"; // Tony Banters my beloved guy
+                    case _ if (upper.indexOf("PEKWM") != -1): return "PekWM";
                     case _ if (upper.indexOf("QTILE") != -1): return "QTile";
                     case _ if (upper.indexOf("XMONAD") != -1): return "XMonad";
+                    case _ if (upper.indexOf("VXWM") != -1): return "VXWM";
                     case _ if (upper.indexOf("WINDOWMAKER") != -1): return "WindowMaker";
 
                     default: return null;
@@ -117,18 +124,25 @@ class XdgSession {
             "xfwm4" => "Xfwm4",
             "twin" => "TWin",
             "muffin" => "Muffin",
-            "macro" => "Macro",
+            "marco" => "Marco",
+            "metacity" => "Metacity",
             "openbox" => "OpenBox",
+            "blackbox" => "BlackBox",
+            "fluxbox" => "FluxBox",
             "awesome" => "Awesome",
             "bspwm" => "Bspwm",
             "cwm" => "CWM",
+            "e13" => "E13",
+            "enligthtenment" => "Enligthtenment",
             "i3" => "i3",
             "icewm" => "IceWM", // R.I.P Marko
             "dwm" => "DWM",
             "herbstluftwm" => "HerbstluftWM",
-            "oxwm" => "OXWM", // Tony Banters my beloved guy  
+            "oxwm" => "OXWM", // Tony Banters my beloved guy
+            "pekwm" => "PekWM",
             "qtile" => "QTile",
             "xmonad" => "XMonad",
+            "vxwm" => "VXWM",
             "windowmaker" => "WindowMaker"
         ];
 
