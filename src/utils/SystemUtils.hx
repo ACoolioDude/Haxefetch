@@ -162,7 +162,6 @@ class SystemUtils {
     public static function fetchUptime():String {
         var res = Haxefetch.runCmd("uptime", ["-p"]);
         if (res != "" && res != "N/A") {
-            // Reformat 'up 2 hours, 15 minutes' to '2h 15m'
             res = StringTools.replace(res, "up ", "");
             res = StringTools.replace(res, " hours", "h");
             res = StringTools.replace(res, " hour", "h");

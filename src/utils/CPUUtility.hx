@@ -3,7 +3,7 @@ package utils;
 import sys.io.File;
 import sys.FileSystem;
 
-class CPU {
+class CPUUtility{
     private static function fetchInfo():String {
         if (FileSystem.exists("/proc/cpuinfo")) {
             try {

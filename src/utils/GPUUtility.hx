@@ -3,7 +3,7 @@ package utils;
 import sys.io.File;
 import sys.FileSystem;
 
-class GPU {
+class GPUUtility {
     public static function fetchGPU():String {
         var gpuId:Array<String> = [];
         var pci = "/sys/bus/pci/devices";

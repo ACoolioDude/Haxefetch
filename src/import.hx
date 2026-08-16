@@ -1,9 +1,9 @@
 import utils.Colors;
 import utils.Commands;
 import utils.Configuration;
-import utils.CPU;
+import utils.CPUUtility;
 import utils.DiskUtility;
-import utils.GPU;
+import utils.GPUUtility;
 import utils.Logo;
 import utils.Memory;
 import utils.Packages;
