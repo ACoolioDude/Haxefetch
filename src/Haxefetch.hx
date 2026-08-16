@@ -16,9 +16,9 @@ class Haxefetch {
         var initSuffix = (init != "") ? ' (${Colors.colorize(init, Colors.GREEN)})' : '';
         var logo = Logo.fetchLogo(distro, Configuration.logoSize);
         var kernel = SystemUtils.fetchKernel();
-        var desktop = SystemUtils.fetchDestkop();
-        var session = SystemUtils.fetchSession();
-        var protocol = SystemUtils.fetchProtocol();        
+        var desktop = XdgSession.fetchDestkop();
+        var session = XdgSession.fetchSession();
+        var protocol = XdgSession.fetchProtocol();        
         var ram = memory.ram;
         var ramType = Memory.fetchRAMType();
         var typeSuffix = (ramType != "") ? ' (${Colors.colorize(ramType, Colors.GREEN)})' : '';

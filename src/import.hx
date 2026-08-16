@@ -8,4 +8,5 @@ import utils.Logo;
 import utils.Memory;
 import utils.Packages;
 import utils.SystemUtils;
+import utils.XdgSession;
 import utils.Xorg;
