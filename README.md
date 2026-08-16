@@ -44,11 +44,12 @@ I gave PKGBUILD of this because i am planning to upload this on AUR, but registe
 4. Now you have local haxefetch binary on your Arch system
 
 For Gentoo Linux users
-I made [official overlay](https://github.com/ACoolioDude/haxefetch-overlay) with included ebuilds (current ebuilds available are `1.0.0` (from source), `1.0.0-beta` and `1.0.0-alpha`)
+I made [official overlay](https://github.com/ACoolioDude/haxefetch-overlay) with included ebuilds (current ebuilds available are `9999` (from source [`masked`]) and `haxefetch-bin`)
 1. Install repository module (`emerge --ask --verbose eselect-repository`)
 2. Enable repo (`eselect repository add haxefetch-overlay git https://github.com/ACoolioDude/haxefetch-overlay.git`)
 3. Sync repo (`emerge --sync haxefetch-overlay` || `emaint sync --repo haxefetch-overlay`)
-4. Emerge Haxefetch (`emerge --ask --verbose app-misc/haxefetch`)
+4. Unmask `haxefetch` (`echo "app-misc/haxefetch ~amd64" | tee -a /etc/portage/package.accept-keywords/haxefetch`)
+4. Emerge Haxefetch (`emerge --ask --verbose app-misc/haxefetch` or `emerge --ask --verbose app-misc/haxefetch-bin`)
 
 Getting binary
 `wget https://raw.githubusercontent.com/ACoolioDude/Haxefetch/main/binary/haxefetch && sudo mv haxefetch /usr/local/bin/haxefetch`
