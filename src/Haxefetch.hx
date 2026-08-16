@@ -26,7 +26,7 @@ class Haxefetch {
         var cpu = CPU.fetchCPU();
         var gpu = GPU.fetchGPU();
         var disk = DiskUtility.fetchDisk();
-        var packages = SystemUtils.fetchPackage();
+        var packages = Packages.fetchPackage();
         var haxe = SystemUtils.fetchHaxe();
         var opengl = SystemUtils.fetchOpenGL();
         var vulkan = SystemUtils.fetchVulkan();
@@ -36,12 +36,13 @@ class Haxefetch {
         var separator:String = " ";
 
         var infoLine:Array<String> = [
+
             Configuration.showHostname ? Colors.colorize(user, Colors.RED) + "@" + Colors.colorize(hostname, Colors.RED) : null,
 
             (Configuration.showHost && host != null) ?
                 (Configuration.showHost ? Colors.colorize(Configuration.hostString, Colors.YELLOW) + separator + host : null) : null,
 
-            Configuration.showDistro ? Colors.colorize(Configuration.distroString, Colors.YELLOW) + separator + distro + initSuffix : null,
+            Configuration.showDistro ? Colors.colorize(Configuration.distroString, Colors.YELLOW) + separator + distro + (Configuration.init ? initSuffix : "") : null,
             Configuration.showKernel ? Colors.colorize(Configuration.kernelString, Colors.YELLOW) + separator + kernel : null,
             
             (desktop != null && desktop != "N/A" && desktop != "" && Configuration.showDesktop) ? 
@@ -50,7 +51,7 @@ class Haxefetch {
             (Configuration.showSession && session != null && session != "") ?
                 Colors.colorize(Configuration.sessionString, Colors.YELLOW) + separator + session + " (" + protocol + ")" : null,
 
-            Configuration.showRAM ? Colors.colorize(Configuration.ramString, Colors.YELLOW) + separator + ram + typeSuffix : null,
+            Configuration.showRAM ? Colors.colorize(Configuration.ramString, Colors.YELLOW) + separator + ram + (Configuration.ramType ? typeSuffix : "") : null,
             Configuration.showSWAP ? Colors.colorize(Configuration.swapString, Colors.YELLOW) + separator + swap : null,
             Configuration.showCPU ? Colors.colorize(Configuration.cpuString, Colors.YELLOW) + separator + cpu : null,
             Configuration.showGPU ? Colors.colorize(Configuration.gpuString, Colors.YELLOW) + separator + gpu : null,

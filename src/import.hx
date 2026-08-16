@@ -6,5 +6,6 @@ import utils.DiskUtility;
 import utils.GPU;
 import utils.Logo;
 import utils.Memory;
+import utils.Packages;
 import utils.SystemUtils;
 import utils.Xorg;

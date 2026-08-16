@@ -55,7 +55,7 @@ class Memory {
             var colors = (percentage >= 85) ? Colors.RED : (percentage >= 60 ? Colors.YELLOW : Colors.GREEN);
             var coloredPact = Colors.colorize('$percentage%', colors);
  
-            ramString = '${usedGiga} GiB / ${totalGiga} GiB (${coloredPact})';
+            Configuration.ramPercent ? ramString = '${usedGiga} GiB / ${totalGiga} GiB (${coloredPact})' : ramString = '${usedGiga} GiB / ${totalGiga} GiB';
         }
 
         var swapString = "Disabled";
@@ -69,7 +69,7 @@ class Memory {
             var colors = (percentage >= 85) ? Colors.RED : (percentage >= 60 ? Colors.YELLOW : Colors.GREEN);
             var coloredPact = Colors.colorize('$percentage%', colors);
 
-            swapString = '${usedSwapGiga} GiB / ${totalSwapGiga} GiB (${coloredPact})';
+            Configuration.swapPercent ? swapString = '${usedSwapGiga} GiB / ${totalSwapGiga} GiB (${coloredPact})' : swapString = '${usedSwapGiga} GiB / ${totalSwapGiga} GiB';
         }
 
         return {ram: ramString, swap: swapString};

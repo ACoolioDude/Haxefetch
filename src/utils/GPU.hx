@@ -29,7 +29,7 @@ class GPU {
                         var actualG = fetchActualGPU(raw);
 
                         var typeG = fetchGPUType(actualG, vendorId);
-                        var finalG = typeG != "" ? actualG + ' [${Colors.colorize(typeG, Colors.GREEN)}]' : actualG;
+                        var finalG = (Configuration.gpuType && typeG != "") ? '${actualG} [${Colors.colorize(typeG, Colors.GREEN)}]' : actualG;
 
                         if (finalG != "" && gpuId.indexOf(finalG) == -1) gpuId.push(finalG);
                     }

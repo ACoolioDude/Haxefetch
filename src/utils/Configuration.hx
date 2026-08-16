@@ -15,6 +15,7 @@ class Configuration {
 
     public static var showDistro:Bool = true;
     public static var distroString:String = "OS:";
+    public static var init:Bool = true;
 
     public static var showKernel:Bool = true;
     public static var kernelString:String = "Kernel:";
@@ -27,21 +28,28 @@ class Configuration {
 
     public static var showRAM:Bool = true;
     public static var ramString:String = "RAM:";
+    public static var ramPercent:Bool = true;
+    public static var ramType:Bool = true;
 
     public static var showSWAP:Bool = true;
     public static var swapString:String = "SWAP:";
+    public static var swapPercent:Bool = true;
 
     public static var showCPU:Bool = true;
     public static var cpuString:String = "CPU:";
+    public static var cpuFreq:Bool = true;
+    public static var cpuCAT:Bool = true;
 
     public static var showGPU:Bool = true;
     public static var gpuString:String = "GPU:";
+    public static var gpuType:Bool = true;
 
     public static var showDisk:Bool = true;
     public static var diskString:String = "Disk:";
 
     public static var showPackages:Bool = true;
     public static var packageString:String = "Packages:";
+    public static var packageManager:Bool = true;
 
     public static var showHaxe:Bool = true;
     public static var haxeString:String = "Haxe:";
@@ -137,6 +145,7 @@ class Configuration {
 
             case "show_distro": showDistro = parseBool(value);
             case "distro": distroString = parseString(value);
+            case "init": init = parseBool(value);
 
             case "show_kernel": showKernel = parseBool(value);
             case "kernel": kernelString = parseString(value);
@@ -149,21 +158,28 @@ class Configuration {
 
             case "show_ram": showRAM = parseBool(value);
             case "ram": ramString = parseString(value);
+            case "ram_percentage": ramPercent = parseBool(value);
+            case "ram_type": ramType = parseBool(value);
 
             case "show_swap": showSWAP = parseBool(value);
             case "swap": swapString = parseString(value);
+            case "swap_percentage": swapPercent = parseBool(value);
 
             case "show_cpu": showCPU = parseBool(value);
             case "cpu": cpuString = parseString(value);
+            case "cpu_frequency": cpuFreq = parseBool(value);
+            case "cores_threads": cpuCAT = parseBool(value);
 
             case "show_gpu": showGPU = parseBool(value);
             case "gpu": gpuString = parseString(value);
+            case "gpu_type": gpuType = parseBool(value);
  
             case "show_disk_usage": showDisk = parseBool(value);
             case "disk": diskString = parseString(value);
 
             case "show_package": showPackages = parseBool(value);
             case "package": packageString = parseString(value);
+            case "package_manager": packageManager = parseBool(value);
 
             case "show_haxe_version": showHaxe = parseBool(value);
             case "haxe": haxeString = parseString(value);
@@ -212,59 +228,67 @@ class Configuration {
             var defaults =
                 "# Haxefetch configuration\n\n" +
                 "logo_type=normal\n" +
-                "logo_color=\n" +
+                "logo_color=\n\n" +
 
                 "show_hostname=true\n" +
                 "show_host=true\n" +
-                "host=Host:\n" +
+                "host=Host:\n\n" +
 
                 "show_distro=true\n" +
                 "distro=OS:\n" +
+                "init=true\n\n" +
 
                 "show_kernel=true\n" +
-                "kernel=Kernel:\n" +
+                "kernel=Kernel:\n\n" +
 
                 "show_desktop_environment=true\n" +
-                "desktop=DE:\n" +
+                "desktop=DE:\n\n" +
 
                 "show_window_manager=true\n" +
-                "session=WM:\n" +
+                "session=WM:\n\n" +
 
                 "show_ram=true\n" +
                 "ram=RAM:\n" +
+                "ram_percentage=true\n" +
+                "ram_type=true\n\n" +
 
                 "show_swap=true\n" +
                 "swap=SWAP:\n"+
+                "swap_percentage=true\n\n" +
 
                 "show_cpu=true\n" +
                 "cpu=CPU:\n" +
+                "cpu_frequency=true\n" +
+                "cores_threads=true\n\n" +
 
                 "show_gpu=true\n" +
                 "gpu=GPU:\n" +
+                "gpu_type=true\n\n" +
 
                 "show_disk_usage=true\n" +
-                "disk=Disk:\n" +
+                "disk=Disk:\n\n" +
 
                 "show_package=true\n" +
                 "package=Packages:\n" +
+                "package_manager=true\n\n" +
 
                 "show_haxe_version=true\n" +
-                "haxe=Haxe:\n" +
+                "haxe=Haxe:\n\n" +
 
                 "show_opengl_version=true\n" +
-                "opengl=OpenGL:\n" +
+                "opengl=OpenGL:\n\n" +
 
                 "show_vulkan_version=true\n" +
-                "vulkan=Vulkan:\n" +
+                "vulkan=Vulkan:\n\n" +
 
                 "show_uptime=true\n" +
-                "uptime=Uptime:\n" +
+                "uptime=Uptime:\n\n" +
 
                 "show_birthday=true\n" +
-                "birthday=OS Birthday:\n" +
+                "birthday=OS Birthday:\n\n" +
 
                 "show_birth=true\n" +
-                "birth=OS Birth:\n" +
+                "birth=OS Birth:\n\n" +
 
                 "show_color_block=true\n";
 

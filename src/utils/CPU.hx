@@ -98,10 +98,10 @@ class CPU {
 
         if (maxFreqGHz > 0.0) {
             var formattedFreq = Math.round(maxFreqGHz * 100) / 100;
-            result += " @ " + formattedFreq + " GHz";
+            Configuration.cpuFreq ? result += " @ " + formattedFreq + " GHz" : result += "";
         }
 
-        result += ' (${Colors.colorize(Std.string(coreCount), Colors.GREEN)} cores / ${Colors.colorize(Std.string(threadCount), Colors.GREEN)} threads)';
+        Configuration.cpuCAT ? result += ' (${Colors.colorize(Std.string(coreCount), Colors.GREEN)} cores / ${Colors.colorize(Std.string(threadCount), Colors.GREEN)} threads)' : result += '';
 
         return result;
     }
