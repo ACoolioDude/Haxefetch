@@ -44,12 +44,7 @@ I gave PKGBUILD of this because i am planning to upload this on AUR, but registe
 4. Now you have local haxefetch binary on your Arch system
 
 For Gentoo Linux users
-I made [official overlay](https://github.com/ACoolioDude/haxefetch-overlay) with included ebuilds (current ebuilds available are `9999` (from source [`masked`]) and `haxefetch-bin`)
-1. Install repository module (`emerge --ask --verbose eselect-repository`)
-2. Enable repo (`eselect repository add haxefetch-overlay git https://github.com/ACoolioDude/haxefetch-overlay.git`)
-3. Sync repo (`emerge --sync haxefetch-overlay` || `emaint sync --repo haxefetch-overlay`)
-4. Unmask `haxefetch` (`echo "app-misc/haxefetch ~amd64" | tee -a /etc/portage/package.accept-keywords/haxefetch`)
-4. Emerge Haxefetch (`emerge --ask --verbose app-misc/haxefetch` or `emerge --ask --verbose app-misc/haxefetch-bin`)
+- I made [official overlay](https://github.com/ACoolioDude/haxefetch-overlay) with included ebuilds. Read more by clicking on official overlay text
 
 Getting binary
 `wget https://raw.githubusercontent.com/ACoolioDude/Haxefetch/main/binary/haxefetch && sudo mv haxefetch /usr/local/bin/haxefetch`
@@ -63,7 +58,7 @@ Getting binary
    - Fedora/RHEL/RPM: `dnf install haxe inxi mesa-dri-drivers vulkan-headers vulkan-loader vulkan-tools git g++`
    - openSUSE Leap/Tumbleweed: `zypper install inxi haxe Mesa git g++`
    - Arch: `pacman -S base-devel haxe inxi mesa mesa-utils vulkan-headers vulkan-tools git` (note for Arch users. If you get `cannot create Vulkan instance` error or it prints N/A, you need to install GPU Vulkan driver for your iGPU/dGPU specifically)
-   - Gentoo: `emerge --ask --verbose dev-lang/haxe` (get from violet-funk overlay `eselect repository enable violet-funk`) `sys-apps/inxi media-libs/mesa x11-apps/mesa-progs media-libs/vulkan-loader dev-util/vulkan-headers dev-util/vulkan-tools dev-vcs/git sys-devel/gcc` (if you have packages that are masked, [unmask them](https://wiki.gentoo.org/wiki/Knowledge_Base:Unmasking_a_package))
+   - Gentoo: `emerge --ask --verbose dev-lang/haxe-bin` (get from riru overlay `eselect repository enable riru`) `sys-apps/inxi media-libs/mesa x11-apps/mesa-progs media-libs/vulkan-loader dev-util/vulkan-headers dev-util/vulkan-tools dev-vcs/git sys-devel/gcc` (if you have packages that are masked, [unmask them](https://wiki.gentoo.org/wiki/Knowledge_Base:Unmasking_a_package))
 2. Clone my repo.
    - `git clone https://github.com/ACoolioDude/Haxefetch.git`
 2. Setup development.
