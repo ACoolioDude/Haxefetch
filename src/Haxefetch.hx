@@ -35,36 +35,29 @@ class Haxefetch {
         var birth = SystemUtils.fetchInstalledDate();
         var separator:String = " ";
 
-        var infoLine:Array<String> = [
+        var modules:Map<String, String> = [
+            "hostname" => Configuration.showHostname ? Colors.colorize(user, Colors.RED) + "@" + Colors.colorize(hostname, Colors.RED) : null,
+            "host"     => (Configuration.showHost && host != null) ? (Configuration.showHost ? Colors.colorize(Configuration.hostString, Colors.YELLOW) + separator + host : null) : null,
+            "os"       => Configuration.showDistro ? Colors.colorize(Configuration.distroString, Colors.YELLOW) + separator + distro + (Configuration.init ? initSuffix : "") : null,
+            "kernel"   => Configuration.showKernel ? Colors.colorize(Configuration.kernelString, Colors.YELLOW) + separator + kernel : null,
+            "de"       => (desktop != null && desktop != "N/A" && desktop != "" && Configuration.showDesktop) ? Colors.colorize(Configuration.desktopString, Colors.YELLOW) + separator + desktop : null,
+            "wm"       => (Configuration.showSession && session != null && session != "") ? Colors.colorize(Configuration.sessionString, Colors.YELLOW) + separator + session + (Configuration.protocol ? '(${protocol})' : '') : null,
+            "ram"      => Configuration.showRAM ? Colors.colorize(Configuration.ramString, Colors.YELLOW) + separator + ram + (Configuration.ramType ? typeSuffix : "") : null,
+            "swap"     => Configuration.showSWAP ? Colors.colorize(Configuration.swapString, Colors.YELLOW) + separator + swap : null,
+            "cpu"      => Configuration.showCPU ? Colors.colorize(Configuration.cpuString, Colors.YELLOW) + separator + cpu : null,
+            "gpu"      => Configuration.showGPU ? Colors.colorize(Configuration.gpuString, Colors.YELLOW) + separator + gpu : null,
+            "disk"     => Configuration.showDisk ? Colors.colorize(Configuration.diskString, Colors.YELLOW) + separator + disk : null,
+            "packages" => Configuration.showPackages ? Colors.colorize(Configuration.packageString, Colors.YELLOW) + separator + packages : null,
+            "haxe"     => Configuration.showHaxe ? Colors.colorize(Configuration.haxeString, Colors.YELLOW) + separator + haxe : null,
+            "opengl"   => Configuration.showOpenGL ? Colors.colorize(Configuration.openglString, Colors.YELLOW) + separator + opengl : null,
+            "vulkan"   => Configuration.showVulkan ? Colors.colorize(Configuration.vulkanString, Colors.YELLOW) + separator + vulkan : null,
+            "uptime"   => Configuration.showUptime ? Colors.colorize(Configuration.uptimeString, Colors.YELLOW) + separator + uptime : null,
+            "birthday" => Configuration.showBirthday ? Colors.colorize(Configuration.birthdayString, Colors.YELLOW) + separator + birthday : null,
+            "birth"    => Configuration.showBirth ? Colors.colorize(Configuration.birthString, Colors.YELLOW) + separator + birth : null,
+            "colors"   => Configuration.showBlock ? Colors.getColorBlocks() : null
+        ];
 
-            Configuration.showHostname ? Colors.colorize(user, Colors.RED) + "@" + Colors.colorize(hostname, Colors.RED) : null,
-
-            (Configuration.showHost && host != null) ?
-                (Configuration.showHost ? Colors.colorize(Configuration.hostString, Colors.YELLOW) + separator + host : null) : null,
-
-            Configuration.showDistro ? Colors.colorize(Configuration.distroString, Colors.YELLOW) + separator + distro + (Configuration.init ? initSuffix : "") : null,
-            Configuration.showKernel ? Colors.colorize(Configuration.kernelString, Colors.YELLOW) + separator + kernel : null,
-            
-            (desktop != null && desktop != "N/A" && desktop != "" && Configuration.showDesktop) ? 
-                Colors.colorize(Configuration.desktopString, Colors.YELLOW) + separator + desktop : null,
-            
-            (Configuration.showSession && session != null && session != "") ?
-                Colors.colorize(Configuration.sessionString, Colors.YELLOW) + separator + session + (Configuration.protocol ? '(${protocol})' : '') : null,
-
-            Configuration.showRAM ? Colors.colorize(Configuration.ramString, Colors.YELLOW) + separator + ram + (Configuration.ramType ? typeSuffix : "") : null,
-            Configuration.showSWAP ? Colors.colorize(Configuration.swapString, Colors.YELLOW) + separator + swap : null,
-            Configuration.showCPU ? Colors.colorize(Configuration.cpuString, Colors.YELLOW) + separator + cpu : null,
-            Configuration.showGPU ? Colors.colorize(Configuration.gpuString, Colors.YELLOW) + separator + gpu : null,
-            Configuration.showDisk ? Colors.colorize(Configuration.diskString, Colors.YELLOW) + separator + disk : null,
-            Configuration.showPackages ? Colors.colorize(Configuration.packageString, Colors.YELLOW) + separator + packages : null,
-            Configuration.showHaxe ? Colors.colorize(Configuration.haxeString, Colors.YELLOW) + separator + haxe : null,
-            Configuration.showOpenGL ? Colors.colorize(Configuration.openglString, Colors.YELLOW) + separator + opengl : null,
-            Configuration.showVulkan ? Colors.colorize(Configuration.vulkanString, Colors.YELLOW) + separator + vulkan : null,
-            Configuration.showUptime ? Colors.colorize(Configuration.uptimeString, Colors.YELLOW) + separator + uptime : null,
-            Configuration.showBirthday ? Colors.colorize(Configuration.birthdayString, Colors.YELLOW) + separator + birthday : null,
-            Configuration.showBirth ? Colors.colorize(Configuration.birthString, Colors.YELLOW) + separator + birth : null,
-            Configuration.showBlock ? Colors.getColorBlocks() : null
-        ].filter(function(line) return line != null);
+        var infoLine:Array<String> = Configuration.modules.map(function(key) return modules.get(key)).filter(function(line) return line != null);
 
         var logoWidth = 0;
         for (line in logo) {

@@ -5,6 +5,13 @@ import sys.FileSystem;
 import haxe.io.Path;
 
 class Configuration {
+    public static var modules:Array<String> = [
+        "hostname", "host", "os", "kernel", "de", "wm",
+        "ram", "swap", "cpu", "gpu", "disk", "packages",
+        "haxe", "opengl", "vulkan", "uptime",
+        "birthday", "birth", "colors"
+    ];
+
     public static var logoSize:String = "normal";
     public static var logoColor = "";
 
@@ -136,6 +143,10 @@ class Configuration {
 
     private static function parseConfigOptions(key:String, value:String, lineNumber:Int):Void {
         switch (key) {
+            case "modules":
+                var raw = value.split(",");
+                modules = [for (item in raw) StringTools.trim(item)];
+    
             case "logo_type": logoSize = value;
             case "logo_color": logoColor = parseString(value);
 
@@ -229,6 +240,7 @@ class Configuration {
 
             var defaults =
                 "# Haxefetch configuration\n\n" +
+                "modules=hostname, host, os, kernel, de, wm, ram, swap, cpu, gpu, disk, packages, haxe, opengl, vulkan, uptime, birthday, birth, colors\n\n" +
                 "logo_type=normal\n" +
                 "logo_color=\n\n" +
 
