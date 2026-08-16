@@ -41,7 +41,7 @@ class Haxefetch {
             "os"       => Configuration.showDistro ? Colors.colorize(Configuration.distroString, Colors.YELLOW) + separator + distro + (Configuration.init ? initSuffix : "") : null,
             "kernel"   => Configuration.showKernel ? Colors.colorize(Configuration.kernelString, Colors.YELLOW) + separator + kernel : null,
             "de"       => (desktop != null && desktop != "N/A" && desktop != "" && Configuration.showDesktop) ? Colors.colorize(Configuration.desktopString, Colors.YELLOW) + separator + desktop : null,
-            "wm"       => (Configuration.showSession && session != null && session != "") ? Colors.colorize(Configuration.sessionString, Colors.YELLOW) + separator + session + (Configuration.protocol ? '(${protocol})' : '') : null,
+            "wm"       => (Configuration.showSession && session != null && session != "") ? Colors.colorize(Configuration.sessionString, Colors.YELLOW) + separator + session + (Configuration.protocol ? ' (${protocol})' : '') : null,
             "ram"      => Configuration.showRAM ? Colors.colorize(Configuration.ramString, Colors.YELLOW) + separator + ram + (Configuration.ramType ? typeSuffix : "") : null,
             "swap"     => Configuration.showSWAP ? Colors.colorize(Configuration.swapString, Colors.YELLOW) + separator + swap : null,
             "cpu"      => Configuration.showCPU ? Colors.colorize(Configuration.cpuString, Colors.YELLOW) + separator + cpu : null,
