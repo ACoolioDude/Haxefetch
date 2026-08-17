@@ -54,7 +54,7 @@ class Logo {
             case _ if (low.indexOf("gentoo") != -1): return "gentoo";
             case _ if (low.indexOf("LinuxFromScratch") != -1 || low.indexOf("lfs") != -1): return "lfs";
             case _ if (low.indexOf("manjaro") != -1): return "manjaro";
-            case _ if (low.indexOf("linuxmint") != -1): return "mint";
+            case _ if (low.indexOf("linuxmint") != -1 || low.indexOf("linux-mint") != -1): return "mint";
             case _ if (low.indexOf("nixos") != -1): return "nix";
             case _ if (low.indexOf("opensuse") != -1 || low.indexOf("opensuse-microos") != -1 || low.indexOf("opensuse-leap") != -1 || low.indexOf("opensuse-tumbleweed") != -1 || low.indexOf("opensuse-slowroll") != -1): return "suse";
             case _ if (low.indexOf("parch") != -1): return "parch";

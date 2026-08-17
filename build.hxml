@@ -26,8 +26,8 @@
 --resource src/resources/logos/endeavouros.txt@endeavour
 --resource src/resources/logos/fedora.txt@fedora
 --resource src/resources/logos/gentoo.txt@gentoo
+--resource src/resources/logos/linuxmint.txt@mint
 --resource src/resources/logos/manjaro.txt@manjaro
---resource src/resources/logos/mint.txt@mint
 --resource src/resources/logos/nixos.txt@nix
 --resource src/resources/logos/slackware.txt@slack
 --resource src/resources/logos/solus.txt@solus

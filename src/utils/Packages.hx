@@ -1,5 +1,6 @@
 package utils;
 
+import sys.FileStat;
 import sys.io.File;
 import sys.FileSystem;
 
@@ -99,16 +100,30 @@ class Packages {
         if (FileSystem.exists("/var/lib/eopkg/package")) {
             try {
                 var count = FileSystem.readDirectory("/var/lib/eopkg/package").length;
-                return '$count (eopkg)';
+                return Configuration.packageManager ? '$count (eopkg)' : '${count}';
             } catch (e:Dynamic) {}
         }
 
         // Flatpak
-        if (FileSystem.exists("/var/lib/flatpak/exports/app")) {
-            try {
-                var apps = FileSystem.readDirectory("/var/lib/flatpak/exports/app");
-                if (apps.length > 0) counts.push('${apps.length} (flatpak)');
-            } catch (e:Dynamic) {}
+        var path:Array<String> = [
+            "/var/lib/flatpak/app", 
+            Sys.getEnv("HOME") + "/.local/share/flatpak/app"
+        ];
+        var flatpaks = 0;
+
+        for (paths in path) {
+            if (paths != null && FileSystem.exists(paths) && FileSystem.isDirectory(paths)) {
+                try {
+                    flatpaks += FileSystem.readDirectory(paths).length;
+                } catch (e:Dynamic) {}
+            }
+        }
+        if (flatpaks > 0) {
+            if (Configuration.packageManager) {
+                counts.push('$flatpaks (flatpak)');
+            } else { 
+                counts.push('${flatpaks}');
+            }
         }
 
         if (counts.length > 0) {
