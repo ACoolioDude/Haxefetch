@@ -1,6 +1,5 @@
 package utils;
 
-import sys.FileStat;
 import sys.io.File;
 import sys.FileSystem;
 
