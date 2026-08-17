@@ -19,6 +19,8 @@ class Configuration {
 
     public static var showHost:Bool = true;
     public static var hostString:String = "Host:";
+    public static var vendor:Bool = true;
+    public static var productName:Bool = true;
 
     public static var showDistro:Bool = true;
     public static var distroString:String = "OS:";
@@ -153,6 +155,8 @@ class Configuration {
             case "show_hostname": showHostname = parseBool(value);
 
             case "show_host": showHost = parseBool(value);
+            case "machine_vendor": vendor = parseBool(value);
+            case "machine_product": productName = parseBool(value);
             case "host": hostString = parseString(value);
 
             case "show_distro": showDistro = parseBool(value);
@@ -246,6 +250,8 @@ class Configuration {
 
                 "show_hostname=true\n" +
                 "show_host=true\n" +
+                "machine_vendor=true\n" +
+                "machine_product=true\n" +
                 "host=Host:\n\n" +
 
                 "show_distro=true\n" +

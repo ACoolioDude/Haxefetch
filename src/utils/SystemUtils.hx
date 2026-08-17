@@ -38,11 +38,11 @@ class SystemUtils {
             model = name;
         if (model == "") return "";
 
-        if (name != "" && name != model && name != "None" && name != "System Product Name") model += " (" + name + ")";
+        if (name != "" && name != model && name != "None" && name != "System Product Name") Configuration.productName ? model += " (" + name + ")" : model += "";
         if (vendor != "") {
             var lowerM = model.toLowerCase();
             var lowerV = vendor.toLowerCase();
-            if (lowerM.indexOf(lowerV) == -1) model = '${vendor} ${model}';
+            if (lowerM.indexOf(lowerV) == -1) Configuration.vendor ? model = '${vendor} ${model}' : model = '${model}';
         }
         
         return model;
