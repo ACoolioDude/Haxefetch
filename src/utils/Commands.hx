@@ -1,5 +1,7 @@
 package utils;
 
+import haxe.macro.Compiler;
+
 class Commands {
     public static final HAXEFETCH_VERSION:String = "1.0.0";
 
@@ -11,7 +13,7 @@ class Commands {
                     Sys.exit(0);
                 
                 case "-v" | "--version":
-                    Sys.println("Haxefetch " + HAXEFETCH_VERSION + " (Built on Haxe " + SystemUtils.fetchHaxe() + ")");
+                    Sys.println('Haxefetch ${HAXEFETCH_VERSION} (Built on Haxe ${Compiler.getDefine("haxe")}) [Commit ${Compiler.getDefine("git_hash")}]');
                     Sys.exit(0);
 
                 case "-c" | "--config":
@@ -40,6 +42,6 @@ class Commands {
 
     private static function fetchInstructions():Void {
         Sys.println('In order to customise this:\n');
-        Sys.println('Generate configuration with "haxefetch --config" (it is located into /home/USER/.config/haxefetch directory).\nYou can see there is some options to customise this fetch program, so enjoy :)');
+        Sys.println('Generate configuration with "haxefetch --config | -c" (it is located into /home/USER/.config/haxefetch directory).\nYou can see there is some options to customise this fetch program, so enjoy :)');
     }
 }
