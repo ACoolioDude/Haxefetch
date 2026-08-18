@@ -47,7 +47,7 @@ For Gentoo Linux users
 - I made [official overlay](https://github.com/ACoolioDude/haxefetch-overlay) with included ebuilds. Read more by clicking on official overlay text
 
 Getting binary
-`wget https://raw.githubusercontent.com/ACoolioDude/Haxefetch/main/binary/haxefetch && sudo mv haxefetch /usr/local/bin/haxefetch`
+`wget https://raw.githubusercontent.com/ACoolioDude/Haxefetch/main/binary/haxefetch && sudo mv haxefetch /usr/bin/haxefetch`
 </details>
 
 <details>
