@@ -253,70 +253,70 @@ class Configuration {
                 "logo_type='normal'\n" +
                 "logo_color=''\n\n" +
 
-                "show_hostname='true'\n" +
-                "show_host='true'\n" +
-                "machine_vendor='true'\n" +
-                "machine_product='true'\n" +
+                "show_hostname=true\n" +
+                "show_host=true\n" +
+                "machine_vendor=true\n" +
+                "machine_product=true\n" +
                 "host='Host'\n\n" +
 
-                "show_distro='true'\n" +
+                "show_distro=true\n" +
                 "distro='OS'\n" +
-                "init='true'\n\n" +
+                "init=true\n\n" +
 
-                "show_kernel='true'\n" +
+                "show_kernel=true\n" +
                 "kernel='Kernel'\n\n" +
 
-                "show_desktop_environment='true'\n" +
+                "show_desktop_environment=true\n" +
                 "desktop='DE'\n\n" +
 
-                "show_window_manager='true'\n" +
+                "show_window_manager=true\n" +
                 "session='WM'\n" +
-                "display_protocol='true'\n\n" +
+                "display_protocol=true\n\n" +
 
-                "show_ram='true'\n" +
+                "show_ram=true\n" +
                 "ram='RAM'\n" +
-                "ram_percentage='true'\n" +
-                "ram_type='true'\n\n" +
+                "ram_percentage=true\n" +
+                "ram_type=true\n\n" +
 
-                "show_swap='true'\n" +
+                "show_swap=true\n" +
                 "swap='SWAP'\n"+
-                "swap_percentage='true'\n\n" +
+                "swap_percentage=true\n\n" +
 
-                "show_cpu='true'\n" +
+                "show_cpu=true\n" +
                 "cpu='CPU'\n" +
-                "cpu_frequency='true'\n" +
-                "cores_threads='true'\n\n" +
+                "cpu_frequency=true\n" +
+                "cores_threads=true\n\n" +
 
-                "show_gpu='true'\n" +
+                "show_gpu=true\n" +
                 "gpu='GPU'\n" +
-                "gpu_type='true'\n\n" +
+                "gpu_type=true\n\n" +
 
-                "show_disk_usage='true'\n" +
+                "show_disk_usage=true\n" +
                 "disk='Disk'\n\n" +
 
-                "show_package='true'\n" +
+                "show_package=true\n" +
                 "package='Packages'\n" +
-                "package_manager='true'\n\n" +
+                "package_manager=true\n\n" +
 
-                "show_haxe_version='true'\n" +
+                "show_haxe_version=true\n" +
                 "haxe='Haxe'\n\n" +
 
-                "show_opengl_version='true'\n" +
+                "show_opengl_version=true\n" +
                 "opengl='OpenGL'\n\n" +
 
-                "show_vulkan_version='true'\n" +
+                "show_vulkan_version=true\n" +
                 "vulkan='Vulkan'\n\n" +
 
-                "show_uptime='true'\n" +
+                "show_uptime=true\n" +
                 "uptime='Uptime'\n\n" +
 
-                "show_birthday='true'\n" +
+                "show_birthday=true\n" +
                 "birthday='OS Birthday'\n\n" +
 
-                "show_birth='true'\n" +
+                "show_birth=true\n" +
                 "birth='OS Birth'\n\n" +
 
-                "show_color_block='true'\n";
+                "show_color_block=true\n";
 
             File.saveContent(path, defaults);
 

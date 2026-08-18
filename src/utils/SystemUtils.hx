@@ -1,5 +1,6 @@
 package utils;
 
+import haxe.ds.StringMap;
 import haxe.macro.Compiler;
 import sys.FileSystem;
 import sys.io.File;
@@ -72,10 +73,14 @@ class SystemUtils {
                     var cleanLine = StringTools.trim(line);
 
                     if (StringTools.startsWith(cleanLine, "PRETTY_NAME=")) {
-                        var parts = cleanLine.split("=");
-                        if (parts.length > 1) {
-                            var name = parts[1];
-                            return StringTools.replace(name, "\"", "");
+                        var parts = cleanLine.indexOf("=");
+                        if (parts != -1) {
+                            var name = StringTools.trim(cleanLine.substr(parts + 1));
+                            if ((StringTools.startsWith(name, '"') && StringTools.endsWith(name, '"')) || (StringTools.startsWith(name, "'") && StringTools.endsWith(name, "'"))) {
+                                name = name.substring(1, name.length -1 );
+                            }
+                            
+                            return name;
                         }
                     }
                 }
