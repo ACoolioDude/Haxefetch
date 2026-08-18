@@ -22,66 +22,66 @@ class Configuration {
     public static var showHostname:Bool = true;
 
     public static var showHost:Bool = true;
-    public static var hostString:String = "Host:";
+    public static var hostString:String = "Host";
     public static var vendor:Bool = true;
     public static var productName:Bool = true;
 
     public static var showDistro:Bool = true;
-    public static var distroString:String = "OS:";
+    public static var distroString:String = "OS";
     public static var init:Bool = true;
 
     public static var showKernel:Bool = true;
-    public static var kernelString:String = "Kernel:";
+    public static var kernelString:String = "Kernel";
 
     public static var showDesktop:Bool = true;
-    public static var desktopString:String = "DE:";
+    public static var desktopString:String = "DE";
 
     public static var showSession:Bool = true;
-    public static var sessionString:String = "WM:";
+    public static var sessionString:String = "WM";
     public static var protocol:Bool = true;
 
     public static var showRAM:Bool = true;
-    public static var ramString:String = "RAM:";
+    public static var ramString:String = "RAM";
     public static var ramPercent:Bool = true;
     public static var ramType:Bool = true;
 
     public static var showSWAP:Bool = true;
-    public static var swapString:String = "SWAP:";
+    public static var swapString:String = "SWAP";
     public static var swapPercent:Bool = true;
 
     public static var showCPU:Bool = true;
-    public static var cpuString:String = "CPU:";
+    public static var cpuString:String = "CPU";
     public static var cpuFreq:Bool = true;
     public static var cpuCAT:Bool = true;
 
     public static var showGPU:Bool = true;
-    public static var gpuString:String = "GPU:";
+    public static var gpuString:String = "GPU";
     public static var gpuType:Bool = true;
 
     public static var showDisk:Bool = true;
-    public static var diskString:String = "Disk:";
+    public static var diskString:String = "Disk";
 
     public static var showPackages:Bool = true;
-    public static var packageString:String = "Packages:";
+    public static var packageString:String = "Packages";
     public static var packageManager:Bool = true;
 
     public static var showHaxe:Bool = true;
-    public static var haxeString:String = "Haxe:";
+    public static var haxeString:String = "Haxe";
 
     public static var showOpenGL:Bool = true;
-    public static var openglString:String = "OpenGL:";
+    public static var openglString:String = "OpenGL";
 
     public static var showVulkan:Bool = true;
-    public static var vulkanString:String = "Vulkan:";
+    public static var vulkanString:String = "Vulkan";
 
     public static var showUptime:Bool = true;
-    public static var uptimeString:String = "Uptime:";
+    public static var uptimeString:String = "Uptime";
 
     public static var showBirthday:Bool = true;
-    public static var birthdayString:String = "OS Birthday:";
+    public static var birthdayString:String = "OS Birthday";
 
     public static var showBirth:Bool = true;
-    public static var birthString:String = "OS Birth:";
+    public static var birthString:String = "OS Birth";
 
     public static var showBlock:Bool = true;
 
