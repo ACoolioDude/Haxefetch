@@ -1,6 +1,5 @@
 package utils;
 
-import haxe.ds.StringMap;
 import haxe.macro.Compiler;
 import sys.FileSystem;
 import sys.io.File;
