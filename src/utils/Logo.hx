@@ -7,35 +7,48 @@ import sys.FileSystem;
 import sys.io.File;
 
 class Logo {
-    public static function fetchLogo(distroName:String, size:String = "normal"):Array<String> {
-        var low = distroName.toLowerCase();
-        var key = fetchDistro(low);
+    public static function fetchLogo(distroName:String, size:String = "normal", overrideLogo:String = ""):Array<String> {
+        var raw:String = null;
+        /*var resolve = resolvePath(customLogo);
 
-        if (key != null) {
-            var small = (size.toLowerCase() == "small");
-            var resourceKey = small ? '${key}_small' : key;
+        if (resolve != "" && FileSystem.exists(resolve)) {
+            try {
+                raw = File.getContent(resolve);
+            } catch (e:Dynamic) {}
+        }*/
 
-            var raw = Resource.getString(resourceKey);
-            if (raw == null && small) raw = Resource.getString(key);
+        if (raw == null) {
+            var logo = (overrideLogo != "") ? overrideLogo : distroName;
+            var low = logo.toLowerCase();
+            var key = fetchDistro(low);
 
-            if (raw != null) {
-                var color = fetchColor(key); 
-                var txt = StringTools.replace(raw, "\r\n", "\n");
+            if (key != null) {
+                var small = (size.toLowerCase() == "small");
+                var resourceKey = small ? '${key}_small' : key;
 
-                if (txt.indexOf("$1") != -1) {
-                    txt = StringTools.replace(txt, "$1", color.primary);
-                    txt = StringTools.replace(txt, "$2", color.secondary);
-                    txt = StringTools.replace(txt, "$reset", Colors.RESET);
-                    return txt.split("\n");
-                }
-
-                var lines = txt.split("\n");
-                var colored = new Array<String>();
-                for (line in lines) {
-                    colored.push(color.primary + line + Colors.RESET);
-                }
-                return colored;
+                raw = Resource.getString(resourceKey);
+                if (raw == null && small) raw = Resource.getString(key);
             }
+        }
+
+        if (raw != null) {
+            var target = (overrideLogo != "") ? overrideLogo : distroName;
+            var color = fetchColor(target); 
+            var txt = StringTools.replace(raw, "\r\n", "\n");
+
+            if (txt.indexOf("$1") != -1) {
+                txt = StringTools.replace(txt, "$1", color.primary);
+                txt = StringTools.replace(txt, "$2", color.secondary);
+                txt = StringTools.replace(txt, "$reset", Colors.RESET);
+                return txt.split("\n");
+            }
+
+            var lines = txt.split("\n");
+            var colored = new Array<String>();
+            for (line in lines) {
+                colored.push(color.primary + line + Colors.RESET);
+            }
+            return colored;
         }
 
         return fetchTux();
@@ -43,7 +56,7 @@ class Logo {
 
     private static function fetchDistro(low:String):Null<String> {
         switch (low) {
-            case _ if (low.indexOf("alpine") != -1): return "apline";
+            case _ if (low.indexOf("alpine") != -1): return "alpine";
             case _ if (low.indexOf("arch") != -1): return "arch";
             case _ if (low.indexOf("artix") != -1): return "artix";
             case _ if (low.indexOf("bazzite") != -1): return "bazzite";
@@ -107,4 +120,21 @@ class Logo {
 
         return macro $v{lines};
     }
+
+    /*private static function resolvePath(path:String):String {
+        if (path == null || path == "") return "";
+
+        var cleanPath = StringTools.trim(path);
+        if ((StringTools.startsWith(cleanPath, "'") && StringTools.endsWith(cleanPath, "'")) || (StringTools.startsWith(cleanPath, '"') &&  StringTools.endsWith(cleanPath, '"'))) {
+            cleanPath = cleanPath.substring(1, cleanPath.length -1);
+        }
+
+        if (StringTools.startsWith(cleanPath, "~")) {
+            var home = Sys.getEnv("HOME");
+            if (home != null && home != "") {
+                return home + path.substr(1);
+            }
+        }
+        return path;
+    }*/
 }

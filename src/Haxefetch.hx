@@ -15,7 +15,8 @@ class Haxefetch {
         var distro = SystemUtils.fetchDistro();
         var init = SystemUtils.fetchInit();
         var initSuffix = (init != "") ? ' [${Colors.colorize(init, Colors.GREEN)}]' : '';
-        var logo = Logo.fetchLogo(distro, Configuration.logoSize);
+        var logoFetch = (Configuration.logo != "") ? Configuration.logo : distro;
+        var logo = Logo.fetchLogo(logoFetch, Configuration.logoSize);
         var kernel = SystemUtils.fetchKernel();
         var desktop = XdgSession.fetchDestkop();
         var session = XdgSession.fetchSession();

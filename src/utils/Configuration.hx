@@ -14,6 +14,8 @@ class Configuration {
 
     public static var separator:String = ":";
 
+    public static var logo:String = "";
+    // public static var customLogo:String = "";
     public static var logoSize:String = "normal";
     public static var logoColor = "";
 
@@ -141,7 +143,6 @@ class Configuration {
 
         var configDirectory = Path.join([home, ".config", "haxefetch"]);
         var configFile = Path.join([configDirectory, "config.conf"]);
-
         createConfiguration(configDirectory, configFile, true);
     }
 
@@ -152,7 +153,9 @@ class Configuration {
                 modules = [for (item in raw) StringTools.trim(item)];  
             case "separator": separator = parseString(value);
     
-            case "logo_type": logoSize = value;
+            case "logo": logo = parseString(value);
+            // case "custom_logo": customLogo = parseString(value);
+            case "logo_type": logoSize = parseString(value);
             case "logo_color": logoColor = parseString(value);
 
             case "show_hostname": showHostname = parseBool(value);
@@ -250,6 +253,8 @@ class Configuration {
                 "modules=hostname, host, os, kernel, de, wm, ram, swap, cpu, gpu, disk, packages, haxe, opengl, vulkan, uptime, birthday, birth, colors\n" +
                 "separator=':'\n\n" +
 
+                "logo=''\n" +
+                // "custom_logo=''\n" + IT IS BROKEN AND NOT WORKING
                 "logo_type='normal'\n" +
                 "logo_color=''\n\n" +
 
