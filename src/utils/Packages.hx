@@ -45,7 +45,12 @@ class Packages {
                 try {
                     var entries = FileSystem.readDirectory(root + "/var/lib/pacman/local");
                     var count = entries.filter(e -> !StringTools.startsWith(e, "ALPM")).length;
-                    Configuration.packageManager ? counts.push('$count (pacman)') : counts.push('$count');
+                    if (count > 0) {
+                        var entry = Configuration.packageManager ? '$count (pacman)' : '$count';
+                        if (!counts.contains(entry)) {
+                            counts.push(entry);
+                        }
+                    }
                 } catch (e:Dynamic) {}
             }
 
@@ -53,7 +58,12 @@ class Packages {
             if (FileSystem.exists(root + "/var/db/xbps")) {
                 try {
                     var pkgs = FileSystem.readDirectory(root + "/var/db/xbps").filter(e -> StringTools.endsWith(e, ".plist"));
-                    Configuration.packageManager ? counts.push('${pkgs.length} (xbps)') : counts.push('${pkgs.length}');
+                    if (pkgs.length > 0) {
+                        var entry = Configuration.packageManager ? '${pkgs.length} (xbps)' : '${pkgs.length}';
+                        if (!counts.contains(entry)) {
+                            counts.push(entry);
+                        }
+                    }
                 } catch (e:Dynamic) {}
             }
 
@@ -62,7 +72,12 @@ class Packages {
                 try {
                     var lines = File.getContent(root + "/lib/apk/db/installed").split("\n");
                     var count = lines.filter(l -> StringTools.startsWith(l, "P:")).length;
-                    Configuration.packageManager ? counts.push('$count (apk)') : counts.push('$count');
+                    if (count > 0) {
+                        var entry = Configuration.packageManager ? '$count (apk)' : '$count';
+                        if (!counts.contains(entry)) {
+                            counts.push(entry);
+                        }
+                    }
                 } catch (e:Dynamic) {}
             }
 
