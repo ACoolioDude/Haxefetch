@@ -37,12 +37,7 @@ If you want to use, follow this:
 [GH releases](https://github.com/ACoolioDude/Haxefetch/releases)
 
 For Arch Linux users
-I gave PKGBUILD of this because i am planning to upload this on AUR, but registering is not currently available, so you can build this for yourself
-1. Install `base-devel` package
-2. Switch to `src/arch` directory inside of Haxefetch
-3. Run `makepkg -si` (it will install package inside of `/usr/bin` folder)
-4. Now you have local haxefetch binary on your Arch system
-
+- I made [official Arch repo](https://github.com/ACoolioDude/haxefetch-arch). Read more by clicking on official Arch repo text
 For Gentoo Linux users
 - I made [official overlay](https://github.com/ACoolioDude/haxefetch-overlay) with included ebuilds. Read more by clicking on official overlay text
 
