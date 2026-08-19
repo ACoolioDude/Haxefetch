@@ -99,9 +99,9 @@ class Memory {
 
     public static function fetchRAMType():String {
         try {
-            var process = Haxefetch.runCmd("sh", ["-c", "inxi --m --c 0 2>/dev/null | grep -i 'type:' | awk -F 'type:' '{print $2}' | awk '{print $1}' | head -n 1"]);
+            var process = Haxefetch.runCmd("sh", ["-c", "inxi --m --c 0 2>/dev/null | grep -i 'type:' | awk -F 'type:' '{print $2}' | awk '{print $1}' | grep -ivE 'no|none|unknown|n/a' | head -n 1"]);
             var type = StringTools.replace(process, ",", "");
-            if (type != "" && type != "None" && type != "Unknown" && type != "N/A") {
+            if (type.toLowerCase() != "" && type.toLowerCase() != "no" && type.toLowerCase() != "none" && type.toLowerCase() != "unknown" && type.toLowerCase() != "n/a") {
                 return type;
             }
         } catch (e:Dynamic) {}
