@@ -74,17 +74,14 @@ class GPUUtility {
     private static function fetchActualGPU(gpu:String):String {
         if (gpu == null || gpu == "") return "";
 
-        var brackets = ~/^([^\[]+)\s*\[\s*([^\/\/]]+)/;
-        if (brackets.match(gpu)) {
-            var prefix = brackets.matched(1);
-            var model = brackets.matched(2);
+        var navi = ~/\s*Navi\s*\d+/i;
+        gpu = navi.replace(gpu, "");
 
-            prefix = ~/\s*Navi\s*\d+/i.replace(prefix, "");
-            gpu = '${prefix} " " ${model}';
-        } else {
-            gpu = StringTools.replace(gpu, "[", "");
-            gpu = StringTools.replace(gpu, "]", "");
-        }
+        var brackets = ~/([A-Za-z0-9\s]+?)(\/[A-Za-z0-9\s]+)+/g;
+        gpu = brackets.replace(gpu, "$1");
+
+        gpu = StringTools.replace(gpu, "[", "");
+        gpu = StringTools.replace(gpu, "]", "");
 
         var gtString = ~/\(GT[0-9](\.[0-9]+)?\)|\bGT[0-9](\.[0-9]+)?\b/gi;
         gpu = gtString.replace(gpu, "");
