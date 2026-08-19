@@ -97,7 +97,7 @@ class Packages {
                 try {
                     var total = FileSystem.readDirectory(root + "/var/log/packages").length;
                     if (total > 0) {
-                        var entry = Configuration.packageManager ? '$total (slackpkg)' : '${total}';
+                        var entry = Configuration.packageManager ? '$total (pkgtools)' : '${total}';
                         if (!counts.contains(entry)) {
                             counts.push(entry);
                         }
@@ -106,21 +106,18 @@ class Packages {
             }
 
             // GNU Guix based system (guix)
-            var user = Sys.getEnv("USER");
-            var guixProfile = root + '/home/$user/.guix-profile';
-            if (FileSystem.exists(guixProfile)) {
+            var path = Sys.getEnv("HOME") + "/.guix-profile/manifest";
+            if (FileSystem.exists(path)) {
                 try {
-                    var binPath = root + '$guixProfile/bin';
-                    if (FileSystem.exists(binPath)) {
-                        var total = FileSystem.readDirectory(binPath).length;
-                        if (total > 0) {
-                            var entry = Configuration.packageManager ? '$total (guix)' : '${total}';
-                            if (!counts.contains(entry)) {
-                                counts.push(entry);
-                            }
+                    var line = File.getContent(path).split("\n");
+                    var count = line.filter(l -> StringTools.contains(l, "(manifest-entry)")).length;
+                    if (count > 0) {
+                        var entry = Configuration.packageManager ? '$count (guix)' : '${count}';
+                        if (!counts.contains(entry)) {
+                            counts.push(entry);
                         }
                     }
-                } catch (e:Dynamic) {}
+                }
             }
 
             // Gentoo Linux based system (emerge/portage)
@@ -143,11 +140,70 @@ class Packages {
             }
 
             // Solus based system (eopkg)
-            if (FileSystem.exists("/var/lib/eopkg/package")) {
+            if (FileSystem.exists(root + "/var/lib/eopkg/package")) {
                 try {
                     var count = FileSystem.readDirectory(root + "/var/lib/eopkg/package").length;
-                    return Configuration.packageManager ? '$count (eopkg)' : '${count}';
+                    if (count > 0) {
+                        var entry = Configuration.packageManager ? '$count (eopkg)' : '${count}';
+                        if (!counts.contains(entry)) {
+                            counts.push(entry);
+                        }
+                    }
                 } catch (e:Dynamic) {}
+            }
+
+            // KISS Linux (kiss)
+            if (FileSystem.exists(root + "/var/db/kiss/installed")) {
+                try {
+                    var count = FileSystem.readDirectory(root + "/var/db/kiss/installed").length;
+                    if (count > 0) {
+                        var entry = Configuration.packageManager ? '$count (kiss)' : '${count}';
+                        if (!counts.contains(entry)) {
+                            counts.push(entry);
+                        }
+                    }
+                }
+            }
+
+            // Paldo Linux (upkg)
+            if (FileSystem.exists(root + "/var/lib/upkg/db")) {
+                try {
+                    var count = FileSystem.readDirectory(root + "/var/lib/upkg/db").length;
+                    if (count > 0) {
+                        var entry = Configuration.packageManager ? '$count (upkg)' : '${count}';
+                        if (!counts.contains(entry)) {
+                            counts.push(entry);
+                        }
+                    }
+                }
+            }
+
+            // PiSi Linux (pisi)
+            if (FileSystem.exists(root + "/var/lib/pisi/package")) {
+                try {
+                    var count = FileSystem.readDirectory(root + "/var/lib/pisi/package").length;
+                    if (count > 0) {
+                        var entry = Configuration.packageManager ? '$count (pisi)' : '${count}';
+                        if (!counts.contains(entry)) {
+                            counts.push(entry);
+                        }
+                    } 
+                }
+            }
+
+            // Snaps
+            var path = root + "/var/lib/snapd/snaps";
+            if (FileSystem.exists(path)) {
+                try {
+                    var snaps = FileSystem.readDirectory(path).filter(e -> StringTools.endsWith(e, ".snap"));
+                    if (snaps.length > 0) {
+                        var count = snaps.length;
+                        var entry = Configuration.packageManager ? '$count (snaps)' : '${count}';
+                        if (!counts.contains(entry)) {
+                            counts.push(entry);
+                        }
+                    }
+                }
             }
         }
 
