@@ -12,14 +12,3 @@ sha256sums=('47929870ed007c398c8b0d2c0daaa9361416b1b7453042cdeaa18187f51e5a76')
 package() {
 	install -Dm755 haxefetch "$pkgdir/usr/bin/haxefetch"
 }
-
-optdepends=(
-	'inxi: for RAM type'
-	'vulkan-tools: for Vulkan version (vulkaninfo)'
-	'vulkan-headers: for Vulkan instance'
-	'vulkan-intel: for Vulkan GPU driver (Intel)'
-	'vulkan-radeon: for Vulkan GPU driver (AMD)'
-	'vulkan-nouveau: for Vulkan GPU driver (NVIDIA)'
-	'mesa: for Mesa instance'
-	'mesa-utils: for OpenGL version (glxinfo)'
-)

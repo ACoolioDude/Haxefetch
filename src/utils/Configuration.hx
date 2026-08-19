@@ -282,9 +282,6 @@ class Configuration {
                 "package='Packages'\n" +
                 "package_manager=true\n\n" +
 
-                "show_haxe_version=true\n" +
-                "haxe='Haxe'\n\n" +
-
                 "show_uptime=true\n" +
                 "uptime='Uptime'\n\n" +
 
