@@ -8,48 +8,63 @@ class Packages {
         #if sys
         var counts:Array<String> = [];
         var bedrockRoot = fetchBedrockPackages();
+        
+        var home = Sys.getEnv("HOME");
+        if (home == null) home == "";
+
+        var user = Sys.getEnv("USER");
+        if (user == null) user == "";
 
         for (root in bedrockRoot) {
             // Debian/GNU Linux based system (dpkg)
             if (FileSystem.exists(root + "/var/lib/dpkg/status")) {
                 try {
                     var content = File.getContent(root + "/var/lib/dpkg/status");
+                    var pattern = ~/^Status: install ok installed/gm;
                     var count = 0;
-                    for (line in content.split("\n")) {
-                        if (StringTools.startsWith(line, "Status: install ok installed")) {
-                            count++;
-                        }
+                    
+                    while (pattern.match(content)) {
+                        count++;
+                        content = pattern.matchedRight();
                     }
                     if (count > 0) {
                         var entry = Configuration.packageManager ? '$count (dpkg)' : '${count}';
-                        if (!counts.contains(entry)) {
-                            counts.push(entry);
-                        }
+                        if (!counts.contains(entry)) counts.push(entry);
                     }
                 } catch (e:Dynamic) {}
             }
 
             // RPM based system (rpm)
             if (FileSystem.exists(root + "/var/lib/rpm")) {
-                var rpmCount = Haxefetch.executeCount("rpm", ["-qa"]);
-                if (rpmCount > 0) {
-                    var entry = Configuration.packageManager ? '$rpmCount (rpm)' : '${rpmCount}';
-                    if (!counts.contains(entry)) {
-                        counts.push(entry);
+                try {
+                    var rpm = 0;
+                    var sqlite = root + "/var/lib/rpm/rpmdb.sqlite";
+
+                    if (FileSystem.exists(sqlite)) {
+                        var entries = FileSystem.readDirectory(root + "/var/lib/rpm");
+                        rpm = entries.length;
+                    } else {
+                        var entry = FileSystem.readDirectory(root + "/var/lib/rpm").filter(e -> StringTools.startsWith(e, "Name") || StringTools.startsWith(e, "Packages"));
+                        rpm = entry.length;
                     }
-                }
+
+                    if (rpm > 0) {
+                        var count = '${rpm}';
+                        var entry = Configuration.packageManager ? '$count (rpm)' : '${count}';
+                        if (!counts.contains(entry)) counts.push(entry);
+                    }
+                } catch (e:Dynamic) {}
             }
 
             // Arch Linux based system (pacman)
             if (FileSystem.exists(root + "/var/lib/pacman/local")) {
                 try {
                     var entries = FileSystem.readDirectory(root + "/var/lib/pacman/local");
-                    var count = entries.filter(e -> !StringTools.startsWith(e, "ALPM")).length;
+                    var count = entries.filter(e -> !StringTools.startsWith(e, "ALPM") && StringTools.contains(e, "-")).length;
+
                     if (count > 0) {
                         var entry = Configuration.packageManager ? '$count (pacman)' : '$count';
-                        if (!counts.contains(entry)) {
-                            counts.push(entry);
-                        }
+                        if (!counts.contains(entry)) counts.push(entry);
                     }
                 } catch (e:Dynamic) {}
             }
@@ -57,11 +72,27 @@ class Packages {
             // Void Linux based system (xbps)
             if (FileSystem.exists(root + "/var/db/xbps")) {
                 try {
-                    var pkgs = FileSystem.readDirectory(root + "/var/db/xbps").filter(e -> StringTools.endsWith(e, ".plist"));
-                    if (pkgs.length > 0) {
-                        var entry = Configuration.packageManager ? '${pkgs.length} (xbps)' : '${pkgs.length}';
-                        if (!counts.contains(entry)) {
-                            counts.push(entry);
+                    var files = FileSystem.readDirectory(root + "/var/db/xbps");
+                    var pkgFile = "";
+
+                    for (file in files) {
+                        if (StringTools.startsWith(file, "pkgdb-") && StringTools.endsWith(file, ".plist")) {
+                            pkgFile = file;
+                            break;
+                        }
+                    }
+
+                    if (pkgFile != "") {
+                        var content = File.getContent(root + "/var/db/xbps" + pkgFile);
+                        var pattern = ~/<key>state<\/key>\s*<string>installed<\/string>/g;
+                        var count = 0;
+                        while (pattern.match(content)) {
+                            count++;
+                            content = pattern.matchedRight();
+                        }
+                        if (count > 0) {
+                            var entry = Configuration.packageManager ? '$count (xbps)' : '$count';
+                            if (!counts.contains(entry)) counts.push(entry);
                         }
                     }
                 } catch (e:Dynamic) {}
@@ -70,26 +101,31 @@ class Packages {
             // Alpine Linux based system (apk)
             if (FileSystem.exists(root + "/lib/apk/db/installed")) {
                 try {
-                    var lines = File.getContent(root + "/lib/apk/db/installed").split("\n");
-                    var count = lines.filter(l -> StringTools.startsWith(l, "P:")).length;
+                    var content = File.getContent(root + "/lib/apk/db/installed");
+                    var pattern = ~/^P:/gm;
+                    var count = 0;
+                    while (pattern.match(content)) {
+                        count++;
+                        content = pattern.matchedRight();
+                    }
                     if (count > 0) {
                         var entry = Configuration.packageManager ? '$count (apk)' : '$count';
-                        if (!counts.contains(entry)) {
-                            counts.push(entry);
-                        }
+                        if (!counts.contains(entry)) counts.push(entry);
                     }
                 } catch (e:Dynamic) {}
             }
 
             // NixOS based system (nix)
-            if (FileSystem.exists(root + '/home/${Sys.getEnv("USER")}/.nix-profile/etc/profile.d/nix.sh') || FileSystem.exists("/nix/store")) {
-                var nixCount = Haxefetch.executeCount("nix-store", ["-q", "--requisites", "/run/current-system"]);
-                if (nixCount > 0) {
-                    var entry = Configuration.packageManager ? '$nixCount (nix)' : '${nixCount}';
-                    if (!counts.contains(entry)) {
-                        counts.push(entry);
+            if (FileSystem.exists(root + "/nix/store") || FileSystem.exists(home + "/.nix-profile")) {
+                try {
+                    if (FileSystem.exists(root + "/nix/store")) {
+                        var count = FileSystem.readDirectory(root + "/nix/store").length;
+                        if (count > 0) {
+                            var entry = Configuration.packageManager ? '$count (nix)' : '$count';
+                            if (!counts.contains(entry)) counts.push(entry);
+                        }
                     }
-                }
+                } catch (e:Dynamic) {}
             }
 
             // Slackware Linux based system (slackpkg)
@@ -106,35 +142,39 @@ class Packages {
             }
 
             // GNU Guix based system (guix)
-            var path = Sys.getEnv("HOME") + "/.guix-profile/manifest";
-            if (FileSystem.exists(path)) {
+            var manifest = home + "/.guix-profile/manifest";
+            if (!FileSystem.exists(manifest) && user != "") manifest = root + "/var/guix/profiles/per-user/" + user + "/current-profile/manifest";
+
+            if (FileSystem.exists(manifest)) {
                 try {
-                    var line = File.getContent(path).split("\n");
-                    var count = line.filter(l -> StringTools.contains(l, "(manifest-entry)")).length;
-                    if (count > 0) {
-                        var entry = Configuration.packageManager ? '$count (guix)' : '${count}';
-                        if (!counts.contains(entry)) {
-                            counts.push(entry);
-                        }
+                    var content = File.getContent(manifest);
+                    var pattern = ~/\(manifest-entry/g;
+                    var count = 0;
+                    while (pattern.match(content)) {
+                        count++;
+                        content = pattern.matchedRight();
                     }
-                }
+                    if (count > 0) {        
+                        var entry = Configuration.packageManager ? '$count (guix)' : '${count}';
+                        if (!counts.contains(entry)) counts.push(entry);
+                    }
+                } catch (e:Dynamic) {}
             }
 
             // Gentoo Linux based system (emerge/portage)
             if (FileSystem.exists(root + "/var/db/pkg")) {
                 try {
                     var total = 0;
-                    for (category in FileSystem.readDirectory(root + "/var/db/pkg")) {
-                        var catPath = root + '/var/db/pkg/$category';
-                        if (FileSystem.isDirectory(catPath)) {
-                            total += FileSystem.readDirectory(catPath).length;
+                    var catPath = FileSystem.readDirectory(root + "/var/db/pkg");
+                    for (cats in catPath) {
+                        var cat = root + "/var/db/pkg/" + cats;
+                        if (FileSystem.isDirectory(cat)) {
+                            total += FileSystem.readDirectory(cat).length;
                         }
                     }
                     if (total > 0) {
                         var entry = Configuration.packageManager ? '$total (emerge)' : '${total}';
-                        if (!counts.contains(entry)) {
-                            counts.push(entry);
-                        }
+                        if (!counts.contains(entry)) counts.push(entry);
                     }
                 } catch (e:Dynamic) {}
             }
@@ -199,19 +239,15 @@ class Packages {
                     if (snaps.length > 0) {
                         var count = snaps.length;
                         var entry = Configuration.packageManager ? '$count (snaps)' : '${count}';
-                        if (!counts.contains(entry)) {
-                            counts.push(entry);
-                        }
+                        if (!counts.contains(entry)) counts.push(entry);
                     }
                 }
             }
         }
 
         // Flatpak
-        var path:Array<String> = [
-            "/var/lib/flatpak/app", 
-            Sys.getEnv("HOME") + "/.local/share/flatpak/app"
-        ];
+        var path:Array<String> = ["/var/lib/flatpak/app"];
+        if (home != null && home != "") path.push(home + "/.local/share/flatpak/app");
         var flatpaks = 0;
 
         for (paths in path) {
@@ -223,11 +259,8 @@ class Packages {
         }
         
         if (flatpaks > 0) {
-            if (Configuration.packageManager) {
-                counts.push('$flatpaks (flatpak)');
-            } else { 
-                counts.push('${flatpaks}');
-            }
+            var entry = Configuration.packageManager ? '$flatpaks (flatpak)' : '${flatpaks}';
+            if (!counts.contains(entry)) counts.push(entry);
         }
         
         return counts.join(", ");

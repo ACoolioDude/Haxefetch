@@ -1,9 +1,8 @@
 package utils;
 
-import haxe.macro.Compiler;
+import sys.io.FileSeek;
 import sys.FileSystem;
 import sys.io.File;
-import sys.io.Process;
 
 class SystemUtils {
     public static function fetchHostname():String {
@@ -96,85 +95,60 @@ class SystemUtils {
         if (FileSystem.exists("/run/dinit")) return "Dinit";
         if (FileSystem.exists("/run/s6")) return "S6";
         
-        var rawCommand = Haxefetch.runCmd("ps", ["-p", "1", "-o", "comm="]);
-        var command = StringTools.trim(rawCommand);
+        try {
+            if (FileSystem.exists("/proc/1/comm")) {
+                var input = File.read("/proc/1/comm", false);
+                var com = StringTools.trim(input.readLine());
+                input.close();
 
-        if (command != "" && command != "N/A") {
-            switch (command) {
-                case "systemd": return "systemD";
-                case "openrc-init": return "OpenRC";
-                case "runit": return "Runit";
-                case "dinit": return "Dinit";
-                case "s6-svscan": return "S6";
-                default: return command;
+                switch (com) {
+                    case "systemd": return "systemD";
+                    case "openrc-init": return "OpenRC";
+                    case "runit": return "Runit";
+                    case "dinit": return "Dinit";
+                    case "s6-svscan": return "S6";
+                    default: return com;
+                }
             }
-        }
-
-        return "Unknown";
+        } catch (e:Dynamic) {}
+        return "None";
     }
 
     public static function fetchKernel():String {
         try {
-            var p = new Process("uname", ["-r"]);
-            var kernel = StringTools.trim(p.stdout.readLine());
-            p.close();
-            return kernel;
-        } catch (e:Dynamic) {
-            return Sys.systemName();
-        }
-    }
-
-    public static function fetchHaxe():String {
-        #if haxe_ver
-        return Compiler.getDefine("haxe");
-        #else
-        return "N/A";
-        #end
-    }
-
-    public static function fetchOpenGL():String {
-        try {
-            var output = Haxefetch.runCmd("glxinfo", ["-B"]);
-            for (line in output.split("\n")) {
-                var clean = StringTools.trim(line);
-                if (clean.indexOf("version string:") != -1) {
-                    var parts = clean.split("version string:");
-                    if (parts.length > 1) {
-                        var versionString = StringTools.trim(parts[1]);
-                        var token = versionString.split(" ");
-                        if (token.length > 0) return token[0];
-                    }
-                }
+            if (FileSystem.exists("/proc/sys/kernel/osrelease")) {
+                var raw = File.read("/proc/sys/kernel/osrelease");
+                var line = raw.readLine();
+                raw.close();
+                var trim = StringTools.trim(line);
+                if (trim != "") return trim;
             }
         } catch (e:Dynamic) {}
-        return "N/A";
-    }
-
-    public static function fetchVulkan():String {
-        try {
-            var output = Haxefetch.runCmd("vulkaninfo", ["--summary"]);
-            for (line in output.split("\n")) {
-                if (line.indexOf("Vulkan Instance Version:") != -1) {
-                    var version = line.split(":")[1];
-                    return StringTools.trim(version);
-                }
-            }
-        } catch (e:Dynamic) {}
-        return "N/A";
+        return Sys.systemName();
     }
 
     public static function fetchUptime():String {
-        var res = Haxefetch.runCmd("uptime", ["-p"]);
-        if (res != "" && res != "N/A") {
-            res = StringTools.replace(res, "up ", "");
-            res = StringTools.replace(res, " hours", "h");
-            res = StringTools.replace(res, " hour", "h");
-            res = StringTools.replace(res, " minutes", "m");
-            res = StringTools.replace(res, " minute", "m");
-            res = StringTools.replace(res, " days", "d");
-            res = StringTools.replace(res, " day", "d");
-            return StringTools.replace(res, ",", "");
-        }
+        try {
+            if (FileSystem.exists("/proc/uptime")) {
+                var input = File.read("/proc/uptime", false);
+                var raw = input.readLine().split(" ")[0];
+                input.close();
+
+                var seconds = Std.parseInt(raw.split(".")[0]);
+                if (seconds != null) {
+                    var days = Math.floor(seconds / 86400);
+                    var hours = Math.floor((seconds % 86400) / 3600);
+                    var minutes = Math.floor((seconds % 3600) / 60);
+
+                    var part:Array<String> = [];
+                    if (days > 0) part.push(days + 'd');
+                    if (hours > 0) part.push(hours + 'h');
+                    if (minutes > 0) part.push(minutes + 'm');
+
+                    return part.length > 0 ? part.join(" ") : "0m";
+                }
+            }
+        } catch (e:Dynamic) {}
         return "N/A";
     }
 
@@ -202,21 +176,16 @@ class SystemUtils {
 
     public static function fetchInstalledDate():String {
         try {
-            var status = FileSystem.stat("/");
-            var date = status.ctime;
+            if (FileSystem.exists("/")) {
+                var stats = FileSystem.stat("/");
+                var timestamp = stats.ctime.getTime();
+                var date = Date.fromTime(timestamp);
 
-            var day = StringTools.lpad(Std.string(date.getDate()), "0", 2);
-            var month = StringTools.lpad(Std.string(date.getMonth() + 1), "0", 2);
-            var year = date.getFullYear();
-            return '$day.$month.$year.';
-        } catch (e:Dynamic) {}
-
-        try {
-            var bithDate = Haxefetch.runCmd("stat", ["-c", "%W", "/"]);
-            var birth = Std.parseInt(bithDate);
-            if (birth != null && birth > 0) {
-                var output = Haxefetch.runCmd("date", ["-d", '@$birth', "+%d.+%m.%Y"]);
-                return StringTools.trim(output);
+                var day = StringTools.lpad(Std.string(date.getDate()), "0", 2);
+                var month = StringTools.lpad(Std.string(date.getMonth() + 1), "0", 2);
+                var year = date.getFullYear();
+                
+                return '$day.$month.$year.';
             }
         } catch (e:Dynamic) {}
         return "N/A";

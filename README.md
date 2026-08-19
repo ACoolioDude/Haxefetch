@@ -54,11 +54,11 @@ Getting binary
     <summary>Getting Haxe and it's dependencies</summary>
 
 1. Install dependencies.
-   - Debian/Ubuntu: `apt-get install haxe inxi mesa-utils vulkaninfo vulkan-tools git g++`
-   - Fedora/RHEL/RPM: `dnf install haxe inxi mesa-dri-drivers vulkan-headers vulkan-loader vulkan-tools git g++`
-   - openSUSE Leap/Tumbleweed: `zypper install inxi haxe Mesa git g++`
-   - Arch: `pacman -S base-devel haxe inxi mesa mesa-utils vulkan-headers vulkan-tools git` (note for Arch users. If you get `cannot create Vulkan instance` error or it prints N/A, you need to install GPU Vulkan driver for your iGPU/dGPU specifically)
-   - Gentoo: `emerge --ask --verbose dev-lang/haxe-bin` (get from riru overlay `eselect repository enable riru`) `sys-apps/inxi media-libs/mesa x11-apps/mesa-progs media-libs/vulkan-loader dev-util/vulkan-headers dev-util/vulkan-tools dev-vcs/git sys-devel/gcc` (if you have packages that are masked, [unmask them](https://wiki.gentoo.org/wiki/Knowledge_Base:Unmasking_a_package))
+   - Debian/Ubuntu: `apt-get install haxe git g++`
+   - Fedora/RHEL/RPM: `dnf install haxe git g++`
+   - openSUSE Leap/Tumbleweed: `zypper install haxe git g++`
+   - Arch: `pacman -S base-devel haxe git`
+   - Gentoo: `emerge --ask --verbose dev-lang/haxe dev-vcs/git sys-devel/gcc` (if you have packages that are masked, [unmask them](https://wiki.gentoo.org/wiki/Knowledge_Base:Unmasking_a_package))
 2. Clone my repo.
    - `git clone https://github.com/ACoolioDude/Haxefetch.git`
 2. Setup development.

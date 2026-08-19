@@ -43,7 +43,6 @@ class Configuration {
     public static var showRAM:Bool = true;
     public static var ramString:String = "RAM";
     public static var ramPercent:Bool = true;
-    public static var ramType:Bool = true;
 
     public static var showSWAP:Bool = true;
     public static var swapString:String = "SWAP";
@@ -64,15 +63,6 @@ class Configuration {
     public static var showPackages:Bool = true;
     public static var packageString:String = "Packages";
     public static var packageManager:Bool = true;
-
-    public static var showHaxe:Bool = true;
-    public static var haxeString:String = "Haxe";
-
-    public static var showOpenGL:Bool = true;
-    public static var openglString:String = "OpenGL";
-
-    public static var showVulkan:Bool = true;
-    public static var vulkanString:String = "Vulkan";
 
     public static var showUptime:Bool = true;
     public static var uptimeString:String = "Uptime";
@@ -182,7 +172,6 @@ class Configuration {
             case "show_ram": showRAM = parseBool(value);
             case "ram": ramString = parseString(value);
             case "ram_percentage": ramPercent = parseBool(value);
-            case "ram_type": ramType = parseBool(value);
 
             case "show_swap": showSWAP = parseBool(value);
             case "swap": swapString = parseString(value);
@@ -203,15 +192,6 @@ class Configuration {
             case "show_package": showPackages = parseBool(value);
             case "package": packageString = parseString(value);
             case "package_manager": packageManager = parseBool(value);
-
-            case "show_haxe_version": showHaxe = parseBool(value);
-            case "haxe": haxeString = parseString(value);
-
-            case "show_opengl_version": showOpenGL = parseBool(value);
-            case "opengl": openglString = parseString(value);
-
-            case "show_vulkan_version": showVulkan = parseBool(value);
-            case "vulkan": vulkanString = parseString(value);
 
             case "show_uptime": showUptime = parseBool(value);
             case "uptime": uptimeString = parseString(value);
@@ -280,8 +260,7 @@ class Configuration {
 
                 "show_ram=true\n" +
                 "ram='RAM'\n" +
-                "ram_percentage=true\n" +
-                "ram_type=true\n\n" +
+                "ram_percentage=true\n\n" +
 
                 "show_swap=true\n" +
                 "swap='SWAP'\n"+
@@ -305,12 +284,6 @@ class Configuration {
 
                 "show_haxe_version=true\n" +
                 "haxe='Haxe'\n\n" +
-
-                "show_opengl_version=true\n" +
-                "opengl='OpenGL'\n\n" +
-
-                "show_vulkan_version=true\n" +
-                "vulkan='Vulkan'\n\n" +
 
                 "show_uptime=true\n" +
                 "uptime='Uptime'\n\n" +
