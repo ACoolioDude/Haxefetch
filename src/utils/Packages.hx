@@ -231,6 +231,28 @@ class Packages {
                 }
             }
 
+            // AerynOS / Serpent OS (moss)
+            if (FileSystem.exists(root + "/.moss/db/installed")) {
+                try {
+                    var count = FileSystem.readDirectory(root + "/.moss/db/installed").length;
+                    if (count > 0) {
+                        var entry = Configuration.packageManager ? '$count (moss)' : '${count}';
+                        if (!counts.contains(entry)) counts.push(entry);
+                    }
+                } catch (e:Dynamic) {}
+            } else if (FileSystem.exists(root + "/.moss/root")) {
+                try {
+                    var mossRoot = root + "/.moss/root";
+                    if (FileSystem.exists(mossRoot) && FileSystem.isDirectory(mossRoot)) {
+                        var count = FileSystem.readDirectory(mossRoot).length;
+                        if (count > 0) {
+                            var entry = Configuration.packageManager ? '$count (moss)' : '${count}';
+                            if (!counts.contains(entry)) counts.push(entry);
+                        }
+                    }
+                } catch (e:Dynamic) {}
+            }
+
             // Snaps
             var path = root + "/var/lib/snapd/snaps";
             if (FileSystem.exists(path)) {

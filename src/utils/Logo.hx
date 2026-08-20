@@ -56,6 +56,7 @@ class Logo {
 
     private static function fetchDistro(low:String):Null<String> {
         switch (low) {
+            case _ if (low.indexOf("aerynos") != -1): return "aeryn";
             case _ if (low.indexOf("alpine") != -1): return "alpine";
             case _ if (low.indexOf("arch") != -1): return "arch";
             case _ if (low.indexOf("artix") != -1): return "artix";
@@ -83,6 +84,7 @@ class Logo {
 
     private static function fetchColor(low:String):{primary:String, secondary:String} {
         switch (low) {
+            case "aerynos": return { primary: Colors.GREEN, secondary: Colors.YELLOW };
             case "alpine" : return { primary: Colors.BLUE, secondary: Colors.BLUE };
             case "arch": return { primary: Colors.BLUE, secondary: Colors.BLUE };
             case "artix": return { primary: Colors.CYAN, secondary: Colors.CYAN };

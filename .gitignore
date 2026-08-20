@@ -1,7 +1,2 @@
 bin
 .haxelib
-src/arch/pkg
-src/arch/src
-src/arch/haxefetch
-src/arch/*.pkg.tar.zst
-src/arch/*.tar.gz

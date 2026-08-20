@@ -17,6 +17,7 @@
 --cmd command mv bin/cpp/Haxefetch bin/cpp/haxefetch
 
 # Add resources
+--resource src/resources/logos/aerynos.txt@aeryn
 --resource src/resources/logos/alpine.txt@alpine
 --resource src/resources/logos/arch.txt@arch
 --resource src/resources/logos/artix.txt@artix
