@@ -22,27 +22,23 @@ Haxefetch is fetch program inspired by fastfetch, neofetch, pfetch, nerdfetch, h
 </p>
 <p align="center">(Configuring Haxefetch with .conf support)</p>
 
-## Dependencies
- - `inxi` - Required to show RAM type (optional / not optional)
- - `vulkaninfo` and `vulkantools` - Required to show Vulkan version (optional / not optional)
- - `glxinfo` and `mesa-utils` - Required to show OpenGL version (optional / not optional)
-
-
 ## How to use this?
 
 If you want to use, follow this:
 <details>
     <summary>Getting a binary</summary>
 
-[GH releases](https://github.com/ACoolioDude/Haxefetch/releases)
+Github releases with tarball
+- [GH releases](https://github.com/ACoolioDude/Haxefetch/releases)
 
 For Arch Linux users
-- I made [official Arch repo](https://github.com/ACoolioDude/haxefetch-arch). Read more by clicking on official Arch repo text
-For Gentoo Linux users
-- I made [official overlay](https://github.com/ACoolioDude/haxefetch-overlay) with included ebuilds. Read more by clicking on official overlay text
+- I made [official Arch repo](https://github.com/ACoolioDude/haxefetch-arch). Read more by clicking on "official Arch repo" text
 
-Getting binary
-`wget https://raw.githubusercontent.com/ACoolioDude/Haxefetch/main/binary/haxefetch && chmod +x haxefetch && sudo mv haxefetch /usr/bin/haxefetch`
+For Gentoo Linux users
+- I made [official overlay](https://github.com/ACoolioDude/haxefetch-overlay) with included ebuilds. Read more by clicking on "official overlay" text
+
+Getting binary using `wget`
+- `wget https://raw.githubusercontent.com/ACoolioDude/Haxefetch/main/binary/haxefetch && chmod +x haxefetch && sudo mv haxefetch /usr/bin/haxefetch`
 </details>
 
 <details>
