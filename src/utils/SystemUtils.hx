@@ -8,7 +8,28 @@ class SystemUtils {
     public static function fetchHostname():String {
         #if sys
         if (FileSystem.exists("/etc/hostname")) {
-            return StringTools.trim(File.getContent("/etc/hostname"));
+            var host = StringTools.trim(File.getContent("/etc/hostname"));
+            if (host.length > 0) return host;
+        }
+
+        if (FileSystem.exists("/etc/conf.d/hostname")) {
+            var content = File.getContent("/etc/conf.d/hostname");
+            for (line in content.split("\n")) {
+                line = StringTools.trim(line);
+                if (StringTools.startsWith(line, "#")) continue;
+
+                if (StringTools.startsWith(line, "hostname=") || StringTools.startsWith(line, "HOSTNAME=")) {
+                    var name = line.split("=")[1];
+                    name = StringTools.replace(name, "\"", "");
+                    name = StringTools.replace(name, "'", "");
+                    if (name.length > 0) return StringTools.trim(name);
+                }
+            }
+        }
+
+        if (FileSystem.exists("/proc/sys/kernel/hostname")) {
+            var proc = StringTools.trim(File.getContent("/proc/sys/kernel/hostname"));
+            if (proc.length > 0) return proc;
         }
         #end
         return "Haxefetch";
@@ -48,13 +69,14 @@ class SystemUtils {
     }
 
     private static function readFile(path:String):String {
+        #if sys
         if (sys.FileSystem.exists(path)) {
             try {
                 var content = sys.io.File.getContent(path);
                 if (content != null) return StringTools.trim(content);
             } catch (e:Dynamic) {}
         }
-
+        #end
         var output = Haxefetch.runCmd("cat", [path]);
             if (output != null && output != "") {
             return StringTools.trim(output);
@@ -93,6 +115,7 @@ class SystemUtils {
         if (FileSystem.exists("/run/openrc") || FileSystem.exists("/run/openrc/softlevel")) return "OpenRC";
         if (FileSystem.exists("/run/runit")) return "Runit";
         if (FileSystem.exists("/run/dinit")) return "Dinit";
+        if (FileSystem.exists("/run/finit")) return "Finit";
         if (FileSystem.exists("/run/s6")) return "S6";
         
         try {
@@ -106,7 +129,9 @@ class SystemUtils {
                     case "openrc-init": return "OpenRC";
                     case "runit": return "Runit";
                     case "dinit": return "Dinit";
+                    case "finit": return "Finit";
                     case "s6-svscan": return "S6";
+                    case "init": return "SysVinit";
                     default: return com;
                 }
             }
