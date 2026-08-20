@@ -30,6 +30,7 @@ class XdgSession {
             if (token.indexOf("DEEPIN") != -1 || token.indexOf("DDE") != -1) return formatDesktop("Deepin", "dde-dock", ["--version"]);
             if (token.indexOf("LXDE") != -1) return formatDesktop("LXDE", "lxsession", ["--version"]);
             if (token.indexOf("LXQT") != -1) return formatDesktop("LXQt", "lxqt-session", ["-v"]);
+            if (token.indexOf("NSCDE") != -1) return formatDesktop("NsCDE", "sh", ["-c", "nscde -V"]);
             if (token.indexOf("CDE") != -1) return formatDesktop("CDE", "sh", ["-c", "dtversion"]);
         }
         return null;
@@ -79,7 +80,6 @@ class XdgSession {
                     case _ if (upper.indexOf("FLUXBOX") != -1): return "FluxBox";
                     case _ if (upper.indexOf("AWESOME") != -1): return "Awesome";
                     case _ if (upper.indexOf("BSPWM") != -1): return "Bspwm";
-                    case _ if (upper.indexOf("CWM") != -1): return "CWM";
                     case _ if (upper.indexOf("DWM") != -1): return "DWM";
                     case _ if (upper.indexOf("DTWM") != -1 || upper.indexOf("CDE") != -1): return "DTWM";
                     case _ if (upper.indexOf("E13") != -1): return "E13";
@@ -87,6 +87,7 @@ class XdgSession {
                     case _ if (upper.indexOf("I3") != -1): return "i3";
                     case _ if (upper.indexOf("ICEWM") != -1): return "IceWM"; // R.I.P Marko
                     case _ if (upper.indexOf("HERBSTLUFTWM") != -1): return "HerbstluftWM"; 
+                    case _ if (upper.indexOf("NSCDE") != -1 || upper.indexOf("FVWM") != -1): return "FVWM";
                     case _ if (upper.indexOf("OXWM") != -1): return "OXWM"; // Tony Banters my beloved guy
                     case _ if (upper.indexOf("PEKWM") != -1): return "PekWM";
                     case _ if (upper.indexOf("QTILE") != -1): return "QTile";
@@ -142,6 +143,7 @@ class XdgSession {
             "i3" => "i3",
             "icewm" => "IceWM", // R.I.P Marko
             "herbstluftwm" => "HerbstluftWM",
+            "fvwm" => "FWVM",
             "oxwm" => "OXWM", // Tony Banters my beloved guy
             "pekwm" => "PekWM",
             "qtile" => "QTile",
