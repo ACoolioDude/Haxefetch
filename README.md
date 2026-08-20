@@ -29,16 +29,16 @@ If you want to use, follow this:
     <summary>Getting a binary</summary>
 
 Github releases with tarball
-- [GH releases](https://github.com/ACoolioDude/Haxefetch/releases)
+- [GH releases](https://github.com/Sbinator-hub/Haxefetch/releases)
 
 For Arch Linux users
-- I made [official Arch repo](https://github.com/ACoolioDude/haxefetch-arch). Read more by clicking on "official Arch repo" text
+- I made [official Arch repo](https://github.com/Sbinator-hub/haxefetch-arch). Read more by clicking on "official Arch repo" text
 
 For Gentoo Linux users
-- I made [official overlay](https://github.com/ACoolioDude/haxefetch-overlay) with included ebuilds. Read more by clicking on "official overlay" text
+- I made [official overlay](https://github.com/Sbinator-hub/haxefetch-overlay) with included ebuilds. Read more by clicking on "official overlay" text
 
 Getting binary using `wget`
-- `wget https://raw.githubusercontent.com/ACoolioDude/Haxefetch/main/binary/haxefetch && chmod +x haxefetch && sudo mv haxefetch /usr/bin/haxefetch`
+- `wget https://raw.githubusercontent.com/Sbinator-hub/Haxefetch/main/binary/haxefetch && chmod +x haxefetch && sudo mv haxefetch /usr/bin/haxefetch`
 </details>
 
 <details>
