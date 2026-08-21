@@ -1,25 +1,25 @@
-            ,:lodddd.
-          .:clooood.
-        ;clllooooc
-      ;cclllllloo
-     .cccccllllll
-   .   ,cccclllll
-  ':::;; ccccclll;
- .:::cccccccccccll;
- ;::::ccccllllllcll:
-.;::::cccclllloool::;
-;;;::::cccclllolc::::;.
-;;;::::cccclllccc:::::;.
-;;;::::cccclccccc::::::;.
-;;;;::::::llcccccc:::::'
-;;;;:; ,clllccccccc::
-.;;  .cllllllcccccc::;::::'
-    .'''''''''',:lddoooolll
-   '.....'''',cdddooooollll
-  ........':oddddoooolllllc
-   ....';ldddddooooolllllc:
-     ,cdddddddooooollllccc
-      :ddddddoooolllllccc
-        ;ddooooolllllcc.
-           :ooollllc.
-               c'
+$1            ,:lodddd.
+$1          .:clooood.
+$1        ;clllooooc
+$1      ;cclllllloo
+$1     .cccccllllll
+$1   .   ,cccclllll
+$1  ':::;; ccccclll;
+$1 .:::cccccccccccll;
+$1 ;::::ccccllllllcll:
+$1.;::::cccclllloool::;
+$1;;;::::cccclllolc::::;.
+$1;;;::::cccclllccc:::::;.
+$1;;;::::cccclccccc::::::;.
+$1;;;;::::::llcccccc:::::'
+$1;;;;:; ,clllccccccc::
+$1.;;  .cllllllcccccc::;::::'
+$1    .'''''''''',:lddoooolll
+$1   '.....'''',cdddooooollll
+$1  ........':oddddoooolllllc
+$1   ....';ldddddooooolllllc:
+$1     ,cdddddddooooollllccc
+$1      :ddddddoooolllllccc
+$1        ;ddooooolllllcc.
+$1           :ooollllc.
+$1               c'

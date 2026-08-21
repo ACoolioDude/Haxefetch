@@ -8,7 +8,6 @@ class Haxefetch {
         Configuration.loadConfig();
         var memory = Memory.memoryStats();
 
-        var logoColor = Colors.getColors(Configuration.logoColor);
         var user = getEnvironment("USER", getEnvironment("USERNAME", "user"));
         var hostname = SystemUtils.fetchHostname();
         var host = SystemUtils.fetchHost();
@@ -31,6 +30,12 @@ class Haxefetch {
         var birthday = SystemUtils.fetchBirthday();
         var birth = SystemUtils.fetchInstalledDate();
         var separator:String = " ";
+
+        var target = (Configuration.logo != null && Configuration.logo != "") ? Configuration.logo : distro;
+        var object = Logo.fetchColor(target);
+        var mainColor = (object != null && object.primary != null) ? object.primary : Colors.RESET;
+        var customColor = Colors.getColors(Configuration.logoColor);
+        var logoColor = (customColor != "" && customColor != null) ? customColor : mainColor;
 
         var modules:Map<String, String> = [
             "hostname" => Configuration.showHostname ? Colors.colorize(user, Colors.RED) + "@" + Colors.colorize(hostname, Colors.RED) : null,
@@ -64,7 +69,10 @@ class Haxefetch {
             var left = i < logo.length ? logo[i] : "";
             var right = i < infoLine.length ? infoLine[i] : "";
 
-            if (logoColor != "") left = logoColor + Colors.stripAnsi(left) + Colors.RESET;
+            if (logoColor != "" && logoColor != null) {
+                var color = Colors.getColors(logoColor);
+                if (color != "") left = color + Colors.stripAnsi(left) + Colors.RESET; 
+            }
 
             var visibleLeftLen = Colors.stripAnsi(left).length;
             var padding = (logoWidth + 3) - visibleLeftLen;
