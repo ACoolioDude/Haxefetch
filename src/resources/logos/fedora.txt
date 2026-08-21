@@ -1,19 +1,19 @@
-             .',;::::;,'.
-         .';:cccccccccccc:;,.
-      .;cccccccccccccccccccccc;.
-    .:cccccccccccccccccccccccccc:.
-  .;ccccccccccccc;$2.:dddl:.$1;ccccccc;.
- .:ccccccccccccc;$2OWMKOOXMWd$1;ccccccc:.
-.:ccccccccccccc;$2KMMc$1;cc;$2xMMc$1;ccccccc:.
-,cccccccccccccc;$2MMM.$1;cc;$2;WW:$1;cccccccc,
-:cccccccccccccc;$2MMM.$1;cccccccccccccccc:
-:ccccccc;$2oxOOOo$1;$2MMM000k.$1;cccccccccccc:
-cccccc;$20MMKxdd:$1;$2MMMkddc.$1;cccccccccccc;
-ccccc;$2XMO'$1;cccc;$2MMM.$1;cccccccccccccccc'
-ccccc;$2MMo$1;ccccc;$2MMW.$1;ccccccccccccccc;
-ccccc;$20MNc.$1ccc$2.xMMd$1;ccccccccccccccc;
-cccccc;$2dNMWXXXWM0:$1;cccccccccccccc:,
-cccccccc;$2.:odl:.$1;cccccccccccccc:,.
-ccccccccccccccccccccccccccccc:'.
-:ccccccccccccccccccccccc:;,..
- ':cccccccccccccccc::;,.
+$1             .',;::::;,'.
+$1         .';:cccccccccccc:;,.
+$1      .;cccccccccccccccccccccc;.
+$1    .:cccccccccccccccccccccccccc:.
+$1  .;ccccccccccccc;$2.:dddl:.$1;ccccccc;.
+$1 .:ccccccccccccc;$2OWMKOOXMWd$1;ccccccc:.
+$1.:ccccccccccccc;$2KMMc$1;cc;$2xMMc$1;ccccccc:.
+$1,cccccccccccccc;$2MMM.$1;cc;$2;WW:$1;cccccccc,
+$1:cccccccccccccc;$2MMM.$1;cccccccccccccccc:
+$1:ccccccc;$2oxOOOo$1;$2MMM000k.$1;cccccccccccc:
+$1cccccc;$20MMKxdd:$1;$2MMMkddc.$1;cccccccccccc;
+$1ccccc;$2XMO'$1;cccc;$2MMM.$1;cccccccccccccccc'
+$1ccccc;$2MMo$1;ccccc;$2MMW.$1;ccccccccccccccc;
+$1ccccc;$20MNc.$1ccc$2.xMMd$1;ccccccccccccccc;
+$1cccccc;$2dNMWXXXWM0:$1;cccccccccccccc:,
+$1cccccccc;$2.:odl:.$1;cccccccccccccc:,.
+$1ccccccccccccccccccccccccccccc:'.
+$1:ccccccccccccccccccccccc:;,..
+$1 ':cccccccccccccccc::;,.

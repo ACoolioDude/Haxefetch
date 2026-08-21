@@ -1,10 +1,10 @@
 $1              .,,,,.
-        .,'onNMMMMMNNnn',.
-     .'oNMANKMMMMMMMMMMMNNn'.
-   .'ANMMMMMMMXKNNWWWPFFWNNMNn.
-  ;NNMMMMMMMMMMNWW'' ,.., 'WMMM,
- ;NMMMMV+##+VNWWW' .+;'':+, 'WMW,
-,VNNWP+$2######$1+WW,  $2+:    $1:+, +MMM,
+$1        .,'onNMMMMMNNnn',.
+$1     .'oNMANKMMMMMMMMMMMNNn'.
+$1 .'ANMMMMMMMXKNNWWWPFFWNNMNn.
+$1  ;NNMMMMMMMMMMNWW'' ,.., 'WMMM,
+$1 ;NMMMMV+##+VNWWW' .+;'':+, 'WMW,
+$1,VNNWP+$2######$1+WW,  $2+:    $1:+, +MMM,
 '$2+#############,   +.    ,+' $1+NMMM
 $2  '*#########*'     '*,,*' $1.+NMMMM.
 $2     `'*###*'          ,.,;###$1+WNM,

@@ -207,7 +207,7 @@ class Colors {
     }
 
     public static inline function fg(code:Int):String {
-        return '\x1b[48;5;${code}m';
+        return '\x1b[38;5;${code}m';
     } 
 
     public static function colorize(name:String, color:String):String {
