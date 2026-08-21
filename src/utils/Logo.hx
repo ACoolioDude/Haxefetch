@@ -39,6 +39,7 @@ class Logo {
             if (txt.indexOf("$1") != -1) {
                 txt = StringTools.replace(txt, "$1", color.primary);
                 txt = StringTools.replace(txt, "$2", color.secondary);
+                txt = StringTools.replace(txt, "$3", color.third);
                 txt = StringTools.replace(txt, "$reset", Colors.RESET);
                 return txt.split("\n");
             }
@@ -66,8 +67,10 @@ class Logo {
             case _ if (low.indexOf("endeavouros") != -1): return "endeavour";
             case _ if (low.indexOf("fedora") != -1): return "fedora";
             case _ if (low.indexOf("gentoo") != -1): return "gentoo";
+            case _ if (low.indexOf("Kubuntu") != -1 || low.indexOf("kubuntu") != -1 || low.indexOf("kde-ubuntu") != -1): return "kubuntu";
             case _ if (low.indexOf("LinuxFromScratch") != -1 || low.indexOf("lfs") != -1): return "lfs";
             case _ if (low.indexOf("manjaro") != -1): return "manjaro";
+            case _ if (low.indexOf("mx") != -1): return "mx";
             case _ if (low.indexOf("linuxmint") != -1 || low.indexOf("linux-mint") != -1): return "mint";
             case _ if (low.indexOf("nixos") != -1): return "nix";
             case _ if (low.indexOf("opensuse") != -1 || low.indexOf("opensuse-microos") != -1 || low.indexOf("opensuse-leap") != -1 || low.indexOf("opensuse-tumbleweed") != -1 || low.indexOf("opensuse-slowroll") != -1): return "suse";
@@ -78,27 +81,30 @@ class Logo {
             case _ if (low.indexOf("steamos") != -1): return "steam";
             case _ if (low.indexOf("ubuntu") != -1 || low.indexOf("ubuntu-cinnamon") != -1 || low.indexOf("ubuntu-mate") != -1 || low.indexOf("ubuntu-sway") != -1 || low.indexOf("uwuntu") != -1): return "ubuntu";
             case _ if (low.indexOf("void") != -1): return "void";
+            case _ if (low.indexOf("Xubuntu") != -1): return "xubuntu";
+            case _ if (low.indexOf("Zorin") != -1): return "zorin";
             default: return null;
         }
     }
 
-    private static function fetchColor(low:String):{primary:String, secondary:String} {
+    private static function fetchColor(low:String):{primary:String, secondary:String, third:String} {
         switch (low) {
-            case "aerynos": return { primary: Colors.GREEN, secondary: Colors.YELLOW };
-            case "alpine" : return { primary: Colors.BLUE, secondary: Colors.BLUE };
-            case "arch": return { primary: Colors.BLUE, secondary: Colors.BLUE };
-            case "artix": return { primary: Colors.CYAN, secondary: Colors.CYAN };
-            case "cachyos" : return { primary: Colors.CYAN, secondary: Colors.CYAN };
-            case "debian" : return { primary: Colors.COLOR_88, secondary: Colors.COLOR_88 };
-            case "endeavour" : return { primary: Colors.COLOR_54, secondary: Colors.COLOR_54 };
-            case "fedora" : return { primary: Colors.WHITE, secondary: Colors.COLOR_17 };
-            case "gentoo" : return { primary: Colors.WHITE, secondary: Colors.MAGENTA };
-            case "manjaro" | "manjaro-arm": return { primary: Colors.GREEN, secondary: Colors.GREEN };
-            case "nix" : return { primary: Colors.WHITE, secondary: Colors.COLOR_63 };
-            case "pop" : return { primary: Colors.BRIGHT_CYAN, secondary: Colors.CYAN };
-            case "parch": return { primary: Colors.COLOR_55, secondary: Colors.COLOR_55 };
-            case "void": return { primary: Colors.COLOR_22, secondary: Colors.COLOR_22 };
-            default: return { primary: Colors.WHITE, secondary: Colors.WHITE };
+            case "aerynos": return { primary: Colors.GREEN, secondary: Colors.YELLOW, third: Colors.BLUE };
+            case "alpine" : return { primary: Colors.BLUE, secondary: Colors.WHITE, third: Colors.BLUE };
+            case "arch": return { primary: Colors.WHITE, secondary: Colors.BLUE, third: Colors.BLUE };
+            case "artix": return { primary: Colors.CYAN, secondary: Colors.CYAN, third: Colors.CYAN };
+            case "cachyos" : return { primary: Colors.CYAN, secondary: Colors.CYAN, third: Colors.CYAN };
+            case "debian" : return { primary: Colors.COLOR_88, secondary: Colors.COLOR_88, third: Colors.COLOR_88 };
+            case "endeavour" : return { primary: Colors.fg(99), secondary: Colors.fg(211), third: Colors.fg(141) };
+            case "fedora" : return { primary: Colors.COLOR_17, secondary: Colors.WHITE, third: Colors.COLOR_17 };
+            case "gentoo" : return { primary: Colors.WHITE, secondary: Colors.fg(98), third: Colors.fg(183) };
+            case "manjaro" | "manjaro-arm": return { primary: Colors.GREEN, secondary: Colors.GREEN, third: Colors.GREEN};
+            case "nix" : return { primary: Colors.WHITE, secondary: Colors.COLOR_63, third: Colors.fg(243) };
+            case "pop" : return { primary: Colors.BRIGHT_CYAN, secondary: Colors.WHITE, third: Colors.CYAN };
+            case "parch": return { primary: Colors.COLOR_55, secondary: Colors.COLOR_55, third: Colors.COLOR_55 };
+            case "void": return { primary: Colors.WHITE, secondary: Colors.COLOR_22, third: Colors.COLOR_22 };
+
+            default: return { primary: Colors.WHITE, secondary: Colors.WHITE, third: Colors.WHITE };
         };
     }
 

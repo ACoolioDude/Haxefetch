@@ -27,8 +27,11 @@
 --resource src/resources/logos/endeavouros.txt@endeavour
 --resource src/resources/logos/fedora.txt@fedora
 --resource src/resources/logos/gentoo.txt@gentoo
+--resource src/resources/logos/kubuntu.txt@kubuntu
 --resource src/resources/logos/linuxmint.txt@mint
+--resource src/resources/logos/lubuntu.txt@lubuntu
 --resource src/resources/logos/manjaro.txt@manjaro
+--resource src/resources/logos/mx.txt@mx
 --resource src/resources/logos/nixos.txt@nix
 --resource src/resources/logos/slackware.txt@slack
 --resource src/resources/logos/solus.txt@solus
@@ -38,6 +41,7 @@
 --resource src/resources/logos/pop.txt@pop
 --resource src/resources/logos/ubuntu.txt@ubuntu
 --resource src/resources/logos/void.txt@void
+--resource src/resources/logos/xubuntu.txt@xubuntu
 
 --resource src/resources/mini_logos/alpine.txt@apline_small
 --resource src/resources/mini_logos/arch.txt@arch_small
@@ -49,6 +53,7 @@
 --resource src/resources/mini_logos/gentoo.txt@gentoo_small
 --resource src/resources/mini_logos/manjaro.txt@manjaro_small
 --resource src/resources/mini_logos/mint.txt@mint_small
+--resource src/resources/mini_logos/mx.txt@mx_small
 --resource src/resources/mini_logos/nixos.txt@nix_small
 --resource src/resources/mini_logos/pop.txt@pop_small
 --resource src/resources/mini_logos/slackware.txt@slack_small
