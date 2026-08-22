@@ -25,6 +25,7 @@ class Haxefetch {
         var gpu = GPUUtility.fetchGPU();
         var disk = DiskUtility.fetchDisk();
         var packages = Packages.fetchPackage();
+        var packageSuffix = (packages != "") ? packages : '';
         var uptime = SystemUtils.fetchUptime();
         var birthday = SystemUtils.fetchBirthday();
         var birth = SystemUtils.fetchInstalledDate();
@@ -50,7 +51,7 @@ class Haxefetch {
             "cpu"      => Configuration.showCPU ? Colors.colorize(Configuration.cpuString, logoColor) + Configuration.separator + separator + cpu : null,
             "gpu"      => Configuration.showGPU ? Colors.colorize(Configuration.gpuString, logoColor) + Configuration.separator +separator + gpu : null,
             "disk"     => Configuration.showDisk ? Colors.colorize(Configuration.diskString, logoColor) + Configuration.separator + separator + disk : null,
-            "packages" => Configuration.showPackages ? Colors.colorize(Configuration.packageString, logoColor) + Configuration.separator + separator + packages : null,
+            "packages" => Configuration.showPackages ? Colors.colorize(Configuration.packageString, logoColor) + Configuration.separator + separator + packageSuffix : null,
             "uptime"   => Configuration.showUptime ? Colors.colorize(Configuration.uptimeString, logoColor) + Configuration.separator + separator + uptime : null,
             "birthday" => Configuration.showBirthday ? Colors.colorize(Configuration.birthdayString, logoColor) + Configuration.separator + separator + birthday : null,
             "birth"    => Configuration.showBirth ? Colors.colorize(Configuration.birthString, logoColor) + Configuration.separator + separator + birth : null,
