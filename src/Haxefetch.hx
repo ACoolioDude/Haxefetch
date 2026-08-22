@@ -2,23 +2,75 @@ package;
 
 import sys.io.Process;
 
+#if cpp
+@:headerCode('
+#include <ostream>
+')
+#end
+
 class Haxefetch {
+    static var user:String;
+    static var hostname:String;
+    static var host:String;
+    static var distro:String;
+    static var init:String;
+    static var initSuffix:String;
+    static var kernel:String;
+    static var desktop:String;
+    static var session:String;
+    static var protocol:String;        
+    static var gpu:String;
+    static var birthday:String;
+    static var birth:String;
+    static var logoColor:String;
+    static var logo:Array<String>;
+    static var logoWidth:Int = 0;
+
     static function main():Void {
+        #if cpp
+        untyped __cpp__("std::atexit([](){ printf(\"\\033[?25h\"); fflush(stdout); });");
+        #end
+
         Commands.parse(Sys.args());
         Configuration.loadConfig();
-        var memory = Memory.memoryStats();
 
-        var user = getEnvironment("USER", getEnvironment("USERNAME", "user"));
-        var hostname = SystemUtils.fetchHostname();
-        var host = SystemUtils.fetchHost();
-        var distro = SystemUtils.fetchDistro();
-        var init = SystemUtils.fetchInit();
-        var initSuffix = (init != "") ? ' [${Colors.colorize(init, Colors.GREEN)}]' : '';
-        var logoFetch = (Configuration.logo != "") ? Configuration.logo : distro;
-        var kernel = SystemUtils.fetchKernel();
-        var desktop = XdgSession.fetchDestkop();
-        var session = XdgSession.fetchSession();
-        var protocol = XdgSession.fetchProtocol();        
+        fetchStatic();
+        fetch();
+    }
+
+    public static function fetchStatic():Void {
+        user = getEnvironment("USER", getEnvironment("USERNAME", "user"));
+        logo = Logo.fetchLogo(distro, Configuration.logoSize, Configuration.logo, logoColor);
+        hostname = SystemUtils.fetchHostname();
+        host = SystemUtils.fetchHost();
+        distro = SystemUtils.fetchDistro();
+        init = SystemUtils.fetchInit();
+        initSuffix = (init != "") ? ' [${Colors.colorize(init, Colors.GREEN)}]' : '';
+        kernel = SystemUtils.fetchKernel();
+        desktop = XdgSession.fetchDestkop();
+        session = XdgSession.fetchSession();
+        protocol = XdgSession.fetchProtocol();
+        gpu = GPUUtility.fetchGPU();
+        birthday = SystemUtils.fetchBirthday();
+        birth = SystemUtils.fetchInstalledDate();
+
+        var target = (Configuration.logo != null && Configuration.logo != "") ? Configuration.logo : distro;
+        var object = Logo.fetchColor(target);
+        var mainColor = (object != null && object.primary != null) ? object.primary : Colors.RESET;
+        var customColor = Colors.getColors(Configuration.logoColor);
+        logoColor = (customColor != "" && customColor != null) ? customColor : mainColor;
+
+        logo = Logo.fetchLogo(distro, Configuration.logoSize, Configuration.logo, logoColor);
+
+        logoWidth = 0;
+        for (line in logo) {
+            var visibleLen = Colors.stripAnsi(line).length;
+            if (visibleLen > logoWidth) logoWidth = visibleLen;
+        }
+    }
+
+    public static function fetch():Void {
+        var memory = Memory.memoryStats();
         var ram = memory.ram;
         var swap = memory.swap;
         var cpu = CPUUtility.fetchCPU();
@@ -27,17 +79,7 @@ class Haxefetch {
         var packages = Packages.fetchPackage();
         var packageSuffix = (packages != "") ? packages : '';
         var uptime = SystemUtils.fetchUptime();
-        var birthday = SystemUtils.fetchBirthday();
-        var birth = SystemUtils.fetchInstalledDate();
         var separator:String = " ";
-
-        var target = (Configuration.logo != null && Configuration.logo != "") ? Configuration.logo : distro;
-        var object = Logo.fetchColor(target);
-        var mainColor = (object != null && object.primary != null) ? object.primary : Colors.RESET;
-        var customColor = Colors.getColors(Configuration.logoColor);
-        var logoColor = (customColor != "" && customColor != null) ? customColor : mainColor;
-
-        var logo = Logo.fetchLogo(distro, Configuration.logoSize, Configuration.logo, logoColor);
 
         var modules:Map<String, String> = [
             "hostname" => Configuration.showHostname ? Colors.colorize(user, Colors.RED) + "@" + Colors.colorize(hostname, Colors.RED) : null,
@@ -60,12 +102,6 @@ class Haxefetch {
 
         var infoLine:Array<String> = Configuration.modules.map(function(key) return modules.get(key)).filter(function(line) return line != null);
 
-        var logoWidth = 0;
-        for (line in logo) {
-            var visibleLen = Colors.stripAnsi(line).length;
-            if (visibleLen > logoWidth) logoWidth = visibleLen;
-        }
-
         var maximumLine = logo.length > infoLine.length ? logo.length : infoLine.length;
         for (i in 0...maximumLine) {
             var left = i < logo.length ? logo[i] : "";
@@ -81,7 +117,21 @@ class Haxefetch {
             if (padding < 0) padding = 0;
             
             var space = StringTools.lpad("", " ", padding);
-            Sys.println('$left$space$right');
+            Sys.println('$left$space$right\x1B[K');
+        }
+    }
+
+    public static function fetchLive():Void {
+        Sys.print("\x1B[?25l");
+
+        #if cpp
+        untyped __cpp__("std::atexit([](){ printf(\"\\033[?25h\"); fflush(stdout); });");
+        #end
+
+        while (true) {
+            Sys.print("\x1B[H");
+            fetch();
+            Sys.sleep(0.5);
         }
     }
     

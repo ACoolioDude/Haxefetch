@@ -22,6 +22,11 @@ class Commands {
                 case "-t" | "--tutorial":
                     fetchInstructions();
                     Sys.exit(0);
+                
+                case "-l" | "--live":
+                    Haxefetch.fetchStatic();
+                    Haxefetch.fetchLive();
+                    Sys.exit(0);
 
                 default:
                     Sys.println('Unknown command ${args}');
