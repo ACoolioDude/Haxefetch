@@ -231,6 +231,19 @@ class Packages {
                 }
             }
 
+            // Fronttier Linux (forge)
+            if (FileSystem.exists(root + "/var/lib/forge/local")) {
+                try {
+                    var count = FileSystem.readDirectory(root + "/var/lib/forge/local").length;
+                    if (count > 0) {
+                        var entry = Configuration.packageManager ? '$count (forge)' : '${count}';
+                        if (!counts.contains(entry)) {
+                            counts.push(entry);
+                        }
+                    } 
+                }
+            }
+
             // AerynOS / Serpent OS (moss)
             if (FileSystem.exists(root + "/.moss/db/installed")) {
                 try {

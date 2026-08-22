@@ -72,6 +72,7 @@ class Logo {
             case _ if (low.indexOf("debian") != -1): return "debian";
             case _ if (low.indexOf("endeavouros") != -1): return "endeavour";
             case _ if (low.indexOf("fedora") != -1): return "fedora";
+            case _ if (low.indexOf("fronttier") != -1): return "fronttier";
             case _ if (low.indexOf("gentoo") != -1): return "gentoo";
             case _ if (low.indexOf("kali") != -1): return "kali";
             case _ if (low.indexOf("KDE Neon") != -1 || low.indexOf("neon") != -1): return "neon";
@@ -111,6 +112,7 @@ class Logo {
         if (s.indexOf("debian") != -1) return { primary: Colors.fg(196), secondary: Colors.fg(124), third: Colors.WHITE };
         if (s.indexOf("endeavour") != -1) return { primary: Colors.fg(99), secondary: Colors.fg(211), third: Colors.fg(141) };
         if (s.indexOf("fedora") != -1) return { primary: Colors.fg(33), secondary: Colors.WHITE, third: Colors.fg(39) };
+        if (s.indexOf("fronttier") != -1) return { primary: Colors.fg(51), secondary: Colors.WHITE, third: Colors.WHITE };
         if (s.indexOf("gentoo") != -1) return { primary: Colors.fg(141), secondary: Colors.fg(61), third: Colors.WHITE };
         if (s.indexOf("kubuntu") != -1) return { primary: Colors.BLUE, secondary: Colors.WHITE, third: Colors.WHITE };
         if (s.indexOf("lubuntu") != -1) return { primary: Colors.fg(26), secondary: Colors.WHITE, third: Colors.WHITE };

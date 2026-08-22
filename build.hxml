@@ -26,6 +26,7 @@
 --resource src/resources/logos/debian.txt@debian
 --resource src/resources/logos/endeavouros.txt@endeavour
 --resource src/resources/logos/fedora.txt@fedora
+--resource src/resources/logos/fronttier.txt@fronttier
 --resource src/resources/logos/gentoo.txt@gentoo
 --resource src/resources/logos/kali.txt@kail
 --resource src/resources/logos/kdeneon.txt@neon
