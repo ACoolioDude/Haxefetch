@@ -7,7 +7,7 @@ import sys.FileSystem;
 import sys.io.File;
 
 class Logo {
-    public static function fetchLogo(distroName:String, size:String = "normal", overrideLogo:String = ""):Array<String> {
+    public static function fetchLogo(distroName:String, size:String = "normal", overrideLogo:String = "", customColor:String = ""):Array<String> {
         var raw:String = null;
         /*var resolve = resolvePath(customLogo);
 
@@ -32,22 +32,28 @@ class Logo {
         }
 
         if (raw != null) {
-            var clean = StringTools.replace(distroName.toLowerCase(), " linux", "");
-            var target = (overrideLogo != "") ? overrideLogo : StringTools.trim(clean);
-            var color = fetchColor(target); 
+            //var target = (overrideLogo != "") ? overrideLogo : StringTools.trim(clean);
+            var color = fetchColor((overrideLogo != "") ? overrideLogo : distroName);
+            var custom = (customColor != null && customColor != "") ? customColor : color.primary; 
             var txt = StringTools.replace(raw, "\r\n", "\n");
 
             if (txt.indexOf("$1") != -1) {
-                txt = StringTools.replace(txt, "$1", color.primary);
+                txt = StringTools.replace(txt, "$1", custom);
                 txt = StringTools.replace(txt, "$2", color.secondary);
                 txt = StringTools.replace(txt, "$3", color.third);
-                txt = StringTools.replace(txt, "$reset", Colors.RESET);
                 
                 var lines = txt.split("\n");
-                for (i in 0...lines.length) {
-                    lines[i] = lines[i] + Colors.RESET;
+                var colorredLine:Array<String> = [];
+
+                for (line in lines) {
+                    var format = line;
+                    if (format.indexOf("\033") == 1) {
+                        format = custom + format;
+                    }
+                    colorredLine.push(format + Colors.RESET);
                 }
-                return lines;
+
+                return colorredLine;
             }
         }
 

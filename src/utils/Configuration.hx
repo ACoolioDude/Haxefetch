@@ -230,7 +230,7 @@ class Configuration {
 
             var defaults =
                 "# Haxefetch configuration\n\n" +
-                "modules=hostname, host, os, kernel, de, wm, ram, swap, cpu, gpu, disk, packages, haxe, opengl, vulkan, uptime, birthday, birth, colors\n" +
+                "modules=hostname, host, os, kernel, de, wm, ram, swap, cpu, gpu, disk, packages, uptime, birthday, birth, colors\n" +
                 "separator=':'\n\n" +
 
                 "logo=''\n" +

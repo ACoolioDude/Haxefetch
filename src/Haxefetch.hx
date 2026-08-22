@@ -15,7 +15,6 @@ class Haxefetch {
         var init = SystemUtils.fetchInit();
         var initSuffix = (init != "") ? ' [${Colors.colorize(init, Colors.GREEN)}]' : '';
         var logoFetch = (Configuration.logo != "") ? Configuration.logo : distro;
-        var logo = Logo.fetchLogo(logoFetch, Configuration.logoSize);
         var kernel = SystemUtils.fetchKernel();
         var desktop = XdgSession.fetchDestkop();
         var session = XdgSession.fetchSession();
@@ -36,6 +35,8 @@ class Haxefetch {
         var mainColor = (object != null && object.primary != null) ? object.primary : Colors.RESET;
         var customColor = Colors.getColors(Configuration.logoColor);
         var logoColor = (customColor != "" && customColor != null) ? customColor : mainColor;
+
+        var logo = Logo.fetchLogo(distro, Configuration.logoSize, Configuration.logo, logoColor);
 
         var modules:Map<String, String> = [
             "hostname" => Configuration.showHostname ? Colors.colorize(user, Colors.RED) + "@" + Colors.colorize(hostname, Colors.RED) : null,
